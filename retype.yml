@@ -2,10 +2,8 @@ input: ./src
 output: .retype
 url: https://fabricio-191.github.io/simplest.db-docs/
 
-
 branding:
   title: Simplest-DB
-  label: Docs
   label: v2.0.0
 
 meta:
@@ -32,7 +30,7 @@ links:
     target: blank
 
 search:
-  placeholder: Installation
+  placeholder: Search
 
 footer:
   copyright: "&copy; Copyright {{ year }}. All rights reserved."
