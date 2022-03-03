@@ -2,7 +2,7 @@
 
 ```js
 const Database = require('simplest.db');
-const db = new Database({
+const db = new Database.simple.JSON({
     path: './test.json'
 })
 
@@ -77,36 +77,9 @@ db.clear()
 //Database {}
 ```
 
-# Index
-* [Database](#database)
-    * [set](#set-get-and-delete)
-    * [get](#set-get-and-delete)
-    * [delete](#set-get-and-delete)
-    * [clear]()
-    * [keys]()
-    * [values]()
-    * [entries]()
-    * [number]()
-        * [add]()
-        * [subtract]()
-    * [array]()
-        * [push]()
-        * [extract]()
-        * [splice]()
-        * [includes]()
-        * [find]()
-        * [findIndex]()
-        * [filter]()
-        * [map]()
-        * [sort]()
-        * [some]()
-        * [every]()
-        * [reduce]()
-        * [random]()
-
-# Database
+## Options
 ```js
-new Database(options);
+new Database.simple.JSON()
 //or 
 Database.init(options);
 ```
@@ -130,16 +103,7 @@ Options need to be an object like this
 
 * `check` is whenether to check or not if the value was stored correctly, `false` by default
 
-* `cacheType` is explained below by default it's `1`
-
-## cacheType
-It is the method that the database will use to manage the cache.  
-
-`0`: No cache (the database will be read every time a method is used)
-`1`: Cache with copies (the database will use as cache, copies of the values that are entered and obtained, to avoid errors)
-`2`: Cache (interactions occur directly with the cache)
-
-Method 2 is the most efficient, but it has a problem, if you are new to programming, or want to avoid mistakes, don't use it.
+## cache
 
 ```js
 let db = new Database({
@@ -182,6 +146,3 @@ db.set('abc.def', false);
 ```
 
 if you understood this, you can use this even to your advantage
-
-# Methods
-
