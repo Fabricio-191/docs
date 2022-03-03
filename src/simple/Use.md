@@ -1,4 +1,6 @@
-# Quick example
+# Use
+
+## Quick example
 
 ```js
 const Database = require('simplest.db');
@@ -47,11 +49,7 @@ db.clear()
 // {}
 ```
 
-# Options
-```js
-new Database.simple.JSON()
-//or 
-```
+## Options
 
 Options need to be an object like this
 ```js

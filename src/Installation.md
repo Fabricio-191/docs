@@ -1,3 +1,8 @@
+---
+order: 2
+icon: download
+---
+
 ### Installation
 
 ```js
