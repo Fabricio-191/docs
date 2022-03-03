@@ -1,11 +1,39 @@
 input: .
 output: .retype
 url: https://fabricio-191.github.io/simplest.db-docs/
+
+
 branding:
-  title: Project Name
+  title: Simplest-DB
   label: Docs
+
+branding:
+  logo: /static/retype-logo.svg
+  logoDark: /static/retype-logo-dark.svg
+  label: v2.0.0
+
+meta:
+  title: " - simplest-db"
+
 links:
-- text: Getting Started
-  link: https://retype.com/guides/getting-started/
+  - text: Home
+    link: /README.md
+    icon: home
+
+  - text: Issues
+    link: https://github.com/Fabricio-191/simple.db/issues
+    icon: issue-opened
+    target: blank
+
+  - text: Discussions
+    link: https://github.com/Fabricio-191/simple.db/discussions
+    icon: comment-discussion
+    target: blank
+
+  - text: GitHub
+    link: https://github.com/Fabricio-191/simple.db
+    icon: mark-github
+    target: blank
+
 footer:
   copyright: "&copy; Copyright {{ year }}. All rights reserved."
