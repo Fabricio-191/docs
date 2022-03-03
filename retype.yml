@@ -1,4 +1,4 @@
-input: ./docs
+input: ./src
 output: .retype
 url: https://fabricio-191.github.io/simplest.db-docs/
 
@@ -6,10 +6,6 @@ url: https://fabricio-191.github.io/simplest.db-docs/
 branding:
   title: Simplest-DB
   label: Docs
-
-branding:
-  logo: /static/retype-logo.svg
-  logoDark: /static/retype-logo-dark.svg
   label: v2.0.0
 
 meta:

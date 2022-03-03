@@ -23,9 +23,9 @@ db.get('foo.bar[0]') //123
 db.numbers.add('foo.bar[1]', 4) //460
 db.array.push('foo.bar', 800) //[123, 460, 800]
 
-console.log(db);
+console.log(db.data);
 /*
-Database {
+{
     ABC: null,
     foo: {
         bar: [123, 460, 800]
@@ -33,40 +33,10 @@ Database {
 }
 */
 
-console.log(db.entries)
-/*
-[
-    {
-        key: 'ABC',
-        value: null
-    }, 
-    {
-        key: 'foo',
-        value: {
-            bar: [123, 460, 800]
-        }
-    }
-]
-*/
-
-console.log(db.keys)
-//['ABC', 'foo']
-
-console.log(db.values)
-/*
-[
-    null, 
-    {
-        bar: [123, 460, 800]
-    }
-]
-*/
-
-
 db.delete('foo.bar')
 
 /*
-Database {
+{
     ABC: null
     foo: {}
 }
@@ -74,30 +44,25 @@ Database {
 
 db.clear()
 
-//Database {}
+// {}
 ```
 
-## Options
+# Options
 ```js
 new Database.simple.JSON()
 //or 
-Database.init(options);
 ```
 
 Options need to be an object like this
 ```js
 { 
     path: './somepath.db', 
-    type: 'SQLite',
-    name: 'things',
     check: false,
-    cacheType: 0
+	saveTimeout: 200,
 }
 ```
 
 * `path` is where is going to be the file with the database. By default it's `./simple-db.json` for JSON and `./simple-db.sqlite` for SQLite
-
-* `Type` it is the method to store data in the database it can be JSON or SQLite, SQLite needs `better-sqlite3` installed. If you don't specify a type, it will tried to get it from the path (if it ends in "sqlite" or "json"), otherwise, the default type is `JSON` 
 
 * `name` is only required if the database type is `SQLite` (if you know SQL: it's the table name), `simple_db` by default.
 
