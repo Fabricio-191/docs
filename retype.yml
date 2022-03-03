@@ -1,4 +1,4 @@
-input: .
+input: ./docs
 output: .retype
 url: https://fabricio-191.github.io/simplest.db-docs/
 
