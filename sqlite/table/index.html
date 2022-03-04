@@ -9,25 +9,29 @@
     <!-- Primary Meta Tags -->
     <title>Table - simplest-db</title>
     <meta name="title" content="Table - simplest-db">
+    <meta name="description" content="The columns while creating a table are column's-def from SQLite by default the type is BLOB." />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://fabricio-191.github.io/simplest.db-docs/sqlite/table/">
     <meta property="og:title" content="Table - simplest-db">
+    <meta property="og:description" content="The columns while creating a table are column's-def from SQLite by default the type is BLOB.">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://fabricio-191.github.io/simplest.db-docs/sqlite/table/">
     <meta property="twitter:title" content="Table - simplest-db">
+    <meta property="twitter:description" content="The columns while creating a table are column's-def from SQLite by default the type is BLOB.">
     
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/simplest.db-docs/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="/simplest.db-docs/resources/css/retype.css?v=1.11.2.699676201229" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/simplest.db-docs/static/favicon.png" rel="icon" />
+    <link href="/simplest.db-docs/resources/css/retype.css?v=1.11.2.699715711136" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/simplest.db-docs/resources/js/config.js?v=1.11.2.699676201229" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/simplest.db-docs/resources/js/config.js?v=1.11.2.699715711136" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/simplest.db-docs/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/simplest.db-docs/resources/js/lunr.js?v=1.11.2.699676201229" defer></script>
-    <script id="prism-js" type="text/javascript" src="/simplest.db-docs/resources/js/prism.js?v=1.11.2.699676201229" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/simplest.db-docs/resources/js/lunr.js?v=1.11.2.699715711136" defer></script>
+    <script id="prism-js" type="text/javascript" src="/simplest.db-docs/resources/js/prism.js?v=1.11.2.699715711136" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -55,7 +59,7 @@
             <nav class="hidden md:flex">
     <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
         <li class="md:mr-6">
-            <a class="inline-flex items-center py-2 md:mb-0 text-sm text-gray-400 whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="/simplest.db-docs/">
+            <a class="inline-flex items-center py-2 md:mb-0 text-sm text-gray-400 whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="/simplest.db-docs/welcome/">
                 <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
                     <g fill="currentColor">
                         <path fill-rule="evenodd" d="M11.03 2.59a1.5 1.5 0 011.94 0l7.5 6.363a1.5 1.5 0 01.53 1.144V19.5a1.5 1.5 0 01-1.5 1.5h-5.75a.75.75 0 01-.75-.75V14h-2v6.25a.75.75 0 01-.75.75H4.5A1.5 1.5 0 013 19.5v-9.403c0-.44.194-.859.53-1.144l7.5-6.363zM12 3.734l-7.5 6.363V19.5h5v-6.25a.75.75 0 01.75-.75h3.5a.75.75 0 01.75.75v6.25h5v-9.403L12 3.734z"/>
@@ -180,7 +184,7 @@
                 <nav>
                     <ul class="flex flex-wrap justify-center items-center">
                         <li class="mr-6">
-                            <a class="block py-1 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="/README.md">Home</a>
+                            <a class="block py-1 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="/Welcome.md">Home</a>
                         </li>
                         <li class="mr-6">
                             <a class="block py-1 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://github.com/Fabricio-191/simple.db/issues">Issues</a>
@@ -234,8 +238,43 @@
     </h2>
 </doc-anchor-target>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">const table = db.tables.create('test', ['a', 'b', 'c']);</code></pre>
+<pre class="language-javascript"><code v-pre class="language-javascript">// db.tables.create(tableName, columns, defaultValues);
+const table = db.tables.create('test', ['a', 'b', 'c']);</code></pre>
 </doc-codeblock></div>
+<doc-panel id="columns-advanced" collapsed>
+    <template #title>Columns (advanced)</template>
+<p>The columns while creating a table are <a href="https://www.sqlite.org/syntax/column-def.html">column&#x27;s-def</a> from SQLite by default the type is BLOB. And default values are overriden by default values provided while creating the table.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">db.tables.create(
+	'test', [
+		'a INTEGER PRIMARY KEY',
+		'b UNIQUE',
+		'c NOT NULL'
+	],
+	{ c: 'defaultValue' }
+);</code></pre>
+</doc-codeblock></div>
+</doc-panel>
+<doc-panel id="default-values" collapsed>
+    <template #title>Default values</template>
+<p>By default all default values are set to <code v-pre>null</code>.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">const table = db.tables.create('test', ['a', 'b', 'c'], { a: 123, b: 'abc' });
+
+table.insert([
+	{ b: 'def' },
+	{ a: 456 }
+]);
+
+console.log(table.selectAll());
+/*
+[
+	{ a: 123, b: 'def', c: null },
+	{ a: 456, b: 'abc', c: null }
+]
+*/</code></pre>
+</doc-codeblock></div>
+</doc-panel>
 <doc-anchor-target id="insert">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#insert">#</doc-anchor-trigger>
@@ -245,6 +284,36 @@
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-javascript"><code v-pre class="language-javascript">table.insert({ a: 1, b: 'abc' });</code></pre>
 </doc-codeblock></div>
+<doc-anchor-target id="select">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#select">#</doc-anchor-trigger>
+        <span>select</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="update">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#update">#</doc-anchor-trigger>
+        <span>update</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="replace">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#replace">#</doc-anchor-trigger>
+        <span>replace</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="delete">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#delete">#</doc-anchor-trigger>
+        <span>delete</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="deleteall">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#deleteall">#</doc-anchor-trigger>
+        <span>deleteAll</span>
+    </h2>
+</doc-anchor-target>
 
 
 
