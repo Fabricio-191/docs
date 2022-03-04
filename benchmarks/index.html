@@ -9,27 +9,27 @@
     <!-- Primary Meta Tags -->
     <title>Benchmarks - simplest-db</title>
     <meta name="title" content="Benchmarks - simplest-db">
-    <meta name="description" content="To run the benchmark yourself, run the following commands:" />
+    <meta name="description" content="Measured in ops/sec" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://fabricio-191.github.io/simplest.db-docs/benchmarks/">
     <meta property="og:title" content="Benchmarks - simplest-db">
-    <meta property="og:description" content="To run the benchmark yourself, run the following commands:">
+    <meta property="og:description" content="Measured in ops/sec">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://fabricio-191.github.io/simplest.db-docs/benchmarks/">
     <meta property="twitter:title" content="Benchmarks - simplest-db">
-    <meta property="twitter:description" content="To run the benchmark yourself, run the following commands:">
+    <meta property="twitter:description" content="Measured in ops/sec">
     
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/simplest.db-docs/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="/simplest.db-docs/resources/css/retype.css?v=1.11.2.699671593064" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/simplest.db-docs/resources/css/retype.css?v=1.11.2.699676201229" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/simplest.db-docs/resources/js/config.js?v=1.11.2.699671593064" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/simplest.db-docs/resources/js/config.js?v=1.11.2.699676201229" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/simplest.db-docs/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/simplest.db-docs/resources/js/lunr.js?v=1.11.2.699671593064" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/simplest.db-docs/resources/js/lunr.js?v=1.11.2.699676201229" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -235,6 +235,76 @@
         <span>Last results</span>
     </h2>
 </doc-anchor-target>
+<p>Measured in ops/sec</p>
+<p><span class="docs-emoji">&#x1F538;</span> means writes/reads every time (no cache use)</p>
+<p>SQLite</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Action</th>
+<th>Simple.SQLite</th>
+<th>Simple.SQLite <span class="docs-emoji">&#x1F538;</span></th>
+<th>quick.db <span class="docs-emoji">&#x1F538;</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>set</td>
+<td>237</td>
+<td>14.59</td>
+<td>2.49</td>
+</tr>
+<tr>
+<td>get</td>
+<td>5125</td>
+<td>-</td>
+<td>6.58</td>
+</tr>
+<tr>
+<td>delete</td>
+<td>713</td>
+<td>16.27</td>
+<td>9.12</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>JSON</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Action</th>
+<th>Simple.JSON</th>
+<th>Simple.JSON <span class="docs-emoji">&#x1F538;</span></th>
+<th>megadb</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>set</td>
+<td>3618</td>
+<td>0.16</td>
+<td>0.11 <span class="docs-emoji">&#x1F538;</span></td>
+</tr>
+<tr>
+<td>get</td>
+<td>5097</td>
+<td>-</td>
+<td>1985</td>
+</tr>
+<tr>
+<td>delete</td>
+<td>4522</td>
+<td>0.53</td>
+<td>2210</td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-panel id="raw-results" collapsed>
+    <template #title>Raw results</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">simple.JSON
 set    x 3618 ops/sec ±8.01% (77 runs sampled)
@@ -264,6 +334,7 @@ set    x 2.49 ops/sec ±2.86% (11 runs sampled)
 get    x 6.58 ops/sec ±1.55% (21 runs sampled)
 delete x 9.12 ops/sec ±1.10% (27 runs sampled)</code></pre>
 </doc-codeblock></div>
+</doc-panel>
 <doc-anchor-target id="benchmarking">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#benchmarking">#</doc-anchor-trigger>

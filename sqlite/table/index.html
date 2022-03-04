@@ -22,11 +22,12 @@
     
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/simplest.db-docs/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="/simplest.db-docs/resources/css/retype.css?v=1.11.2.699671593064" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/simplest.db-docs/resources/css/retype.css?v=1.11.2.699676201229" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/simplest.db-docs/resources/js/config.js?v=1.11.2.699671593064" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/simplest.db-docs/resources/js/config.js?v=1.11.2.699676201229" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/simplest.db-docs/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/simplest.db-docs/resources/js/lunr.js?v=1.11.2.699671593064" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/simplest.db-docs/resources/js/lunr.js?v=1.11.2.699676201229" defer></script>
+    <script id="prism-js" type="text/javascript" src="/simplest.db-docs/resources/js/prism.js?v=1.11.2.699676201229" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -226,6 +227,24 @@
         <span>Table</span>
     </h1>
 </doc-anchor-target>
+<doc-anchor-target id="creating-a-table">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#creating-a-table">#</doc-anchor-trigger>
+        <span>Creating a table</span>
+    </h2>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">const table = db.tables.create('test', ['a', 'b', 'c']);</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="insert">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#insert">#</doc-anchor-trigger>
+        <span>insert</span>
+    </h2>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">table.insert({ a: 1, b: 'abc' });</code></pre>
+</doc-codeblock></div>
 
 
 
@@ -298,6 +317,6 @@
 
         <div id="docs-overlay-target"></div>
 
-        <script>window.__DOCS__ = { "title": "Table", icon: "file", hasPrism: false, hasMermaid: false, hasMath: false }</script>
+        <script>window.__DOCS__ = { "title": "Table", icon: "file", hasPrism: true, hasMermaid: false, hasMath: false }</script>
     </body>
 </html>

@@ -22,12 +22,12 @@
     
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/simplest.db-docs/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="/simplest.db-docs/resources/css/retype.css?v=1.11.2.699671593064" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/simplest.db-docs/resources/css/retype.css?v=1.11.2.699676201229" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/simplest.db-docs/resources/js/config.js?v=1.11.2.699671593064" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/simplest.db-docs/resources/js/config.js?v=1.11.2.699676201229" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/simplest.db-docs/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/simplest.db-docs/resources/js/lunr.js?v=1.11.2.699671593064" defer></script>
-    <script id="prism-js" type="text/javascript" src="/simplest.db-docs/resources/js/prism.js?v=1.11.2.699671593064" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/simplest.db-docs/resources/js/lunr.js?v=1.11.2.699676201229" defer></script>
+    <script id="prism-js" type="text/javascript" src="/simplest.db-docs/resources/js/prism.js?v=1.11.2.699676201229" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -227,17 +227,61 @@
         <span>Database</span>
     </h1>
 </doc-anchor-target>
+<doc-anchor-target id="creating-a-database">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#creating-a-database">#</doc-anchor-trigger>
+        <span>Creating a database</span>
+    </h2>
+</doc-anchor-target>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-javascript"><code v-pre class="language-javascript">const SQLiteDatabase = require('@fabricio-191/simple.db').SQLite;
 
 const db = new SQLiteDatabase({
 	path: './database.sqlite',
-});
-
-const table = db.tables.create('test', ['a', 'b', 'c']);
-
-table.insert({ a: 1, b: 'abc' });</code></pre>
+});</code></pre>
 </doc-codeblock></div>
+<doc-anchor-target id="creating-a-table">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#creating-a-table">#</doc-anchor-trigger>
+        <span>Creating a table</span>
+    </h2>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">const table = db.tables.create('test', ['a', 'b', 'c']);
+
+table.insert({ a: 1, b: 'abc' });
+table.update(row =&gt; row.a === 1, { b: 'def' });</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="transactions">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#transactions">#</doc-anchor-trigger>
+        <span>Transactions</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="optimize">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#optimize">#</doc-anchor-trigger>
+        <span>Optimize</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="closing-the-database">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#closing-the-database">#</doc-anchor-trigger>
+        <span>Closing the database</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="pragma">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#pragma">#</doc-anchor-trigger>
+        <span>Pragma</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="run">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#run">#</doc-anchor-trigger>
+        <span>Run</span>
+    </h2>
+</doc-anchor-target>
 
 
 
