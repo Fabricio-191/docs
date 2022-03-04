@@ -10,7 +10,6 @@ This module really simplifies the creation and use of databases. but sacrifices 
 
 It's thinked for begginers or for projects where speed isn't vital. 
 
-
 ## Installation
 
 To install the package, run the following command:

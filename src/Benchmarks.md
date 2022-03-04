@@ -41,6 +41,7 @@ To run the benchmark yourself, run the following commands:
 
 ```
 git clone https://github.com/Fabricio-191/simple.db
+cd simple.db
 npm i
-npm run comp
+npm run bench
 ```
