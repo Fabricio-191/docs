@@ -83,32 +83,7 @@ let obj = {
 
 db.set('abc', obj);
 
-console.log(db)
-/*
-Database {
-    abc: {
-        num: 1
-    }
-}
-*/
-
 obj.num += 30;
 
-console.log(db)
-/*
-Database {
-    abc: {
-        num: 31
-    }
-}
-*/
-
-
-console.log(db.get('abc.num')) //31
-//but the real stored value is still 1, you have only modified the cache value
-
-db.set('abc.def', false);
-//now the stored value in 'abc.num' is 31, cause thit set, saved that value from the cache
+console.log(db.get('abc')); // { num: 31 }
 ```
-
-if you understood this, you can use this even to your advantage

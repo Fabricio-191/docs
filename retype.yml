@@ -9,9 +9,11 @@ branding:
 meta:
   title: " - simplest-db"
 
+favicon: static/favicon.png
+
 links:
   - text: Home
-    link: /README.md
+    link: /Welcome.md
     icon: home
 
   - text: Issues
