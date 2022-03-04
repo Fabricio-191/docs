@@ -5,6 +5,27 @@ icon: cpu
 
 ## Last results
 
+Measured in ops/sec
+
+🔸 means writes/reads every time (no cache use)
+
+SQLite
+
+Action | Simple.SQLite | Simple.SQLite 🔸  | quick.db 🔸  
+-------|---------------|-------------------|------------
+set    | 237           | 14.59             | 2.49
+get    | 5125          | -                 | 6.58 
+delete | 713           | 16.27             | 9.12
+
+JSON
+
+Action | Simple.JSON | Simple.JSON 🔸  | megadb
+-------|-------------|-----------------|--------
+set    |     3618    |  0.16           |  0.11 🔸   
+get    |     5097    | -               |  1985
+delete |     4522    |  0.53           |  2210
+
+==- Raw results
 ```
 simple.JSON
 set    x 3618 ops/sec ±8.01% (77 runs sampled)
@@ -34,6 +55,7 @@ set    x 2.49 ops/sec ±2.86% (11 runs sampled)
 get    x 6.58 ops/sec ±1.55% (21 runs sampled)
 delete x 9.12 ops/sec ±1.10% (27 runs sampled)
 ```
+===
 
 ## Benchmarking
 
