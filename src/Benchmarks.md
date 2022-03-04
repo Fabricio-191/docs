@@ -3,27 +3,66 @@ order: -2
 icon: cpu
 ---
 
-## Last results
+## Benchmarking
 
-Measured in ops/sec
+To run the benchmark yourself, run the following commands:
+
+```
+git clone https://github.com/Fabricio-191/simple.db
+cd simple.db
+npm i
+npm run bench
+```
+
+Everything is measured in operations per second (ops/s).
 
 🔸 means writes/reads every time (no cache use)
 
-SQLite
+# Last results
 
-Action | Simple.SQLite | Simple.SQLite 🔸  | quick.db 🔸  
--------|---------------|-------------------|------------
-set    | 237           | 14.59             | 2.49
-get    | 5125          | -                 | 6.58 
-delete | 713           | 16.27             | 9.12
+## Simple databases
 
-JSON
+```mermaid
+gantt
+	title SQLite
+    dateFormat x
+    axisFormat %s
 
-Action | Simple.JSON | Simple.JSON 🔸  | megadb
--------|-------------|-----------------|--------
-set    |     3618    |  0.16           |  0.11 🔸   
-get    |     5097    | -               |  1985
-delete |     4522    |  0.53           |  2210
+    section Simple.SQLite
+    get    : 0, 5125s
+    set    : 0, 237s
+    delete : 0, 713s
+
+    section Simple.SQLite 🔸
+    get    : 0, 14.59s
+    delete : 0, 16.27s
+
+    section quick.db 🔸
+    get    : 0, 2.49s
+    set    : 0, 6.58s
+    delete : 0, 9.12s
+```
+
+```mermaid
+gantt
+	title JSON
+    dateFormat x
+    axisFormat %s
+
+    section Simple.JSON
+    get    :0, 3618s
+    set    :0, 5097s
+    delete :0, 4522s
+
+    section Simple.JSON 🔸
+    get    :0, 0.16s
+    delete :0, 0.53s
+
+    section megadb
+    get 🔸 :0, 0.11s 
+    set    :0, 1985s
+    delete :0, 2210s
+```
 
 ==- Raw results
 ```
@@ -57,13 +96,59 @@ delete x 9.12 ops/sec ±1.10% (27 runs sampled)
 ```
 ===
 
-## Benchmarking
+## SQLite database
 
-To run the benchmark yourself, run the following commands:
+100 rows | select        | select in transaction
+---------|---------------|----------------------
+js       | 2648          | 3983                 
+sql      | 4911          | 9550                 
+all      | 2663          | 2990 
 
+100000 rows | select        | select in transaction
+------------|---------------|----------------------
+js          | 11.23         | 12.29                 
+sql         | 29.63         | 30.24                 
+all         | 6.28          | 6.57 
+
+insert      | many (transaction) | each
+------------|--------------------|----------------------
+10 rows     | 6.96               | 0.77                 
+100 rows    | 7.45               | 0.07            
+
+==- Raw results
 ```
-git clone https://github.com/Fabricio-191/simple.db
-cd simple.db
-npm i
-npm run bench
+with 100 rows:
+
+select
+js  x 2648 ops/sec ±18.51% (80 runs sampled)
+sql x 4911 ops/sec ±7.76% (74 runs sampled)
+all x 2663 ops/sec ±1.10% (86 runs sampled)
+
+select in transaction
+js  x 3983 ops/sec ±7.27% (88 runs sampled)
+sql x 9550 ops/sec ±1.96% (87 runs sampled)
+all x 2990 ops/sec ±4.24% (85 runs sampled)
+
+
+with 100000 rows:
+
+select
+js  x 11.23 ops/sec ±3.75% (32 runs sampled)
+sql x 29.63 ops/sec ±0.69% (52 runs sampled)
+all x  6.28 ops/sec ±6.57% (20 runs sampled)
+
+select in transaction
+js  x 12.29 ops/sec ±0.90% (35 runs sampled)
+sql x 30.24 ops/sec ±0.64% (53 runs sampled)
+all x  6.57 ops/sec ±1.63% (21 runs sampled)
+
+
+inserting 10 rows:
+many (transaction) x 6.96 ops/sec ±24.65% (23 runs sampled)
+each               x 0.77 ops/sec ±9.62% (6 runs sampled)
+
+inserting 100 rows
+many (transaction) x 7.45 ops/sec ±7.59% (21 runs sampled)
+each               x 0.07 ops/sec ±2.88% (5 runs sampled)
 ```
+===

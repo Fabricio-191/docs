@@ -28,18 +28,22 @@ db.tables.create(
 By default all default values are set to `null`.
 
 ```js
-const table = db.tables.create('test', ['a', 'b', 'c'], { a: 123, b: 'abc' });
+const table = db.tables.create(
+	'test',
+	['a', 'b', 'c'],
+	{ a: 300, b: 'someDefaultValue' }
+);
 
 table.insert([
-	{ b: 'def' },
-	{ a: 456 }
+	{ b: 'def', c: 'thing' },
+	{ a: 700 }
 ]);
 
 console.log(table.selectAll());
 /*
 [
-	{ a: 123, b: 'def', c: null },
-	{ a: 456, b: 'abc', c: null }
+	{ a: 300, b: 'def', c: 'thing' },
+	{ a: 700, b: 'someDefaultValue', c: null }
 ]
 */
 ```
@@ -50,6 +54,15 @@ console.log(table.selectAll());
 ```js
 table.insert({ a: 1, b: 'abc' });
 ```
+if you want to insert multiple values do this:
+```js
+table.insert([
+	{ a: 1, b: 'abc' },
+	{ a: 2, b: 'def' },
+	{ a: 3, b: 'ghi' },
+]);
+```
+inserting multiple values at once is much faster than inserting one by one. see [benchmarks](../benchmarks.md)
 
 ## select
 
