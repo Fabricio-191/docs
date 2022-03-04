@@ -9,28 +9,29 @@
     <!-- Primary Meta Tags -->
     <title>Benchmarks - simplest-db</title>
     <meta name="title" content="Benchmarks - simplest-db">
-    <meta name="description" content="Measured in ops/sec" />
+    <meta name="description" content="To run the benchmark yourself, run the following commands:" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://fabricio-191.github.io/simplest.db-docs/benchmarks/">
     <meta property="og:title" content="Benchmarks - simplest-db">
-    <meta property="og:description" content="Measured in ops/sec">
+    <meta property="og:description" content="To run the benchmark yourself, run the following commands:">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://fabricio-191.github.io/simplest.db-docs/benchmarks/">
     <meta property="twitter:title" content="Benchmarks - simplest-db">
-    <meta property="twitter:description" content="Measured in ops/sec">
+    <meta property="twitter:description" content="To run the benchmark yourself, run the following commands:">
     
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/simplest.db-docs/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/simplest.db-docs/static/favicon.png" rel="icon" />
-    <link href="/simplest.db-docs/resources/css/retype.css?v=1.11.2.699715711136" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/simplest.db-docs/resources/css/retype.css?v=1.11.2.699736826318" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/simplest.db-docs/resources/js/config.js?v=1.11.2.699715711136" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/simplest.db-docs/resources/js/config.js?v=1.11.2.699736826318" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/simplest.db-docs/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/simplest.db-docs/resources/js/lunr.js?v=1.11.2.699715711136" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/simplest.db-docs/resources/js/lunr.js?v=1.11.2.699736826318" defer></script>
+    <script id="mermaid-js" type="text/javascript" src="/simplest.db-docs/resources/js/mermaid.js?v=1.11.2" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -230,80 +231,69 @@
         <span>Benchmarks</span>
     </h1>
 </doc-anchor-target>
-<doc-anchor-target id="last-results">
+<doc-anchor-target id="benchmarking">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#last-results">#</doc-anchor-trigger>
-        <span>Last results</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#benchmarking">#</doc-anchor-trigger>
+        <span>Benchmarking</span>
     </h2>
 </doc-anchor-target>
-<p>Measured in ops/sec</p>
+<p>To run the benchmark yourself, run the following commands:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">git clone https://github.com/Fabricio-191/simple.db
+cd simple.db
+npm i
+npm run bench</code></pre>
+</doc-codeblock></div>
+<p>Everything is measured in operations per second (ops/s).</p>
 <p><span class="docs-emoji">&#x1F538;</span> means writes/reads every time (no cache use)</p>
-<p>SQLite</p>
-<div class="table-wrapper scrollbar overflow-hidden">
-<table class="comfortable">
-<thead>
-<tr>
-<th>Action</th>
-<th>Simple.SQLite</th>
-<th>Simple.SQLite <span class="docs-emoji">&#x1F538;</span></th>
-<th>quick.db <span class="docs-emoji">&#x1F538;</span></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>set</td>
-<td>237</td>
-<td>14.59</td>
-<td>2.49</td>
-</tr>
-<tr>
-<td>get</td>
-<td>5125</td>
-<td>-</td>
-<td>6.58</td>
-</tr>
-<tr>
-<td>delete</td>
-<td>713</td>
-<td>16.27</td>
-<td>9.12</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>JSON</p>
-<div class="table-wrapper scrollbar overflow-hidden">
-<table class="comfortable">
-<thead>
-<tr>
-<th>Action</th>
-<th>Simple.JSON</th>
-<th>Simple.JSON <span class="docs-emoji">&#x1F538;</span></th>
-<th>megadb</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>set</td>
-<td>3618</td>
-<td>0.16</td>
-<td>0.11 <span class="docs-emoji">&#x1F538;</span></td>
-</tr>
-<tr>
-<td>get</td>
-<td>5097</td>
-<td>-</td>
-<td>1985</td>
-</tr>
-<tr>
-<td>delete</td>
-<td>4522</td>
-<td>0.53</td>
-<td>2210</td>
-</tr>
-</tbody>
-</table>
-</div>
+<doc-anchor-target id="last-results">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#last-results">#</doc-anchor-trigger>
+        <span>Last results</span>
+    </h1>
+</doc-anchor-target>
+<doc-anchor-target id="simple-databases">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#simple-databases">#</doc-anchor-trigger>
+        <span>Simple databases</span>
+    </h2>
+</doc-anchor-target>
+<div class="overflow-hidden mb-6 py-4 dark:px-5 dark:bg-white rounded-md"><pre class="mermaid w-full">gantt
+	title SQLite
+    dateFormat x
+    axisFormat %s
+
+    section Simple.SQLite
+    get    : 0, 5125s
+    set    : 0, 237s
+    delete : 0, 713s
+
+    section Simple.SQLite 🔸
+    get    : 0, 14.59s
+    delete : 0, 16.27s
+
+    section quick.db 🔸
+    get    : 0, 2.49s
+    set    : 0, 6.58s
+    delete : 0, 9.12s</pre></div>
+<div class="overflow-hidden mb-6 py-4 dark:px-5 dark:bg-white rounded-md"><pre class="mermaid w-full">gantt
+	title JSON
+    dateFormat x
+    axisFormat %s
+
+    section Simple.JSON
+    get    :0, 3618s
+    set    :0, 5097s
+    delete :0, 4522s
+
+    section Simple.JSON 🔸
+    get    :0, 0.16s
+    delete :0, 0.53s
+
+    section megadb
+    get 🔸 :0, 0.11s 
+    set    :0, 1985s
+    delete :0, 2210s</pre></div>
 <doc-panel id="raw-results" collapsed>
     <template #title>Raw results</template>
 <div class="codeblock-wrapper"><doc-codeblock>
@@ -336,19 +326,129 @@ get    x 6.58 ops/sec ±1.55% (21 runs sampled)
 delete x 9.12 ops/sec ±1.10% (27 runs sampled)</code></pre>
 </doc-codeblock></div>
 </doc-panel>
-<doc-anchor-target id="benchmarking">
+<doc-anchor-target id="sqlite-database">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#benchmarking">#</doc-anchor-trigger>
-        <span>Benchmarking</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#sqlite-database">#</doc-anchor-trigger>
+        <span>SQLite database</span>
     </h2>
 </doc-anchor-target>
-<p>To run the benchmark yourself, run the following commands:</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>100 rows</th>
+<th>select</th>
+<th>select in transaction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>js</td>
+<td>2648</td>
+<td>3983</td>
+</tr>
+<tr>
+<td>sql</td>
+<td>4911</td>
+<td>9550</td>
+</tr>
+<tr>
+<td>all</td>
+<td>2663</td>
+<td>2990</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>100000 rows</th>
+<th>select</th>
+<th>select in transaction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>js</td>
+<td>11.23</td>
+<td>12.29</td>
+</tr>
+<tr>
+<td>sql</td>
+<td>29.63</td>
+<td>30.24</td>
+</tr>
+<tr>
+<td>all</td>
+<td>6.28</td>
+<td>6.57</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>insert</th>
+<th>many (transaction)</th>
+<th>each</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10 rows</td>
+<td>6.96</td>
+<td>0.77</td>
+</tr>
+<tr>
+<td>100 rows</td>
+<td>7.45</td>
+<td>0.07</td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-panel id="raw-results" collapsed>
+    <template #title>Raw results</template>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">git clone https://github.com/Fabricio-191/simple.db
-cd simple.db
-npm i
-npm run bench</code></pre>
+<pre class="language-none"><code v-pre class="language-none">with 100 rows:
+
+select
+js  x 2648 ops/sec ±18.51% (80 runs sampled)
+sql x 4911 ops/sec ±7.76% (74 runs sampled)
+all x 2663 ops/sec ±1.10% (86 runs sampled)
+
+select in transaction
+js  x 3983 ops/sec ±7.27% (88 runs sampled)
+sql x 9550 ops/sec ±1.96% (87 runs sampled)
+all x 2990 ops/sec ±4.24% (85 runs sampled)
+
+
+with 100000 rows:
+
+select
+js  x 11.23 ops/sec ±3.75% (32 runs sampled)
+sql x 29.63 ops/sec ±0.69% (52 runs sampled)
+all x  6.28 ops/sec ±6.57% (20 runs sampled)
+
+select in transaction
+js  x 12.29 ops/sec ±0.90% (35 runs sampled)
+sql x 30.24 ops/sec ±0.64% (53 runs sampled)
+all x  6.57 ops/sec ±1.63% (21 runs sampled)
+
+
+inserting 10 rows:
+many (transaction) x 6.96 ops/sec ±24.65% (23 runs sampled)
+each               x 0.77 ops/sec ±9.62% (6 runs sampled)
+
+inserting 100 rows
+many (transaction) x 7.45 ops/sec ±7.59% (21 runs sampled)
+each               x 0.07 ops/sec ±2.88% (5 runs sampled)</code></pre>
 </doc-codeblock></div>
+</doc-panel>
 
 
 
@@ -414,6 +514,6 @@ npm run bench</code></pre>
 
         <div id="docs-overlay-target"></div>
 
-        <script>window.__DOCS__ = { "title": "Benchmarks", icon: "file", hasPrism: false, hasMermaid: false, hasMath: false }</script>
+        <script>window.__DOCS__ = { "title": "Benchmarks", icon: "file", hasPrism: false, hasMermaid: true, hasMath: false }</script>
     </body>
 </html>

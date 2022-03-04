@@ -26,12 +26,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/simplest.db-docs/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/simplest.db-docs/static/favicon.png" rel="icon" />
-    <link href="/simplest.db-docs/resources/css/retype.css?v=1.11.2.699715711136" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/simplest.db-docs/resources/css/retype.css?v=1.11.2.699736826318" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/simplest.db-docs/resources/js/config.js?v=1.11.2.699715711136" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/simplest.db-docs/resources/js/config.js?v=1.11.2.699736826318" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/simplest.db-docs/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/simplest.db-docs/resources/js/lunr.js?v=1.11.2.699715711136" defer></script>
-    <script id="prism-js" type="text/javascript" src="/simplest.db-docs/resources/js/prism.js?v=1.11.2.699715711136" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/simplest.db-docs/resources/js/lunr.js?v=1.11.2.699736826318" defer></script>
+    <script id="prism-js" type="text/javascript" src="/simplest.db-docs/resources/js/prism.js?v=1.11.2.699736826318" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -259,18 +259,22 @@ const table = db.tables.create('test', ['a', 'b', 'c']);</code></pre>
     <template #title>Default values</template>
 <p>By default all default values are set to <code v-pre>null</code>.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">const table = db.tables.create('test', ['a', 'b', 'c'], { a: 123, b: 'abc' });
+<pre class="language-javascript"><code v-pre class="language-javascript">const table = db.tables.create(
+	'test',
+	['a', 'b', 'c'],
+	{ a: 300, b: 'someDefaultValue' }
+);
 
 table.insert([
-	{ b: 'def' },
-	{ a: 456 }
+	{ b: 'def', c: 'thing' },
+	{ a: 700 }
 ]);
 
 console.log(table.selectAll());
 /*
 [
-	{ a: 123, b: 'def', c: null },
-	{ a: 456, b: 'abc', c: null }
+	{ a: 300, b: 'def', c: 'thing' },
+	{ a: 700, b: 'someDefaultValue', c: null }
 ]
 */</code></pre>
 </doc-codeblock></div>
@@ -284,6 +288,15 @@ console.log(table.selectAll());
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-javascript"><code v-pre class="language-javascript">table.insert({ a: 1, b: 'abc' });</code></pre>
 </doc-codeblock></div>
+<p>if you want to insert multiple values do this:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">table.insert([
+	{ a: 1, b: 'abc' },
+	{ a: 2, b: 'def' },
+	{ a: 3, b: 'ghi' },
+]);</code></pre>
+</doc-codeblock></div>
+<p>inserting multiple values at once is much faster than inserting one by one. see <a href="../../benchmarks/">benchmarks</a></p>
 <doc-anchor-target id="select">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#select">#</doc-anchor-trigger>

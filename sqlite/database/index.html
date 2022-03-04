@@ -9,26 +9,29 @@
     <!-- Primary Meta Tags -->
     <title>Database - simplest-db</title>
     <meta name="title" content="Database - simplest-db">
+    <meta name="description" content="The only option is path which is the path to the database file. any other options are sent to better-sqlite3" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://fabricio-191.github.io/simplest.db-docs/sqlite/database/">
     <meta property="og:title" content="Database - simplest-db">
+    <meta property="og:description" content="The only option is path which is the path to the database file. any other options are sent to better-sqlite3">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://fabricio-191.github.io/simplest.db-docs/sqlite/database/">
     <meta property="twitter:title" content="Database - simplest-db">
+    <meta property="twitter:description" content="The only option is path which is the path to the database file. any other options are sent to better-sqlite3">
     
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/simplest.db-docs/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/simplest.db-docs/static/favicon.png" rel="icon" />
-    <link href="/simplest.db-docs/resources/css/retype.css?v=1.11.2.699715711136" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/simplest.db-docs/resources/css/retype.css?v=1.11.2.699736826318" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/simplest.db-docs/resources/js/config.js?v=1.11.2.699715711136" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/simplest.db-docs/resources/js/config.js?v=1.11.2.699736826318" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/simplest.db-docs/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/simplest.db-docs/resources/js/lunr.js?v=1.11.2.699715711136" defer></script>
-    <script id="prism-js" type="text/javascript" src="/simplest.db-docs/resources/js/prism.js?v=1.11.2.699715711136" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/simplest.db-docs/resources/js/lunr.js?v=1.11.2.699736826318" defer></script>
+    <script id="prism-js" type="text/javascript" src="/simplest.db-docs/resources/js/prism.js?v=1.11.2.699736826318" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -241,24 +244,30 @@ const db = new SQLiteDatabase({
 	path: './database.sqlite',
 });</code></pre>
 </doc-codeblock></div>
-<doc-anchor-target id="creating-a-table">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#creating-a-table">#</doc-anchor-trigger>
-        <span>Creating a table</span>
-    </h2>
-</doc-anchor-target>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">const table = db.tables.create('test', ['a', 'b', 'c']);
-
-table.insert({ a: 1, b: 'abc' });
-table.update(row =&gt; row.a === 1, { b: 'def' });</code></pre>
-</doc-codeblock></div>
+<p>The only option is <code v-pre>path</code> which is the path to the database file. any other options are sent to <a href="https://github.com/JoshuaWise/better-sqlite3/blob/master/docs/api.md#new-databasepath-options">better-sqlite3</a> database constructor.</p>
 <doc-anchor-target id="transactions">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#transactions">#</doc-anchor-trigger>
         <span>Transactions</span>
     </h2>
 </doc-anchor-target>
+<p>Transactions are very useful if you want to do multiple operations in a short time. see <a href="../../benchmarks/">benchmarks</a></p>
+<p>for example, instead of doing this:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">table.update(row =&gt; row.a === 1, { a: 100 });
+table.update(row =&gt; row.a === 2, { a: 200 });
+table.update(row =&gt; row.a === 3, { a: 300 });</code></pre>
+</doc-codeblock></div>
+<p>you should do:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">db.transactions.begin();
+
+table.update(row =&gt; row.a === 1, { a: 100 });
+table.update(row =&gt; row.a === 2, { a: 200 });
+table.update(row =&gt; row.a === 3, { a: 300 });
+
+db.transactions.commit();</code></pre>
+</doc-codeblock></div>
 <doc-anchor-target id="optimize">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#optimize">#</doc-anchor-trigger>
