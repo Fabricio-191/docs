@@ -25,13 +25,12 @@
     
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/simplest.db-docs/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="/simplest.db-docs/static/favicon.png" rel="icon" />
-    <link href="/simplest.db-docs/resources/css/retype.css?v=1.11.2.699751538391" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/simplest.db-docs/static/database.svg" rel="icon" />
+    <link href="/simplest.db-docs/resources/css/retype.css?v=1.11.2.699762218943" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/simplest.db-docs/resources/js/config.js?v=1.11.2.699751538391" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/simplest.db-docs/resources/js/config.js?v=1.11.2.699762218943" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/simplest.db-docs/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/simplest.db-docs/resources/js/lunr.js?v=1.11.2.699751538391" defer></script>
-    <script id="mermaid-js" type="text/javascript" src="/simplest.db-docs/resources/js/mermaid.js?v=1.11.2" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/simplest.db-docs/resources/js/lunr.js?v=1.11.2.699762218943" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -258,7 +257,74 @@ npm run bench</code></pre>
         <span>Simple databases</span>
     </h2>
 </doc-anchor-target>
-<div class="overflow-hidden mb-6 py-4 dark:px-5 dark:bg-white rounded-md"><pre class="mermaid w-full">gantt
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Action</th>
+<th>Simple.SQLite</th>
+<th>Simple.SQLite <span class="docs-emoji">&#x1F538;</span></th>
+<th>quick.db <span class="docs-emoji">&#x1F538;</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>set</td>
+<td>237</td>
+<td>14.59</td>
+<td>2.49</td>
+</tr>
+<tr>
+<td>get</td>
+<td>5125</td>
+<td>-</td>
+<td>6.58</td>
+</tr>
+<tr>
+<td>delete</td>
+<td>713</td>
+<td>16.27</td>
+<td>9.12</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>JSON</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Action</th>
+<th>Simple.JSON</th>
+<th>Simple.JSON <span class="docs-emoji">&#x1F538;</span></th>
+<th>megadb</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>set</td>
+<td>3618</td>
+<td>0.16</td>
+<td>0.11 <span class="docs-emoji">&#x1F538;</span></td>
+</tr>
+<tr>
+<td>get</td>
+<td>5097</td>
+<td>-</td>
+<td>1985</td>
+</tr>
+<tr>
+<td>delete</td>
+<td>4522</td>
+<td>0.53</td>
+<td>2210</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!--
+```mermaid
+gantt
 	title SQLite
     dateFormat x
     axisFormat %s
@@ -275,8 +341,11 @@ npm run bench</code></pre>
     section quick.db 🔸
     get    : 0, 2.49s
     set    : 0, 6.58s
-    delete : 0, 9.12s</pre></div>
-<div class="overflow-hidden mb-6 py-4 dark:px-5 dark:bg-white rounded-md"><pre class="mermaid w-full">gantt
+    delete : 0, 9.12s
+```
+
+```mermaid
+gantt
 	title JSON
     dateFormat x
     axisFormat %s
@@ -293,7 +362,9 @@ npm run bench</code></pre>
     section megadb
     get 🔸 :0, 0.11s 
     set    :0, 1985s
-    delete :0, 2210s</pre></div>
+    delete :0, 2210s
+```
+-->
 <doc-panel id="raw-results" collapsed>
     <template #title>Raw results</template>
 <div class="codeblock-wrapper"><doc-codeblock>
@@ -337,23 +408,23 @@ delete x 9.12 ops/sec ±1.10% (27 runs sampled)</code></pre>
 <thead>
 <tr>
 <th>100 rows</th>
-<th>select</th>
-<th>select in transaction</th>
+<th>SELECT</th>
+<th>SELECT IN TRANSACTION</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>js</td>
+<td>JS</td>
 <td>2648</td>
 <td>3983</td>
 </tr>
 <tr>
-<td>sql</td>
+<td>SQL</td>
 <td>4911</td>
 <td>9550</td>
 </tr>
 <tr>
-<td>all</td>
+<td>ALL</td>
 <td>2663</td>
 <td>2990</td>
 </tr>
@@ -365,23 +436,23 @@ delete x 9.12 ops/sec ±1.10% (27 runs sampled)</code></pre>
 <thead>
 <tr>
 <th>100000 rows</th>
-<th>select</th>
-<th>select in transaction</th>
+<th>SELECT</th>
+<th>SELECT IN TRANSACTION</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>js</td>
+<td>JS</td>
 <td>11.23</td>
 <td>12.29</td>
 </tr>
 <tr>
-<td>sql</td>
+<td>SQL</td>
 <td>29.63</td>
 <td>30.24</td>
 </tr>
 <tr>
-<td>all</td>
+<td>ALL</td>
 <td>6.28</td>
 <td>6.57</td>
 </tr>
@@ -392,7 +463,7 @@ delete x 9.12 ops/sec ±1.10% (27 runs sampled)</code></pre>
 <table class="comfortable">
 <thead>
 <tr>
-<th>insert</th>
+<th>INSERT</th>
 <th>many (transaction)</th>
 <th>each</th>
 </tr>
@@ -411,33 +482,68 @@ delete x 9.12 ops/sec ±1.10% (27 runs sampled)</code></pre>
 </tbody>
 </table>
 </div>
+<!--
+```mermaid
+gantt
+	title 100 rows
+    dateFormat x
+    axisFormat %s
+
+    section SELECT
+    JS    :0, 2648s
+    SQL   :0, 4911s
+    ALL   :0, 2663s
+
+    section SELECT IN TRANSACTION
+    JS    :0, 3983s
+    SQL   :0, 9550s
+    ALL   :0, 2990s
+```
+
+```mermaid
+gantt
+	title 100000 rows
+    dateFormat X
+    axisFormat %s
+
+    section SELECT
+    JS    :0.0, 11.23
+    SQL   :0.0, 29.63
+    ALL   :0.0, 6.28
+
+    section SELECT IN TRANSACTION
+    JS    :0.0, 12.29
+    SQL   :0.0, 30.24
+    ALL   :0.0, 6.57
+```
+-->
 <doc-panel id="raw-results" collapsed>
     <template #title>Raw results</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">with 100 rows:
 
-select
-js  x 2648 ops/sec ±18.51% (80 runs sampled)
-sql x 4911 ops/sec ±7.76% (74 runs sampled)
-all x 2663 ops/sec ±1.10% (86 runs sampled)
+SELECT
+JS  x 2648 ops/sec ±18.51% (80 runs sampled)
+SQL x 4911 ops/sec ±7.76% (74 runs sampled)
+ALL x 2663 ops/sec ±1.10% (86 runs sampled)
 
-select in transaction
-js  x 3983 ops/sec ±7.27% (88 runs sampled)
-sql x 9550 ops/sec ±1.96% (87 runs sampled)
-all x 2990 ops/sec ±4.24% (85 runs sampled)
+SELECT IN TRANSACTION
+JS  x 3983 ops/sec ±7.27% (88 runs sampled)
+SQL x 9550 ops/sec ±1.96% (87 runs sampled)
+ALL x 2990 ops/sec ±4.24% (85 runs sampled)
 
 
 with 100000 rows:
 
-select
-js  x 11.23 ops/sec ±3.75% (32 runs sampled)
-sql x 29.63 ops/sec ±0.69% (52 runs sampled)
-all x  6.28 ops/sec ±6.57% (20 runs sampled)
+SELECT
+JS  x 11.23 ops/sec ±3.75% (32 runs sampled)
+SQL x 29.63 ops/sec ±0.69% (52 runs sampled)
+ALL x  6.28 ops/sec ±6.57% (20 runs sampled)
 
-select in transaction
-js  x 12.29 ops/sec ±0.90% (35 runs sampled)
-sql x 30.24 ops/sec ±0.64% (53 runs sampled)
-all x  6.57 ops/sec ±1.63% (21 runs sampled)
+SELECT IN TRANSACTION
+JS  x 12.29 ops/sec ±0.90% (35 runs sampled)
+SQL x 30.24 ops/sec ±0.64% (53 runs sampled)
+ALL x  6.57 ops/sec ±1.63% (21 runs sampled)
 
 
 inserting 10 rows:
@@ -514,6 +620,6 @@ each               x 0.07 ops/sec ±2.88% (5 runs sampled)</code></pre>
 
         <div id="docs-overlay-target"></div>
 
-        <script>window.__DOCS__ = { "title": "Benchmarks", icon: "file", hasPrism: false, hasMermaid: true, hasMath: false }</script>
+        <script>window.__DOCS__ = { "title": "Benchmarks", icon: "file", hasPrism: false, hasMermaid: false, hasMath: false }</script>
     </body>
 </html>
