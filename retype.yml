@@ -13,7 +13,7 @@ favicon: static/database.svg
 
 links:
   - text: Home
-    link: /Welcome.md
+    link: /README.md
     icon: home
 
   - text: Issues
