@@ -1,6 +1,6 @@
 {
 	"scripts": {
-		"build": "retype watch"
+		"test": "retype watch --verbose"
 	},
 	"dependencies": {
 		"retypeapp": "^1.11.2"

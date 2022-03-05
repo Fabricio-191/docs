@@ -18,9 +18,9 @@ Everything is measured in operations per second (ops/s).
 
 🔸 means writes/reads every time (no cache use)
 
-# Last results
-
 ## Simple databases
+
+#### SQLite
 
 Action | Simple.SQLite | Simple.SQLite 🔸  | quick.db 🔸  
 -------|---------------|-------------------|------------
@@ -28,7 +28,7 @@ set    | 237           | 14.59             | 2.49
 get    | 5125          | -                 | 6.58 
 delete | 713           | 16.27             | 9.12
 
-JSON
+#### JSON
 
 Action | Simple.JSON | Simple.JSON 🔸  | megadb
 -------|-------------|-----------------|--------
@@ -114,22 +114,26 @@ delete x 9.12 ops/sec ±1.10% (27 runs sampled)
 
 ## SQLite database
 
-100 rows    | SELECT        | SELECT IN TRANSACTION
-------------|---------------|----------------------
-JS          | 2648          | 3983                 
-SQL         | 4911          | 9550                 
-ALL         | 2663          | 2990 
+### Conditions
 
-100000 rows | SELECT        | SELECT IN TRANSACTION
-------------|---------------|----------------------
-JS          | 11.23         | 12.29                 
-SQL         | 29.63         | 30.24                 
-ALL         | 6.28          | 6.57 
+100 rows    | SELECT             | SELECT IN TRANSACTION |
+------------|--------------------|-----------------------|
+JS          | 2648               | 3983                  |
+SQL         | 4911               | 9550                  |
+ALL         | 2663               | 2990                  |
 
-INSERT      | many (transaction) | each
-------------|--------------------|----------------------
-10 rows     | 6.96               | 0.77                 
-100 rows    | 7.45               | 0.07            
+100000 rows | SELECT             | SELECT IN TRANSACTION |
+------------|--------------------|-----------------------|
+JS          | 11.23              | 12.29                 | 
+SQL         | 29.63              | 30.24                 |
+ALL         | 6.28               | 6.57                  |
+
+### Insert
+
+INSERT      | many (transaction) | each                  |
+------------|--------------------|-----------------------|
+10 rows     | 6.96               | 0.77                  |
+100 rows    | 7.45               | 0.07                  |
 
 <!--
 ```mermaid

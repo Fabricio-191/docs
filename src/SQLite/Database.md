@@ -15,7 +15,7 @@ The only option is `path` which is the path to the database file. any other opti
 
 ## Transactions
 
-Transactions are very useful if you want to do multiple operations in a short time. see [benchmarks](../benchmarks.md)
+Transactions are very useful if you want to do multiple operations in a short time. see [benchmarks](../benchmarks.md/#sqlite-database).
 
 for example, instead of doing this:
 ```js

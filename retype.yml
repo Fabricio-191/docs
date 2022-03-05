@@ -1,6 +1,7 @@
-input: ./src
+input: src
 output: .retype
 url: https://fabricio-191.github.io/simplest.db-docs/
+favicon: static/database.svg
 
 branding:
   title: Simplest-DB
@@ -8,8 +9,6 @@ branding:
 
 meta:
   title: " - simplest-db"
-
-favicon: static/database.svg
 
 links:
   - text: Home
@@ -29,6 +28,11 @@ links:
   - text: GitHub
     link: https://github.com/Fabricio-191/simple.db
     icon: mark-github
+    target: blank
+
+  - text: Discord
+    link: https://discord.gg/zrESMn6
+    icon: static/discord.svg
     target: blank
 
 search:

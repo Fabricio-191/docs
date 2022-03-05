@@ -2,7 +2,7 @@
 order: 2
 ---
 
-# Creating a table
+# Table
 
 ```js
 // db.tables.create(tableName, columns, defaultValues);
@@ -43,7 +43,7 @@ db.tables.create(
 
 Data must be a object where the keys are the column names and the values are the values to be used.
 
-The only acepted values are `null`, numbers, bigint, strings and buffers. for booleans you should use `1` and `0`.
+The only acepted values are `null`, numbers, bigints, strings and buffers. for booleans you should use `1` and `0`.
 If a value is not provided or it's undefined, the default value will be used.
 
 ```js
@@ -56,11 +56,11 @@ const data = {
 table.insert(data);
 ```
 
-## Conditions
+## Condition
 
-Conditions must be strings or functions, using SQL syntax is faster than using functions.
+Conditions must be strings or functions, using SQL syntax is faster than using functions. see [benchmarks](../benchmarks/#conditions)
 
-I recommend use SQL syntax for simple conditions and using functions for complex conditions or things that need external data.
+I recommend use SQL syntax for simple conditions and for large amounts of data and using functions for complex conditions or things that need external data.
 
 ### Using a function
 
@@ -114,15 +114,17 @@ Here i will put some simple examples so people that does not know SQLite can und
 >   <   <=   >=
 ==  !=
 
-NOT
-AND
-OR
+NOT // !
+AND // &&
+OR  // ||
 ```
 
-```sql
-a == b AND c <= 500;
-a > b OR b != "13";
-(a - 3) % 2 == 0;
+```js
+table.select("a == 'abc'");
+table.select("a == 'abc' AND b == `don't`");
+table.select('b <= 500');
+table.select('b > c OR a != "13"');
+table.select('(a - 3) % 2 == 0');
 ```
 ===
 
@@ -130,9 +132,13 @@ a > b OR b != "13";
 
 ## insert
 
+see [data](#data)
+
 ```js
+// table.insert(data);
 table.insert({ a: 1, b: 'abc' });
 ```
+
 if you want to insert multiple values do this:
 ```js
 table.insert([
@@ -141,11 +147,14 @@ table.insert([
 	{ a: 3, b: 'ghi' },
 ]);
 ```
-inserting multiple values at once is much faster than inserting one by one. see [benchmarks](../benchmarks.md)
+inserting multiple values at once is much faster than inserting one by one. see [benchmarks](../benchmarks/#insert)
 
 ## select
 
+see [condition](#condition)
+
 ```js
+// table.select(condition);
 console.log(table.select()); 
 /*
 [
@@ -172,8 +181,6 @@ console.log(table.select(row => row.a > 1));
 */
 ```
 
-Using direct SQL is much faster than using a function.
-
 ## get
 
 Same as select but instead of returning an array of rows, returns the first row.
@@ -191,10 +198,71 @@ console.log(table.select());
 console.log(table.get('a > 1')); // { a: 2, b: 'def' }
 ```
 
+## delete
+
+Deletes all rows that satisfy the condition. see [condition](#condition)
+
+For security if you dont provide a condition to the `delete` method, it will throw an error. if you want to delete all rows use `table.deleteAll()`
+
+```js
+// table.delete(condition);
+console.log(table.select()); 
+/*
+[
+	{ a: 1, b: 'abc' },
+	{ a: 2, b: 'def' },
+	{ a: 3, b: 'ghi' }
+]
+*/
+
+table.delete('a < 2 OR b == "ghi"');
+
+console.log(table.select()); 
+// [{ a: 2, b: 'def' }]
+```
+
 ## update
+
+Updates all the rows that satisfy the condition with the given data, see [condition](#condition) and [data](#data)
+
+```js
+// table.update(condition, data);
+
+console.log(table.select()); 
+/*
+[
+	{ a: 1, b: 'aaa' },
+	{ a: 2, b: 'bbb' },
+	{ a: 3, b: 'ccc' }
+]
+*/
+
+table.update(row => row.a === 1, { b: 'ddd' });
+table.update(row => row.a === 3, { a: 4, b: 'eee' });
+
+console.log(table.select()); 
+/*
+[
+	{ a: 1, b: 'ddd' },
+	{ a: 2, b: 'bbb' },
+	{ a: 4, b: 'eee' }
+]
+*/
+```
+
 
 ## replace
 
-## delete
+The replace method will only work with an `UNIQUE` column or a `PRIMARY KEY`, see [Columns (advanced)](#table)
 
-## deleteAll
+```js
+const table = db.tables.create('test', ['a PRIMARY KEY', 'b UNIQUE', 'c']);
+
+table.insert([
+	{ a: 1, b: 'aaa', c: 'abc' },
+	{ a: 2, b: 'bbb', c: 'def' },
+	{ a: 3, b: 'ccc', c: 'ghi' },
+]);
+
+table.replace()
+```
