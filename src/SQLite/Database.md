@@ -1,4 +1,5 @@
 ---
+icon: database
 order: 3
 ---
 
@@ -38,8 +39,40 @@ db.transactions.commit();
 
 ## Optimize
 
+A tiny function that executes a pragma and a SQL that optimizes the database.
+
+This is intended to be used only in big databases after a lot of operations. you can read about it [here](https://www.sqlite.org/lang_vacuum.html)
+
+```js
+db.optimize();
+```
+
 ## Closing the database
 
-## Pragma
+Closes the database connection. if you are going to close the process deliberately, you should call this function. it will call the `optimize` method, as it's recommended in SQLite docs.
 
-## Run
+```js
+db.close();
+```
+
+## Interating directly with the database
+
+These methods are for interating directly with the database. (like the title barely says) these are intended for people that knows SQLite.
+
+### Pragma
+
+Runs a [pragma](https://www.sqlite.org/pragma.html) in the database
+
+```js
+db.pragma('cache_size = 32000');
+```
+
+### Prepare
+
+Prepares a SQLite statement. see [better-sqlite3](https://github.com/JoshuaWise/better-sqlite3/blob/master/docs/api.md#preparestring---statement)
+
+This is intended for people that knows SQLite, and want to do a query that is not supported by the library.
+
+```js
+const data = db.prepare('SELECT * FROM albums INNER JOIN artists ON artists.ArtistId = albums.ArtistId').all();
+```

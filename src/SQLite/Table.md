@@ -1,4 +1,5 @@
 ---
+icon: columns
 order: 2
 ---
 
@@ -25,7 +26,7 @@ table.insert({ a: 400 });               // { a: 400, b: 'abc', c: null }
 ===
 
 ==- Columns (advanced)
-The columns while creating a table are [column's-def](https://www.sqlite.org/syntax/column-def.html) from SQLite by default the type is BLOB. And default values are overriden by default values provided while creating the table.
+The columns while creating a table and while adding a column are [column's-def](https://www.sqlite.org/syntax/column-def.html) from SQLite, by default the type is BLOB. And default values are overriden by default values provided while creating the table.
 
 ```js
 db.tables.create(
@@ -83,9 +84,6 @@ console.log(table.select(row => row.a > 1));
 	{ a: 3, b: 'ghi' }
 ]
 */
-
-table.select(row => Math.abs(row.a) > 1);
-table.select(row => Math.abs(row.a) > 1 && row.b === 'def');
 ```
 
 !!!
@@ -99,8 +97,8 @@ Or you can use these examples
 
 ```js
 table.select('a > 1');
-table.select('abs(a) > 1');
-table.select('abs(a) AND b = "def"');
+table.select('abs(a) <= 1');
+table.select('(a % 2) == 0 AND b == "def"');
 ```
 
 ==- More examples
@@ -128,9 +126,9 @@ table.select('(a - 3) % 2 == 0');
 ```
 ===
 
-# Methods
+## Methods
 
-## insert
+### insert
 
 see [data](#data)
 
@@ -149,9 +147,9 @@ table.insert([
 ```
 inserting multiple values at once is much faster than inserting one by one. see [benchmarks](../benchmarks/#insert)
 
-## select
+### select
 
-see [condition](#condition)
+returns all the rows that satisfy the condition, see [condition](#condition)
 
 ```js
 // table.select(condition);
@@ -181,7 +179,7 @@ console.log(table.select(row => row.a > 1));
 */
 ```
 
-## get
+### get
 
 Same as select but instead of returning an array of rows, returns the first row.
 
@@ -198,7 +196,7 @@ console.log(table.select());
 console.log(table.get('a > 1')); // { a: 2, b: 'def' }
 ```
 
-## delete
+### delete
 
 Deletes all rows that satisfy the condition. see [condition](#condition)
 
@@ -221,7 +219,7 @@ console.log(table.select());
 // [{ a: 2, b: 'def' }]
 ```
 
-## update
+### update
 
 Updates all the rows that satisfy the condition with the given data, see [condition](#condition) and [data](#data)
 
@@ -251,7 +249,7 @@ console.log(table.select());
 ```
 
 
-## replace
+### replace
 
 The replace method will only work with an `UNIQUE` column or a `PRIMARY KEY`, see [Columns (advanced)](#table)
 
@@ -264,5 +262,52 @@ table.insert([
 	{ a: 3, b: 'ccc', c: 'ghi' },
 ]);
 
-table.replace()
+// To-Do
+```
+
+## Columns
+
+### add
+
+A method to add a column to the table. you can also set the default value for the column.
+if no default value is provided it's gonna be `null`.
+
+The `fill` parameter indicates whenether to fill the new column with the default value or not. (default: `true`)
+
+```js
+const table = db.tables.create('test', ['a', 'b', 'c']);
+table.insert({ a: 1, b: 2, c: 3 });
+
+// table.columns.add(column, defaultValue, fill)
+table.columns.add('d')
+console.log(table.get()); // { a: 1, b: 2, c: 3, d: null }
+
+table.columns.add('e', 'default');
+console.log(table.get()); // { a: 1, b: 2, c: 3, d: null, e: 'default' }
+
+table.columns.add('f', 'default', false);
+console.log(table.get()); // { a: 1, b: 2, c: 3, d: null, e: 'default', f: null }
+```
+
+### delete
+
+```js
+const table = db.tables.create('test', ['a', 'b', 'c']);
+table.insert({ a: 1, b: 2, c: 3 });
+
+// table.columns.delete(columnName)
+table.columns.delete('c')
+
+console.log(table.get()); // { a: 1, b: 2 }
+```
+
+### rename
+
+```js
+const table = db.tables.create('test', ['a', 'b', 'c']);
+table.insert({ a: 1, b: 2, c: 3 });
+
+// table.columns.delete(columnName)
+table.columns.rename('c', 'd');
+console.log(table.get()); // { a: 1, b: 2, d: 3 }
 ```
