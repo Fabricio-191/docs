@@ -9,7 +9,7 @@ branding:
 meta:
   title: " - simplest-db"
 
-favicon: static/favicon.png
+favicon: static/database.svg
 
 links:
   - text: Home
