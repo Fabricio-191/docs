@@ -7,31 +7,31 @@
     <meta name="turbo-cache-control" content="no-cache">
 
     <!-- Primary Meta Tags -->
-    <title>Creating a table - simplest-db</title>
-    <meta name="title" content="Creating a table - simplest-db">
+    <title>Table - simplest-db</title>
+    <meta name="title" content="Table - simplest-db">
     <meta name="description" content="By default all default values are set to null." />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://fabricio-191.github.io/simplest.db-docs/sqlite/table/">
-    <meta property="og:title" content="Creating a table - simplest-db">
+    <meta property="og:title" content="Table - simplest-db">
     <meta property="og:description" content="By default all default values are set to null.">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://fabricio-191.github.io/simplest.db-docs/sqlite/table/">
-    <meta property="twitter:title" content="Creating a table - simplest-db">
+    <meta property="twitter:title" content="Table - simplest-db">
     <meta property="twitter:description" content="By default all default values are set to null.">
     
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/simplest.db-docs/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/simplest.db-docs/static/database.svg" rel="icon" />
-    <link href="/simplest.db-docs/resources/css/retype.css?v=1.11.2.699762358281" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/simplest.db-docs/resources/css/retype.css?v=1.11.2.699806296492" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/simplest.db-docs/resources/js/config.js?v=1.11.2.699762358281" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/simplest.db-docs/resources/js/config.js?v=1.11.2.699806296492" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/simplest.db-docs/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/simplest.db-docs/resources/js/lunr.js?v=1.11.2.699762358281" defer></script>
-    <script id="prism-js" type="text/javascript" src="/simplest.db-docs/resources/js/prism.js?v=1.11.2.699762358281" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/simplest.db-docs/resources/js/lunr.js?v=1.11.2.699806296492" defer></script>
+    <script id="prism-js" type="text/javascript" src="/simplest.db-docs/resources/js/prism.js?v=1.11.2.699806296492" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -96,6 +96,12 @@
                     </g>
                 </svg>
                 <span>GitHub</span>
+            </a>
+        </li>
+        <li class="md:mr-6">
+            <a class="inline-flex items-center py-2 md:mb-0 text-sm text-gray-400 whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://discord.gg/zrESMn6" target="_blank">
+                <img class="mb-px mr-1" width="18" src="/simplest.db-docs/static/discord.svg" />
+                <span>Discord</span>
             </a>
         </li>
     </ul>
@@ -195,6 +201,9 @@
                         <li class="mr-6">
                             <a class="block py-1 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://github.com/Fabricio-191/simple.db">GitHub</a>
                         </li>
+                        <li class="mr-6">
+                            <a class="block py-1 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://discord.gg/zrESMn6">Discord</a>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -225,10 +234,10 @@
                 <div id="docs-sidebar-right-toggle"></div>
                
                 <!-- Page content  -->
-<doc-anchor-target id="creating-a-table" class="break-words">
+<doc-anchor-target id="table" class="break-words">
     <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#creating-a-table">#</doc-anchor-trigger>
-        <span>Creating a table</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#table">#</doc-anchor-trigger>
+        <span>Table</span>
     </h1>
 </doc-anchor-target>
 <div class="codeblock-wrapper"><doc-codeblock>
@@ -270,7 +279,7 @@ table.insert({ a: 400 });               // { a: 400, b: 'abc', c: null }</code><
     </h2>
 </doc-anchor-target>
 <p>Data must be a object where the keys are the column names and the values are the values to be used.</p>
-<p>The only acepted values are <code v-pre>null</code>, numbers, bigint, strings and buffers. for booleans you should use <code v-pre>1</code> and <code v-pre>0</code>.
+<p>The only acepted values are <code v-pre>null</code>, numbers, bigints, strings and buffers. for booleans you should use <code v-pre>1</code> and <code v-pre>0</code>.
 If a value is not provided or it&#x27;s undefined, the default value will be used.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-javascript"><code v-pre class="language-javascript">const data = {
@@ -281,14 +290,14 @@ If a value is not provided or it&#x27;s undefined, the default value will be use
 
 table.insert(data);</code></pre>
 </doc-codeblock></div>
-<doc-anchor-target id="conditions">
+<doc-anchor-target id="condition">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#conditions">#</doc-anchor-trigger>
-        <span>Conditions</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#condition">#</doc-anchor-trigger>
+        <span>Condition</span>
     </h2>
 </doc-anchor-target>
-<p>Conditions must be strings or functions, using SQL syntax is faster than using functions.</p>
-<p>I recommend use SQL syntax for simple conditions and using functions for complex conditions or things that need external data.</p>
+<p>Conditions must be strings or functions, using SQL syntax is faster than using functions. see <a href="../../benchmarks/#conditions">benchmarks</a></p>
+<p>I recommend use SQL syntax for simple conditions and for large amounts of data and using functions for complex conditions or things that need external data.</p>
 <doc-anchor-target id="using-a-function">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#using-a-function">#</doc-anchor-trigger>
@@ -356,14 +365,16 @@ table.select('abs(a) AND b = &quot;def&quot;');</code></pre>
 &gt;   &lt;   &lt;=   &gt;=
 ==  !=
 
-NOT
-AND
-OR</code></pre>
+NOT // !
+AND // &amp;&amp;
+OR  // ||</code></pre>
 </doc-codeblock></div>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-sql"><code v-pre class="language-sql">a == b AND c &lt;= 500;
-a &gt; b OR b != &quot;13&quot;;
-(a - 3) % 2 == 0;</code></pre>
+<pre class="language-javascript"><code v-pre class="language-javascript">table.select(&quot;a == 'abc'&quot;);
+table.select(&quot;a == 'abc' AND b == `don't`&quot;);
+table.select('b &lt;= 500');
+table.select('b &gt; c OR a != &quot;13&quot;');
+table.select('(a - 3) % 2 == 0');</code></pre>
 </doc-codeblock></div>
 </doc-panel>
 <doc-anchor-target id="methods">
@@ -378,8 +389,10 @@ a &gt; b OR b != &quot;13&quot;;
         <span>insert</span>
     </h2>
 </doc-anchor-target>
+<p>see <doc-anchor-trigger to="#data">data</doc-anchor-trigger></p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">table.insert({ a: 1, b: 'abc' });</code></pre>
+<pre class="language-javascript"><code v-pre class="language-javascript">// table.insert(data);
+table.insert({ a: 1, b: 'abc' });</code></pre>
 </doc-codeblock></div>
 <p>if you want to insert multiple values do this:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
@@ -389,15 +402,17 @@ a &gt; b OR b != &quot;13&quot;;
 	{ a: 3, b: 'ghi' },
 ]);</code></pre>
 </doc-codeblock></div>
-<p>inserting multiple values at once is much faster than inserting one by one. see <a href="../../benchmarks/">benchmarks</a></p>
+<p>inserting multiple values at once is much faster than inserting one by one. see <a href="../../benchmarks/#insert">benchmarks</a></p>
 <doc-anchor-target id="select">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#select">#</doc-anchor-trigger>
         <span>select</span>
     </h2>
 </doc-anchor-target>
+<p>see <doc-anchor-trigger to="#condition">condition</doc-anchor-trigger></p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">console.log(table.select()); 
+<pre class="language-javascript"><code v-pre class="language-javascript">// table.select(condition);
+console.log(table.select()); 
 /*
 [
 	{ a: 1, b: 'abc' },
@@ -422,7 +437,6 @@ console.log(table.select(row =&gt; row.a &gt; 1));
 ]
 */</code></pre>
 </doc-codeblock></div>
-<p>Using direct SQL is much faster than using a function.</p>
 <doc-anchor-target id="get">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#get">#</doc-anchor-trigger>
@@ -442,30 +456,79 @@ console.log(table.select(row =&gt; row.a &gt; 1));
 
 console.log(table.get('a &gt; 1')); // { a: 2, b: 'def' }</code></pre>
 </doc-codeblock></div>
-<doc-anchor-target id="update">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#update">#</doc-anchor-trigger>
-        <span>update</span>
-    </h2>
-</doc-anchor-target>
-<doc-anchor-target id="replace">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#replace">#</doc-anchor-trigger>
-        <span>replace</span>
-    </h2>
-</doc-anchor-target>
 <doc-anchor-target id="delete">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#delete">#</doc-anchor-trigger>
         <span>delete</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="deleteall">
+<p>Deletes all rows that satisfy the condition. see <doc-anchor-trigger to="#condition">condition</doc-anchor-trigger></p>
+<p>For security if you dont provide a condition to the <code v-pre>delete</code> method, it will throw an error. if you want to delete all rows use <code v-pre>table.deleteAll()</code></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">// table.delete(condition);
+console.log(table.select()); 
+/*
+[
+	{ a: 1, b: 'abc' },
+	{ a: 2, b: 'def' },
+	{ a: 3, b: 'ghi' }
+]
+*/
+
+table.delete('a &lt; 2 OR b == &quot;ghi&quot;');
+
+console.log(table.select()); 
+// [{ a: 2, b: 'def' }]</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="update">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#deleteall">#</doc-anchor-trigger>
-        <span>deleteAll</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#update">#</doc-anchor-trigger>
+        <span>update</span>
     </h2>
 </doc-anchor-target>
+<p>Updates all the rows that satisfy the condition with the given data, see <doc-anchor-trigger to="#condition">condition</doc-anchor-trigger> and <doc-anchor-trigger to="#data">data</doc-anchor-trigger></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">// table.update(condition, data);
+
+console.log(table.select()); 
+/*
+[
+	{ a: 1, b: 'aaa' },
+	{ a: 2, b: 'bbb' },
+	{ a: 3, b: 'ccc' }
+]
+*/
+
+table.update(row =&gt; row.a === 1, { b: 'ddd' });
+table.update(row =&gt; row.a === 3, { a: 4, b: 'eee' });
+
+console.log(table.select()); 
+/*
+[
+	{ a: 1, b: 'ddd' },
+	{ a: 2, b: 'bbb' },
+	{ a: 4, b: 'eee' }
+]
+*/</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="replace">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#replace">#</doc-anchor-trigger>
+        <span>replace</span>
+    </h2>
+</doc-anchor-target>
+<p>The replace method will only work with an <code v-pre>UNIQUE</code> column or a <code v-pre>PRIMARY KEY</code>, see <doc-anchor-trigger to="#table">Columns (advanced)</doc-anchor-trigger></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">const table = db.tables.create('test', ['a PRIMARY KEY', 'b UNIQUE', 'c']);
+
+table.insert([
+	{ a: 1, b: 'aaa', c: 'abc' },
+	{ a: 2, b: 'bbb', c: 'def' },
+	{ a: 3, b: 'ccc', c: 'ghi' },
+]);
+
+table.replace()</code></pre>
+</doc-codeblock></div>
 
 
 
@@ -538,6 +601,6 @@ console.log(table.get('a &gt; 1')); // { a: 2, b: 'def' }</code></pre>
 
         <div id="docs-overlay-target"></div>
 
-        <script>window.__DOCS__ = { "title": "Creating a table", icon: "file", hasPrism: true, hasMermaid: false, hasMath: false }</script>
+        <script>window.__DOCS__ = { "title": "Table", icon: "file", hasPrism: true, hasMermaid: false, hasMath: false }</script>
     </body>
 </html>
