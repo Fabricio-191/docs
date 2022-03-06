@@ -26,12 +26,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/simplest.db-docs/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/simplest.db-docs/static/database.svg" rel="icon" />
-    <link href="/simplest.db-docs/resources/css/retype.css?v=1.11.2.699830307321" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/simplest.db-docs/resources/css/retype.css?v=1.11.2.699840954123" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/simplest.db-docs/resources/js/config.js?v=1.11.2.699830307321" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/simplest.db-docs/resources/js/config.js?v=1.11.2.699840954123" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/simplest.db-docs/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/simplest.db-docs/resources/js/lunr.js?v=1.11.2.699830307321" defer></script>
-    <script id="prism-js" type="text/javascript" src="/simplest.db-docs/resources/js/prism.js?v=1.11.2.699830307321" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/simplest.db-docs/resources/js/lunr.js?v=1.11.2.699840954123" defer></script>
+    <script id="prism-js" type="text/javascript" src="/simplest.db-docs/resources/js/prism.js?v=1.11.2.699840954123" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -294,7 +294,8 @@ db.transactions.commit();</code></pre>
         <span>Closing the database</span>
     </h2>
 </doc-anchor-target>
-<p>Closes the database connection. if you are going to close the process deliberately, you should call this function. it will call the <code v-pre>optimize</code> method, as it&#x27;s recommended in SQLite docs.</p>
+<p>Closes the database connection. if you are going to close the process deliberately, you should call this function. it will allow you to move/rename/delete the database file.<br />
+it will call the <code v-pre>optimize</code> method, as it&#x27;s recommended in SQLite docs.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-javascript"><code v-pre class="language-javascript">db.close();</code></pre>
 </doc-codeblock></div>
@@ -324,7 +325,8 @@ db.transactions.commit();</code></pre>
 <p>Prepares a SQLite statement. see <a href="https://github.com/JoshuaWise/better-sqlite3/blob/master/docs/api.md#preparestring---statement">better-sqlite3</a></p>
 <p>This is intended for people that knows SQLite, and want to do a query that is not supported by the library.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">const data = db.prepare('SELECT * FROM albums INNER JOIN artists ON artists.ArtistId = albums.ArtistId').all();</code></pre>
+<pre class="language-javascript"><code v-pre class="language-javascript">const data = db.prepare(`SELECT * FROM albums INNER JOIN artists
+ON artists.ArtistId = albums.ArtistId`).all();</code></pre>
 </doc-codeblock></div>
 
 

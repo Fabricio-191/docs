@@ -26,12 +26,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/simplest.db-docs/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/simplest.db-docs/static/database.svg" rel="icon" />
-    <link href="/simplest.db-docs/resources/css/retype.css?v=1.11.2.699830307321" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/simplest.db-docs/resources/css/retype.css?v=1.11.2.699840954123" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/simplest.db-docs/resources/js/config.js?v=1.11.2.699830307321" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/simplest.db-docs/resources/js/config.js?v=1.11.2.699840954123" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/simplest.db-docs/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/simplest.db-docs/resources/js/lunr.js?v=1.11.2.699830307321" defer></script>
-    <script id="prism-js" type="text/javascript" src="/simplest.db-docs/resources/js/prism.js?v=1.11.2.699830307321" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/simplest.db-docs/resources/js/lunr.js?v=1.11.2.699840954123" defer></script>
+    <script id="prism-js" type="text/javascript" src="/simplest.db-docs/resources/js/prism.js?v=1.11.2.699840954123" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -248,14 +248,9 @@ const table = db.tables.create('test', ['a', 'b', 'c']);</code></pre>
     <template #title>Default values</template>
 <p>By default all default values are set to <code v-pre>null</code>.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">const table = db.tables.create(
-	'test',
-	['a', 'b', 'c'],
-	{ a: 300, b: 'abc' }
-);
+<pre class="language-javascript"><code v-pre class="language-javascript">const table = db.tables.create('test', ['a', 'b', 'c'], { b: 'abc', c: 300 });
 
-table.insert({ b: 'def', c: 'thing' }); // { a: 300, b: 'def', c: 'thing' }
-table.insert({ a: 400 });               // { a: 400, b: 'abc', c: null }</code></pre>
+table.insert({ b: 'def' }); // { a: null, b: 'def', c: 300 }</code></pre>
 </doc-codeblock></div>
 </doc-panel>
 <doc-panel id="columns-advanced" collapsed>
@@ -279,7 +274,7 @@ table.insert({ a: 400 });               // { a: 400, b: 'abc', c: null }</code><
     </h2>
 </doc-anchor-target>
 <p>Data must be a object where the keys are the column names and the values are the values to be used.</p>
-<p>The only acepted values are <code v-pre>null</code>, numbers, bigints, strings and buffers. for booleans you should use <code v-pre>1</code> and <code v-pre>0</code>.
+<p>The only acepted values are <code v-pre>null</code>, numbers, bigints, strings and buffers. for booleans you should use <code v-pre>1</code> and <code v-pre>0</code>.<br />
 If a value is not provided or it&#x27;s undefined, the default value will be used.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-javascript"><code v-pre class="language-javascript">const data = {
@@ -515,16 +510,36 @@ console.log(table.select());
     </h3>
 </doc-anchor-target>
 <p>The replace method will only work with an <code v-pre>UNIQUE</code> column or a <code v-pre>PRIMARY KEY</code>, see <doc-anchor-trigger to="#table">Columns (advanced)</doc-anchor-trigger></p>
+<p>This method will replace the row where the <code v-pre>UNIQUE</code> or <code v-pre>PRIMARY KEY</code> is equal to the given value. If there is no row with the given value, it will insert the data.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">const table = db.tables.create('test', ['a PRIMARY KEY', 'b UNIQUE', 'c']);
+<pre class="language-javascript"><code v-pre class="language-javascript">const table = db.tables.create('test', ['a PRIMARY KEY', 'b']);
 
 table.insert([
-	{ a: 1, b: 'aaa', c: 'abc' },
-	{ a: 2, b: 'bbb', c: 'def' },
-	{ a: 3, b: 'ccc', c: 'ghi' },
+	{ a: 1, b: 'a' },
+	{ a: 2, b: 'b' },
+	{ a: 3, b: 'c' },
 ]);
 
-// To-Do</code></pre>
+table.replace({ a: 4, b: 'd' });
+// as none value coincides it will insert the data
+/*
+[
+  { a: 1, b: 'a' },
+  { a: 2, b: 'b' },
+  { a: 3, b: 'c' },
+  { a: 4, b: 'd' }
+]
+*/
+
+table.replace({ a: 2, b: 'e' });
+/*
+[
+  { a: 1, b: 'a' },
+  { a: 3, b: 'c' },
+  { a: 4, b: 'd' },
+  { a: 2, b: 'e' }
+]
+*/</code></pre>
 </doc-codeblock></div>
 <doc-anchor-target id="columns">
     <h2>

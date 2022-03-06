@@ -26,12 +26,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/simplest.db-docs/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/simplest.db-docs/static/database.svg" rel="icon" />
-    <link href="/simplest.db-docs/resources/css/retype.css?v=1.11.2.699830307321" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/simplest.db-docs/resources/css/retype.css?v=1.11.2.699840954123" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/simplest.db-docs/resources/js/config.js?v=1.11.2.699830307321" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/simplest.db-docs/resources/js/config.js?v=1.11.2.699840954123" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/simplest.db-docs/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/simplest.db-docs/resources/js/lunr.js?v=1.11.2.699830307321" defer></script>
-    <script id="prism-js" type="text/javascript" src="/simplest.db-docs/resources/js/prism.js?v=1.11.2.699830307321" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/simplest.db-docs/resources/js/lunr.js?v=1.11.2.699840954123" defer></script>
+    <script id="prism-js" type="text/javascript" src="/simplest.db-docs/resources/js/prism.js?v=1.11.2.699840954123" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -241,22 +241,26 @@
     </h1>
 </doc-anchor-target>
 <doc-anchor-target id="about">
-    <h2>
+    <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#about">#</doc-anchor-trigger>
         <span>About</span>
-    </h2>
+    </h3>
 </doc-anchor-target>
 <p>This module really simplifies the creation and use of databases. but sacrifices eficciency for simplicity.</p>
 <p>It&#x27;s thinked for begginers or for projects where speed isn&#x27;t vital.</p>
 <doc-anchor-target id="installation">
-    <h2>
+    <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#installation">#</doc-anchor-trigger>
         <span>Installation</span>
-    </h2>
+    </h3>
 </doc-anchor-target>
 <p>To install the package, run the following command:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-javascript"><code v-pre class="language-javascript">npm i simplest.db --save</code></pre>
+</doc-codeblock></div>
+<p>if you don&#x27;t want to use the SQLite/simple.SQLite databases, you should do</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">npm i simplest.db --no-optional</code></pre>
 </doc-codeblock></div>
 <div class="flex mb-6">
     <div class="flex-shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
@@ -271,20 +275,10 @@
             </svg>
         </div>
         <div class="pr-5 ml-3">
-<p>if you have any problem in the installation related to better-sqlite3 see <a href="https://github.com/JoshuaWise/better-sqlite3/blob/master/docs/troubleshooting.md">this</a></p>
+<p>if you have any problem in the installation related to <code v-pre>better-sqlite3</code> see <a href="https://github.com/JoshuaWise/better-sqlite3/blob/master/docs/troubleshooting.md">this</a></p>
         </div>
     </div>
 </div>
-<doc-anchor-target id="optional-dependencies">
-    <h4>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#optional-dependencies">#</doc-anchor-trigger>
-        <span>Optional dependencies</span>
-    </h4>
-</doc-anchor-target>
-<p>if you don&#x27;t want to use the SQLite/simple.SQLite databases, you should do</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">npm i simplest.db --no-optional</code></pre>
-</doc-codeblock></div>
 
 
 
