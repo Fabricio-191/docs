@@ -14,14 +14,9 @@ const table = db.tables.create('test', ['a', 'b', 'c']);
 By default all default values are set to `null`.
 
 ```js
-const table = db.tables.create(
-	'test',
-	['a', 'b', 'c'],
-	{ a: 300, b: 'abc' }
-);
+const table = db.tables.create('test', ['a', 'b', 'c'], { b: 'abc', c: 300 });
 
-table.insert({ b: 'def', c: 'thing' }); // { a: 300, b: 'def', c: 'thing' }
-table.insert({ a: 400 });               // { a: 400, b: 'abc', c: null }
+table.insert({ b: 'def' }); // { a: null, b: 'def', c: 300 }
 ```
 ===
 
@@ -44,7 +39,7 @@ db.tables.create(
 
 Data must be a object where the keys are the column names and the values are the values to be used.
 
-The only acepted values are `null`, numbers, bigints, strings and buffers. for booleans you should use `1` and `0`.
+The only acepted values are `null`, numbers, bigints, strings and buffers. for booleans you should use `1` and `0`.  
 If a value is not provided or it's undefined, the default value will be used.
 
 ```js
@@ -253,16 +248,37 @@ console.log(table.select());
 
 The replace method will only work with an `UNIQUE` column or a `PRIMARY KEY`, see [Columns (advanced)](#table)
 
+This method will replace the row where the `UNIQUE` or `PRIMARY KEY` is equal to the given value. If there is no row with the given value, it will insert the data.
+
 ```js
-const table = db.tables.create('test', ['a PRIMARY KEY', 'b UNIQUE', 'c']);
+const table = db.tables.create('test', ['a PRIMARY KEY', 'b']);
 
 table.insert([
-	{ a: 1, b: 'aaa', c: 'abc' },
-	{ a: 2, b: 'bbb', c: 'def' },
-	{ a: 3, b: 'ccc', c: 'ghi' },
+	{ a: 1, b: 'a' },
+	{ a: 2, b: 'b' },
+	{ a: 3, b: 'c' },
 ]);
 
-// To-Do
+table.replace({ a: 4, b: 'd' });
+// as none value coincides it will insert the data
+/*
+[
+  { a: 1, b: 'a' },
+  { a: 2, b: 'b' },
+  { a: 3, b: 'c' },
+  { a: 4, b: 'd' }
+]
+*/
+
+table.replace({ a: 2, b: 'e' });
+/*
+[
+  { a: 1, b: 'a' },
+  { a: 3, b: 'c' },
+  { a: 4, b: 'd' },
+  { a: 2, b: 'e' }
+]
+*/
 ```
 
 ## Columns

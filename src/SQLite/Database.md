@@ -49,7 +49,8 @@ db.optimize();
 
 ## Closing the database
 
-Closes the database connection. if you are going to close the process deliberately, you should call this function. it will call the `optimize` method, as it's recommended in SQLite docs.
+Closes the database connection. if you are going to close the process deliberately, you should call this function. it will allow you to move/rename/delete the database file.  
+it will call the `optimize` method, as it's recommended in SQLite docs.
 
 ```js
 db.close();
@@ -74,5 +75,6 @@ Prepares a SQLite statement. see [better-sqlite3](https://github.com/JoshuaWise/
 This is intended for people that knows SQLite, and want to do a query that is not supported by the library.
 
 ```js
-const data = db.prepare('SELECT * FROM albums INNER JOIN artists ON artists.ArtistId = albums.ArtistId').all();
+const data = db.prepare(`SELECT * FROM albums INNER JOIN artists
+ON artists.ArtistId = albums.ArtistId`).all();
 ```

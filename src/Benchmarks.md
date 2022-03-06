@@ -14,9 +14,7 @@ npm i
 npm run bench
 ```
 
-Everything is measured in operations per second (ops/s).
-
-🔸 means writes/reads every time (no cache use)
+Everything is measured in operations per second (ops/s). 🔸 means writes/reads every time (no cache use)
 
 ## Simple databases
 
@@ -154,6 +152,10 @@ gantt
 ```
 
 ```mermaid
+%%{init: {
+	'logLevel': 'debug',
+	'gantt': { 'barHeight':25 } 
+} }%%
 gantt
 	title 100000 rows
     dateFormat X
