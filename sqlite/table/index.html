@@ -26,12 +26,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/simplest.db-docs/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/simplest.db-docs/static/database.svg" rel="icon" />
-    <link href="/simplest.db-docs/resources/css/retype.css?v=1.11.2.699840954123" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/simplest.db-docs/resources/css/retype.css?v=1.11.2.700177164692" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/simplest.db-docs/resources/js/config.js?v=1.11.2.699840954123" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/simplest.db-docs/resources/js/config.js?v=1.11.2.700177164692" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/simplest.db-docs/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/simplest.db-docs/resources/js/lunr.js?v=1.11.2.699840954123" defer></script>
-    <script id="prism-js" type="text/javascript" src="/simplest.db-docs/resources/js/prism.js?v=1.11.2.699840954123" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/simplest.db-docs/resources/js/lunr.js?v=1.11.2.700177164692" defer></script>
+    <script id="prism-js" type="text/javascript" src="/simplest.db-docs/resources/js/prism.js?v=1.11.2.700177164692" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -260,7 +260,7 @@ table.insert({ b: 'def' }); // { a: null, b: 'def', c: 300 }</code></pre>
 <pre class="language-javascript"><code v-pre class="language-javascript">db.tables.create(
 	'test', [
 		'a INTEGER PRIMARY KEY',
-		'b UNIQUE',
+		'b TEXT UNIQUE',
 		'c NOT NULL'
 	],
 	{ c: 'defaultValue' }
@@ -334,10 +334,10 @@ console.log(table.select(row =&gt; row.a &gt; 1));
         </div>
     </div>
 </div>
-<doc-anchor-target id="using-a-sql-syntax">
+<doc-anchor-target id="using-sql-syntax">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#using-a-sql-syntax">#</doc-anchor-trigger>
-        <span>Using a SQL syntax</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#using-sql-syntax">#</doc-anchor-trigger>
+        <span>Using SQL syntax</span>
     </h3>
 </doc-anchor-target>
 <p>You can see the oficial SQLite syntax <a href="https://www.sqlite.org/syntax/expr.html">here</a>.

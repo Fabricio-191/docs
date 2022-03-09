@@ -7,27 +7,31 @@
     <meta name="turbo-cache-control" content="no-cache">
 
     <!-- Primary Meta Tags -->
-    <title>Basics - simplest-db</title>
-    <meta name="title" content="Basics - simplest-db">
+    <title>Simple - simplest-db</title>
+    <meta name="title" content="Simple - simplest-db">
+    <meta name="description" content="Really simple to use key-value databases." />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://fabricio-191.github.io/simplest.db-docs/simple/basics/">
-    <meta property="og:title" content="Basics - simplest-db">
+    <meta property="og:url" content="https://fabricio-191.github.io/simplest.db-docs/simple/">
+    <meta property="og:title" content="Simple - simplest-db">
+    <meta property="og:description" content="Really simple to use key-value databases.">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://fabricio-191.github.io/simplest.db-docs/simple/basics/">
-    <meta property="twitter:title" content="Basics - simplest-db">
+    <meta property="twitter:url" content="https://fabricio-191.github.io/simplest.db-docs/simple/">
+    <meta property="twitter:title" content="Simple - simplest-db">
+    <meta property="twitter:description" content="Really simple to use key-value databases.">
     
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/simplest.db-docs/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/simplest.db-docs/static/database.svg" rel="icon" />
-    <link href="/simplest.db-docs/resources/css/retype.css?v=1.11.2.699840954123" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/simplest.db-docs/resources/css/retype.css?v=1.11.2.700177164692" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/simplest.db-docs/resources/js/config.js?v=1.11.2.699840954123" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/simplest.db-docs/resources/js/config.js?v=1.11.2.700177164692" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/simplest.db-docs/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/simplest.db-docs/resources/js/lunr.js?v=1.11.2.699840954123" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/simplest.db-docs/resources/js/lunr.js?v=1.11.2.700177164692" defer></script>
+    <script id="prism-js" type="text/javascript" src="/simplest.db-docs/resources/js/prism.js?v=1.11.2.700177164692" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -230,10 +234,10 @@
                 <div id="docs-sidebar-right-toggle"></div>
                
                 <!-- Page content  -->
-<doc-anchor-target id="basics" class="break-words">
+<doc-anchor-target id="simple" class="break-words">
     <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#basics">#</doc-anchor-trigger>
-        <span>Basics</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#simple">#</doc-anchor-trigger>
+        <span>Simple</span>
     </h1>
 </doc-anchor-target>
 <!--
@@ -249,61 +253,193 @@ database
 	|--data
 	|
 	|--save
+	|--array
+	|    |--push*
+	|    |--extract*
+	|    |--splice*
+	|    |--sort*
+	|    |--includes
+	|    |--find
+	|    |--findIndex
+	|    |--filter
+	|    |--map
+	|    |--some
+	|    |--every
+	|    |--reduce
+	|    |--random
+	|
+	|--number
+	|    |--add*
+	|    |--subtract*
 -->
-<doc-anchor-target id="get">
+<p>Really simple to use key-value databases.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">const Database = require('simplest.db/simple/json');
+// or for sqlite
+const Database = require('simplest.db/simple/SQLite');
+
+const db = new Database({
+    path: './test.json' // or .sqlite for sqlite
+});</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="options">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#get">#</doc-anchor-trigger>
-        <span>Get</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#options">#</doc-anchor-trigger>
+        <span>Options</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="set">
+<p>Options need to be an object like this</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">{ 
+    path: './somepath.db', 
+	saveTimeout: 200,
+	name: 'users', // SQLite only
+	check: true,   // JSON only
+}</code></pre>
+</doc-codeblock></div>
+<ul>
+<li><p><code v-pre>path</code> is where is going to be the file with the database. By default it&#x27;s <code v-pre>./simple-db.json</code> for JSON and <code v-pre>./simple-db.sqlite</code> for SQLite</p>
+</li>
+<li><p><code v-pre>saveTimeout</code> when you make a change in the database, it will await more changes and when this timeout ends it will save the changes in the database. If you set it to 0 the database will be writen every time. By default <code v-pre>100</code> for SQLite and <code v-pre>500</code> for JSON</p>
+</li>
+<li><p><code v-pre>check</code> (json only) is whenether to check or not if the value was stored correctly, <code v-pre>false</code> by default</p>
+</li>
+<li><p><code v-pre>name</code> (sqlite only) it&#x27;s the table name in the SQLite database, <code v-pre>simple_db</code> by default. for those who dont know SQLite, it&#x27;s like a &quot;division&quot; in the database. you can have multiple tables in the same database.</p>
+</li>
+</ul>
+<doc-panel id="example" collapsed>
+    <template #title>Example</template>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">const Database = require('simplest.db/simple/SQLite');
+
+const db = new Database({
+    path: './simple-db.sqlite',
+	name: 'users',
+});
+
+const db2 = new Database({
+    path: './simple-db.sqlite',
+	name: 'servers',
+});
+
+// db and db2 are in the same file but they do not share values</code></pre>
+</doc-codeblock></div>
+</doc-panel>
+<p>===</p>
+<doc-panel id="cache" collapsed>
+    <template #title>Cache</template>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">const db = new Database({
+    path: './test.json'
+});
+
+let obj = { num: 1 };
+
+db.set('abc', obj);
+
+obj.num += 30;
+
+console.log(db.get('abc')); // { num: 31 }</code></pre>
+</doc-codeblock></div>
+</doc-panel>
+<doc-panel id="keys" collapsed>
+    <template #title>Keys</template>
+<p>Keys in the database are stringified &quot;property accessors&quot; (normal way to access any property in JavaScript but in string)</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">'ABC'
+'foo.bar'
+'foo.bar.baz'
+`things[0].${something}.${something2}`</code></pre>
+</doc-codeblock></div>
+<p>It can also recieve array of strings as keys</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">['foo', 'bar'] // same as 'foo.bar'
+['foo', 'bar', 'baz'] // same as 'foo.bar.baz'
+['things', '0', something, something2] // same as `things[0].${something}.${something2}`</code></pre>
+</doc-codeblock></div>
+</doc-panel>
+<doc-anchor-target id="methods">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#set">#</doc-anchor-trigger>
-        <span>Set</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#methods">#</doc-anchor-trigger>
+        <span>Methods</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="delete">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#delete">#</doc-anchor-trigger>
-        <span>Delete</span>
-    </h2>
+<doc-anchor-target id="getsetdeleteclear">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#getsetdeleteclear">#</doc-anchor-trigger>
+        <span>get/set/delete/clear</span>
+    </h3>
 </doc-anchor-target>
-<doc-anchor-target id="clear">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#clear">#</doc-anchor-trigger>
-        <span>Clear</span>
-    </h2>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">db.set('ABC', null)
+db.set('foo.bar', [123, 456])
+
+/*
+{
+    ABC: null,
+    foo: {
+        bar: [123, 456]
+    }
+}
+*/
+
+db.get('foo.bar[0]') //123
+db.delete('foo.bar')
+
+/*
+{
+    ABC: null
+    foo: {}
+}
+*/
+
+db.clear()
+
+// {}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="keysvaluesentries">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#keysvaluesentries">#</doc-anchor-trigger>
+        <span>keys/values/entries</span>
+    </h3>
 </doc-anchor-target>
-<doc-anchor-target id="keys">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#keys">#</doc-anchor-trigger>
-        <span>Keys</span>
-    </h2>
-</doc-anchor-target>
-<doc-anchor-target id="values">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#values">#</doc-anchor-trigger>
-        <span>Values</span>
-    </h2>
-</doc-anchor-target>
-<doc-anchor-target id="entries">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#entries">#</doc-anchor-trigger>
-        <span>Entries</span>
-    </h2>
-</doc-anchor-target>
-<doc-anchor-target id="data">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#data">#</doc-anchor-trigger>
-        <span>Data</span>
-    </h2>
-</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">console.log(db.entries)
+/*
+[
+    {
+        key: 'ABC',
+        value: null
+    }, 
+    {
+        key: 'foo',
+        value: {
+            bar: [123, 460, 800]
+        }
+    }
+]
+*/
+
+console.log(db.keys)
+//['ABC', 'foo']
+
+console.log(db.values)
+/*
+[
+    null, 
+    {
+        bar: [123, 460, 800]
+    }
+]
+*/</code></pre>
+</doc-codeblock></div>
 <doc-anchor-target id="save">
-    <h2>
+    <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#save">#</doc-anchor-trigger>
-        <span>Save</span>
-    </h2>
+        <span>save</span>
+    </h3>
 </doc-anchor-target>
+<p>This method will save the data in the database at the path you set in the options. Ignoring the saveTimeout.</p>
 
 
 
@@ -315,20 +451,20 @@ database
             
 <nav class="flex mt-14">
     <div class="w-1/2">
-        <a class="px-5 py-4 h-full flex items-center break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="/simplest.db-docs/simple/use/">
+        <a class="px-5 py-4 h-full flex items-center break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="/simplest.db-docs/">
             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
             <span>
                 <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
-                <span class="block mt-1">Use</span>
+                <span class="block mt-1">Welcome</span>
             </span>
         </a>
     </div>
 
     <div class="w-1/2">
-        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="/simplest.db-docs/simple/utils/">
+        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="/simplest.db-docs/sqlite/database/">
             <span>
                 <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
-                <span class="block mt-1">Number</span>
+                <span class="block mt-1">Database</span>
             </span>
             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
         </a>
@@ -376,6 +512,6 @@ database
 
         <div id="docs-overlay-target"></div>
 
-        <script>window.__DOCS__ = { "title": "Basics", icon: "file", hasPrism: false, hasMermaid: false, hasMath: false }</script>
+        <script>window.__DOCS__ = { "title": "Simple", icon: "file", hasPrism: true, hasMermaid: false, hasMath: false }</script>
     </body>
 </html>
