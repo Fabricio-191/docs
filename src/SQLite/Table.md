@@ -1,4 +1,5 @@
 ---
+label: Table
 icon: columns
 order: 2
 ---
@@ -27,7 +28,7 @@ The columns while creating a table and while adding a column are [column's-def](
 db.tables.create(
 	'test', [
 		'a INTEGER PRIMARY KEY',
-		'b UNIQUE',
+		'b TEXT UNIQUE',
 		'c NOT NULL'
 	],
 	{ c: 'defaultValue' }
@@ -85,7 +86,7 @@ console.log(table.select(row => row.a > 1));
 You cannot use async functions in conditions. As them returns a promise, will be seen always as a truthy value.
 !!!
 
-### Using a SQL syntax
+### Using SQL syntax
 
 You can see the oficial SQLite syntax [here](https://www.sqlite.org/syntax/expr.html).
 Or you can use these examples

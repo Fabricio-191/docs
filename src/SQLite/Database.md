@@ -1,4 +1,5 @@
 ---
+label: Database
 icon: database
 order: 3
 ---
@@ -6,13 +7,20 @@ order: 3
 ## Creating a database
 
 ```js
-const SQLiteDatabase = require('@fabricio-191/simple.db').SQLite;
-
-const db = new SQLiteDatabase({
+const SQLiteDB = require('simplest.db/SQLite');
+const db = new SQLiteDB({
 	path: './database.sqlite',
 });
 ```
 The only option is `path` which is the path to the database file. any other options are sent to [better-sqlite3](https://github.com/JoshuaWise/better-sqlite3/blob/master/docs/api.md#new-databasepath-options) database constructor.
+
+## Tables
+
+### Create
+
+### Delete
+
+### Get
 
 ## Transactions
 
@@ -36,6 +44,20 @@ table.update(row => row.a === 3, { a: 300 });
 
 db.transactions.commit();
 ```
+
+### Begin
+
+`db.transtions.begin()` starts a transaction. puts the database in memory instead of disk. and the changes during the transaction are applied only to the database in memory.
+
+### Commit
+
+`db.transtions.commit()` ends a transaction. writes the database in memory to the database in the disk.
+
+### Rollback
+
+### Savepoint
+
+### Delete savepoint
 
 ## Optimize
 

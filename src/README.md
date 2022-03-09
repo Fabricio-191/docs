@@ -6,7 +6,8 @@ order: 3
 
 ### About
 
-This module really simplifies the creation and use of databases. but sacrifices eficciency for simplicity.
+This module really simplifies the creation and use of databases.
+But sacrifices eficciency for simplicity.
 
 It's thinked for begginers or for projects where speed isn't vital. 
 
