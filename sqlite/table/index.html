@@ -9,29 +9,29 @@
     <!-- Primary Meta Tags -->
     <title>Table - simplest-db</title>
     <meta name="title" content="Table - simplest-db">
-    <meta name="description" content="By default all default values are set to null." />
+    <meta name="description" content="Data must be a object where the keys are the column names and the values are the values to be used." />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://fabricio-191.github.io/simplest.db-docs/sqlite/table/">
     <meta property="og:title" content="Table - simplest-db">
-    <meta property="og:description" content="By default all default values are set to null.">
+    <meta property="og:description" content="Data must be a object where the keys are the column names and the values are the values to be used.">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://fabricio-191.github.io/simplest.db-docs/sqlite/table/">
     <meta property="twitter:title" content="Table - simplest-db">
-    <meta property="twitter:description" content="By default all default values are set to null.">
+    <meta property="twitter:description" content="Data must be a object where the keys are the column names and the values are the values to be used.">
     
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/simplest.db-docs/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/simplest.db-docs/static/database.svg" rel="icon" />
-    <link href="/simplest.db-docs/resources/css/retype.css?v=1.11.2.700177164692" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/simplest.db-docs/resources/css/retype.css?v=1.11.2.700248970584" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/simplest.db-docs/resources/js/config.js?v=1.11.2.700177164692" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/simplest.db-docs/resources/js/config.js?v=1.11.2.700248970584" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/simplest.db-docs/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/simplest.db-docs/resources/js/lunr.js?v=1.11.2.700177164692" defer></script>
-    <script id="prism-js" type="text/javascript" src="/simplest.db-docs/resources/js/prism.js?v=1.11.2.700177164692" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/simplest.db-docs/resources/js/lunr.js?v=1.11.2.700248970584" defer></script>
+    <script id="prism-js" type="text/javascript" src="/simplest.db-docs/resources/js/prism.js?v=1.11.2.700248970584" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -240,33 +240,6 @@
         <span>Table</span>
     </h1>
 </doc-anchor-target>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">// db.tables.create(tableName, columns, defaultValues);
-const table = db.tables.create('test', ['a', 'b', 'c']);</code></pre>
-</doc-codeblock></div>
-<doc-panel id="default-values" collapsed>
-    <template #title>Default values</template>
-<p>By default all default values are set to <code v-pre>null</code>.</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">const table = db.tables.create('test', ['a', 'b', 'c'], { b: 'abc', c: 300 });
-
-table.insert({ b: 'def' }); // { a: null, b: 'def', c: 300 }</code></pre>
-</doc-codeblock></div>
-</doc-panel>
-<doc-panel id="columns-advanced" collapsed>
-    <template #title>Columns (advanced)</template>
-<p>The columns while creating a table and while adding a column are <a href="https://www.sqlite.org/syntax/column-def.html">column&#x27;s-def</a> from SQLite, by default the type is BLOB. And default values are overriden by default values provided while creating the table.</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">db.tables.create(
-	'test', [
-		'a INTEGER PRIMARY KEY',
-		'b TEXT UNIQUE',
-		'c NOT NULL'
-	],
-	{ c: 'defaultValue' }
-);</code></pre>
-</doc-codeblock></div>
-</doc-panel>
 <doc-anchor-target id="data">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#data">#</doc-anchor-trigger>

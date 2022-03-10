@@ -26,12 +26,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/simplest.db-docs/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/simplest.db-docs/static/database.svg" rel="icon" />
-    <link href="/simplest.db-docs/resources/css/retype.css?v=1.11.2.700177164692" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/simplest.db-docs/resources/css/retype.css?v=1.11.2.700248970584" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/simplest.db-docs/resources/js/config.js?v=1.11.2.700177164692" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/simplest.db-docs/resources/js/config.js?v=1.11.2.700248970584" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/simplest.db-docs/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/simplest.db-docs/resources/js/lunr.js?v=1.11.2.700177164692" defer></script>
-    <script id="prism-js" type="text/javascript" src="/simplest.db-docs/resources/js/prism.js?v=1.11.2.700177164692" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/simplest.db-docs/resources/js/lunr.js?v=1.11.2.700248970584" defer></script>
+    <script id="prism-js" type="text/javascript" src="/simplest.db-docs/resources/js/prism.js?v=1.11.2.700248970584" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -247,8 +247,13 @@
     </h2>
 </doc-anchor-target>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">const SQLiteDB = require('simplest.db/SQLite');
-const db = new SQLiteDB({
+<pre class="language-javascript"><code v-pre class="language-javascript">const { SQLite } = require('simplest.db');
+/*
+Or
+import { SQLite } from 'simplest.db';
+*/
+
+const db = new SQLite({
 	path: './database.sqlite',
 });</code></pre>
 </doc-codeblock></div>
@@ -256,34 +261,70 @@ const db = new SQLiteDB({
 <doc-anchor-target id="tables">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#tables">#</doc-anchor-trigger>
-        <span>Tables</span>
+        <span>tables</span>
     </h2>
 </doc-anchor-target>
+<p>This object is a table manager</p>
 <doc-anchor-target id="create">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#create">#</doc-anchor-trigger>
-        <span>Create</span>
+        <span>create</span>
     </h3>
 </doc-anchor-target>
+<p>Creates a table. if a table with that name already exists it will throw an error.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">// db.tables.create(tableName, columns, defaultValues);
+const table = db.tables.create('test', ['a', 'b', 'c']);</code></pre>
+</doc-codeblock></div>
+<doc-panel id="default-values" collapsed>
+    <template #title>Default values</template>
+<p>By default all default values are set to <code v-pre>null</code>.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">const table = db.tables.create('tableName', ['a', 'b', 'c'], { b: 'abc', c: 300 });
+
+table.insert({ b: 'def' }); // { a: null, b: 'def', c: 300 }</code></pre>
+</doc-codeblock></div>
+</doc-panel>
+<doc-panel id="columns-advanced" collapsed>
+    <template #title>Columns (advanced)</template>
+<p>The columns while creating a table and while adding a column are <a href="https://www.sqlite.org/syntax/column-def.html">column&#x27;s-def</a> from SQLite, by default the type is BLOB. And default values are overriden by default values provided while creating the table.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">db.tables.create(
+	'test', [
+		'a INTEGER PRIMARY KEY',
+		'b TEXT UNIQUE',
+		'c NOT NULL'
+	],
+	{ c: 'defaultValue' }
+);</code></pre>
+</doc-codeblock></div>
+</doc-panel>
 <doc-anchor-target id="delete">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#delete">#</doc-anchor-trigger>
-        <span>Delete</span>
+        <span>delete</span>
     </h3>
 </doc-anchor-target>
+<p>Deletes a table if it exists</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">db.tables.delete('tableName');</code></pre>
+</doc-codeblock></div>
 <doc-anchor-target id="get">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#get">#</doc-anchor-trigger>
-        <span>Get</span>
+        <span>get</span>
     </h3>
 </doc-anchor-target>
+<p>Gives the <code v-pre>Table</code> object for a table in the database.</p>
 <doc-anchor-target id="transactions">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#transactions">#</doc-anchor-trigger>
-        <span>Transactions</span>
+        <span>transactions</span>
     </h2>
 </doc-anchor-target>
-<p>Transactions are very useful if you want to do multiple operations in a short time. see <a href="../../benchmarks/#sqlite-database">benchmarks</a>.</p>
+<p>Transactions are very useful if you want to do multiple operations in a short time.
+They put the database in memory, and will only write it on disk when the transaction ends.</p>
+<p>see <a href="../../benchmarks/#sqlite-database">benchmarks</a>.</p>
 <p>for example, instead of doing this:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-javascript"><code v-pre class="language-javascript">table.update(row =&gt; row.a === 1, { a: 100 });
@@ -303,68 +344,74 @@ db.transactions.commit();</code></pre>
 <doc-anchor-target id="begin">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#begin">#</doc-anchor-trigger>
-        <span>Begin</span>
+        <span>begin</span>
     </h3>
 </doc-anchor-target>
-<p><code v-pre>db.transtions.begin()</code> starts a transaction. puts the database in memory instead of disk. and the changes during the transaction are applied only to the database in memory.</p>
+<p><code v-pre>db.transactions.begin()</code> starts a transaction.</p>
 <doc-anchor-target id="commit">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#commit">#</doc-anchor-trigger>
-        <span>Commit</span>
+        <span>commit</span>
     </h3>
 </doc-anchor-target>
-<p><code v-pre>db.transtions.commit()</code> ends a transaction. writes the database in memory to the database in the disk.</p>
+<p><code v-pre>db.transactions.commit()</code> ends a transaction.</p>
 <doc-anchor-target id="rollback">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#rollback">#</doc-anchor-trigger>
-        <span>Rollback</span>
+        <span>rollback</span>
     </h3>
 </doc-anchor-target>
+<p>Rollbacks a transaction. if a savepoint is provided it will rollback to that savepoint.</p>
+<p><code v-pre>db.transactions.rollback();</code>
+<code v-pre>db.transactions.rollback('savepointName');</code></p>
 <doc-anchor-target id="savepoint">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#savepoint">#</doc-anchor-trigger>
-        <span>Savepoint</span>
+        <span>savepoint</span>
     </h3>
 </doc-anchor-target>
+<p>Creates a savepoint with the specified name.</p>
+<p><code v-pre>db.transactions.savepoint('savepointName');</code></p>
 <doc-anchor-target id="delete-savepoint">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#delete-savepoint">#</doc-anchor-trigger>
-        <span>Delete savepoint</span>
+        <span>delete savepoint</span>
     </h3>
 </doc-anchor-target>
+<p>Deletes a savepoint.</p>
+<p><code v-pre>db.transactions.deleteSavepoint('savepointName');</code></p>
 <doc-anchor-target id="optimize">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#optimize">#</doc-anchor-trigger>
-        <span>Optimize</span>
+        <span>optimize</span>
     </h2>
 </doc-anchor-target>
+<p><code v-pre>db.optimize();</code></p>
 <p>A tiny function that executes a pragma and a SQL that optimizes the database.</p>
 <p>This is intended to be used only in big databases after a lot of operations. you can read about it <a href="https://www.sqlite.org/lang_vacuum.html">here</a></p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">db.optimize();</code></pre>
-</doc-codeblock></div>
 <doc-anchor-target id="closing-the-database">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#closing-the-database">#</doc-anchor-trigger>
         <span>Closing the database</span>
     </h2>
 </doc-anchor-target>
-<p>Closes the database connection. if you are going to close the process deliberately, you should call this function. it will allow you to move/rename/delete the database file.<br />
+<p>Closes the database connection. if you are going to close the process deliberately, you should call this function.
+or if you want to move/rename/delete the database file. while the process is running.
 it will call the <code v-pre>optimize</code> method, as it&#x27;s recommended in SQLite docs.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-javascript"><code v-pre class="language-javascript">db.close();</code></pre>
 </doc-codeblock></div>
-<doc-anchor-target id="interating-directly-with-the-database">
+<doc-anchor-target id="interacting-directly-with-the-database">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#interating-directly-with-the-database">#</doc-anchor-trigger>
-        <span>Interating directly with the database</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#interacting-directly-with-the-database">#</doc-anchor-trigger>
+        <span>Interacting directly with the database</span>
     </h2>
 </doc-anchor-target>
 <p>These methods are for interating directly with the database. (like the title barely says) these are intended for people that knows SQLite.</p>
 <doc-anchor-target id="pragma">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#pragma">#</doc-anchor-trigger>
-        <span>Pragma</span>
+        <span>pragma</span>
     </h3>
 </doc-anchor-target>
 <p>Runs a <a href="https://www.sqlite.org/pragma.html">pragma</a> in the database</p>
@@ -374,7 +421,7 @@ it will call the <code v-pre>optimize</code> method, as it&#x27;s recommended in
 <doc-anchor-target id="prepare">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#prepare">#</doc-anchor-trigger>
-        <span>Prepare</span>
+        <span>prepare</span>
     </h3>
 </doc-anchor-target>
 <p>Prepares a SQLite statement. see <a href="https://github.com/JoshuaWise/better-sqlite3/blob/master/docs/api.md#preparestring---statement">better-sqlite3</a></p>

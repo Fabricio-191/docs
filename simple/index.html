@@ -26,12 +26,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/simplest.db-docs/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/simplest.db-docs/static/database.svg" rel="icon" />
-    <link href="/simplest.db-docs/resources/css/retype.css?v=1.11.2.700177164692" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/simplest.db-docs/resources/css/retype.css?v=1.11.2.700248970584" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/simplest.db-docs/resources/js/config.js?v=1.11.2.700177164692" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/simplest.db-docs/resources/js/config.js?v=1.11.2.700248970584" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/simplest.db-docs/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/simplest.db-docs/resources/js/lunr.js?v=1.11.2.700177164692" defer></script>
-    <script id="prism-js" type="text/javascript" src="/simplest.db-docs/resources/js/prism.js?v=1.11.2.700177164692" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/simplest.db-docs/resources/js/lunr.js?v=1.11.2.700248970584" defer></script>
+    <script id="prism-js" type="text/javascript" src="/simplest.db-docs/resources/js/prism.js?v=1.11.2.700248970584" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -325,11 +325,10 @@ const db2 = new Database({
 // db and db2 are in the same file but they do not share values</code></pre>
 </doc-codeblock></div>
 </doc-panel>
-<p>===</p>
-<doc-panel id="cache" collapsed>
-    <template #title>Cache</template>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">const db = new Database({
+<!--
+==- Cache
+```js
+const db = new Database({
     path: './test.json'
 });
 
@@ -339,9 +338,10 @@ db.set('abc', obj);
 
 obj.num += 30;
 
-console.log(db.get('abc')); // { num: 31 }</code></pre>
-</doc-codeblock></div>
-</doc-panel>
+console.log(db.get('abc')); // { num: 31 }
+```
+===
+-->
 <doc-panel id="keys" collapsed>
     <template #title>Keys</template>
 <p>Keys in the database are stringified &quot;property accessors&quot; (normal way to access any property in JavaScript but in string)</p>
