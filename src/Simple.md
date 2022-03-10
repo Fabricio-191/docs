@@ -128,36 +128,83 @@ It can also recieve array of strings as keys
 
 ## Methods
 
-### get/set/delete/clear
+### set
+
+Sets a value in the database if the key point to a unexistent object it will create it.
 
 ```js
-db.set('ABC', null)
-db.set('foo.bar', [123, 456])
+db.set('foo', 'bar');
+db.set('arr.thing', [4, 5, 6]);
 
 /*
 {
-    ABC: null,
-    foo: {
-        bar: [123, 456]
-    }
+	foo: 'bar',
+	arr: {
+		thing: [4, 5, 6]
+	}
 }
 */
-
-db.get('foo.bar[0]') //123
-db.delete('foo.bar')
-
-/*
-{
-    ABC: null
-    foo: {}
-}
-*/
-
-db.clear()
-
-// {}
 ```
 
+### get
+
+Gets a value from the database.
+
+```js
+/*
+{
+	foo: 'bar',
+	arr: {
+		thing: [4, 5, 6]
+	}
+}
+*/
+
+db.get('foo'); // 'bar'
+db.get('arr'); // { thing: [4, 5, 6] }
+db.get('arr.thing'); // [4, 5, 6]
+db.get('arr.thing[1]'); // 5
+```
+
+### delete
+
+Deletes a value from the database
+
+```js
+/*
+{
+	foo: 'bar',
+	arr: {
+		thing: [4, 5, 6]
+	}
+}
+*/
+
+db.delete('foo');
+db.delete('arr.thing');
+
+// { arr: {} }
+```
+
+### has
+
+Returns `true` if there it's a value at the provided key in the database or `false` if not.
+
+```js
+// { arr: {} }
+
+db.has('foo'); // false
+db.has('arr.thing'); // false
+db.has('arr'); // true
+```
+
+### clear
+
+Deletes all the data in the database
+
+### save
+
+This method will save the data in the database at the path you set in the options. Ignoring the saveTimeout.
 
 ### keys/values/entries
 
@@ -191,7 +238,3 @@ console.log(db.values)
 ]
 */
 ```
-
-### save
-
-This method will save the data in the database at the path you set in the options. Ignoring the saveTimeout.
