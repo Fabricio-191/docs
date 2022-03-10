@@ -26,12 +26,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/simplest.db-docs/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/simplest.db-docs/static/database.svg" rel="icon" />
-    <link href="/simplest.db-docs/resources/css/retype.css?v=1.11.2.700248970584" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/simplest.db-docs/resources/css/retype.css?v=1.11.2.700265477712" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/simplest.db-docs/resources/js/config.js?v=1.11.2.700248970584" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/simplest.db-docs/resources/js/config.js?v=1.11.2.700265477712" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/simplest.db-docs/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/simplest.db-docs/resources/js/lunr.js?v=1.11.2.700248970584" defer></script>
-    <script id="prism-js" type="text/javascript" src="/simplest.db-docs/resources/js/prism.js?v=1.11.2.700248970584" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/simplest.db-docs/resources/js/lunr.js?v=1.11.2.700265477712" defer></script>
+    <script id="prism-js" type="text/javascript" src="/simplest.db-docs/resources/js/prism.js?v=1.11.2.700265477712" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -364,39 +364,98 @@ console.log(db.get('abc')); // { num: 31 }
         <span>Methods</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="getsetdeleteclear">
+<doc-anchor-target id="set">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#getsetdeleteclear">#</doc-anchor-trigger>
-        <span>get/set/delete/clear</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#set">#</doc-anchor-trigger>
+        <span>set</span>
     </h3>
 </doc-anchor-target>
+<p>Sets a value in the database if the key point to a unexistent object it will create it.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">db.set('ABC', null)
-db.set('foo.bar', [123, 456])
+<pre class="language-javascript"><code v-pre class="language-javascript">db.set('foo', 'bar');
+db.set('arr.thing', [4, 5, 6]);
 
 /*
 {
-    ABC: null,
-    foo: {
-        bar: [123, 456]
-    }
+	foo: 'bar',
+	arr: {
+		thing: [4, 5, 6]
+	}
 }
-*/
-
-db.get('foo.bar[0]') //123
-db.delete('foo.bar')
-
-/*
-{
-    ABC: null
-    foo: {}
-}
-*/
-
-db.clear()
-
-// {}</code></pre>
+*/</code></pre>
 </doc-codeblock></div>
+<doc-anchor-target id="get">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#get">#</doc-anchor-trigger>
+        <span>get</span>
+    </h3>
+</doc-anchor-target>
+<p>Gets a value from the database.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">/*
+{
+	foo: 'bar',
+	arr: {
+		thing: [4, 5, 6]
+	}
+}
+*/
+
+db.get('foo'); // 'bar'
+db.get('arr'); // { thing: [4, 5, 6] }
+db.get('arr.thing'); // [4, 5, 6]
+db.get('arr.thing[1]'); // 5</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="delete">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#delete">#</doc-anchor-trigger>
+        <span>delete</span>
+    </h3>
+</doc-anchor-target>
+<p>Deletes a value from the database</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">/*
+{
+	foo: 'bar',
+	arr: {
+		thing: [4, 5, 6]
+	}
+}
+*/
+
+db.delete('foo');
+db.delete('arr.thing');
+
+// { arr: {} }</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="has">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#has">#</doc-anchor-trigger>
+        <span>has</span>
+    </h3>
+</doc-anchor-target>
+<p>Returns <code v-pre>true</code> if there it&#x27;s a value at the provided key in the database or <code v-pre>false</code> if not.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">// { arr: {} }
+
+db.has('foo'); // false
+db.has('arr.thing'); // false
+db.has('arr'); // true</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="clear">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#clear">#</doc-anchor-trigger>
+        <span>clear</span>
+    </h3>
+</doc-anchor-target>
+<p>Deletes all the data in the database</p>
+<doc-anchor-target id="save">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#save">#</doc-anchor-trigger>
+        <span>save</span>
+    </h3>
+</doc-anchor-target>
+<p>This method will save the data in the database at the path you set in the options. Ignoring the saveTimeout.</p>
 <doc-anchor-target id="keysvaluesentries">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#keysvaluesentries">#</doc-anchor-trigger>
@@ -433,13 +492,6 @@ console.log(db.values)
 ]
 */</code></pre>
 </doc-codeblock></div>
-<doc-anchor-target id="save">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#save">#</doc-anchor-trigger>
-        <span>save</span>
-    </h3>
-</doc-anchor-target>
-<p>This method will save the data in the database at the path you set in the options. Ignoring the saveTimeout.</p>
 
 
 

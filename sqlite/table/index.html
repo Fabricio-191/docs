@@ -26,12 +26,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/simplest.db-docs/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/simplest.db-docs/static/database.svg" rel="icon" />
-    <link href="/simplest.db-docs/resources/css/retype.css?v=1.11.2.700248970584" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/simplest.db-docs/resources/css/retype.css?v=1.11.2.700265477712" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/simplest.db-docs/resources/js/config.js?v=1.11.2.700248970584" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/simplest.db-docs/resources/js/config.js?v=1.11.2.700265477712" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/simplest.db-docs/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/simplest.db-docs/resources/js/lunr.js?v=1.11.2.700248970584" defer></script>
-    <script id="prism-js" type="text/javascript" src="/simplest.db-docs/resources/js/prism.js?v=1.11.2.700248970584" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/simplest.db-docs/resources/js/lunr.js?v=1.11.2.700265477712" defer></script>
+    <script id="prism-js" type="text/javascript" src="/simplest.db-docs/resources/js/prism.js?v=1.11.2.700265477712" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -266,12 +266,8 @@ table.insert(data);</code></pre>
 </doc-anchor-target>
 <p>Conditions must be strings or functions, using SQL syntax is faster than using functions. see <a href="../../benchmarks/#conditions">benchmarks</a></p>
 <p>I recommend use SQL syntax for simple conditions and for large amounts of data and using functions for complex conditions or things that need external data.</p>
-<doc-anchor-target id="using-a-function">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#using-a-function">#</doc-anchor-trigger>
-        <span>Using a function</span>
-    </h3>
-</doc-anchor-target>
+<doc-panel id="using-a-function" collapsed>
+    <template #title>Using a function</template>
 <p>Similar to <code v-pre>Array.prototype.filter()</code> and <code v-pre>Array.prototype.find()</code> where the provided value is a row of Data from the table.
 You can use external variables and functions.</p>
 <p>Example:</p>
@@ -307,12 +303,10 @@ console.log(table.select(row =&gt; row.a &gt; 1));
         </div>
     </div>
 </div>
-<doc-anchor-target id="using-sql-syntax">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#using-sql-syntax">#</doc-anchor-trigger>
-        <span>Using SQL syntax</span>
-    </h3>
-</doc-anchor-target>
+</doc-panel>
+<doc-panels>
+   <doc-panel id="using-sql-syntax" collapsed>
+       <template #title>Using SQL syntax</template>
 <p>You can see the oficial SQLite syntax <a href="https://www.sqlite.org/syntax/expr.html">here</a>.
 Or you can use these examples</p>
 <div class="codeblock-wrapper"><doc-codeblock>
@@ -320,8 +314,9 @@ Or you can use these examples</p>
 table.select('abs(a) &lt;= 1');
 table.select('(a % 2) == 0 AND b == &quot;def&quot;');</code></pre>
 </doc-codeblock></div>
-<doc-panel id="more-examples" collapsed>
-    <template #title>More examples</template>
+   </doc-panel>
+   <doc-panel id="more-examples" collapsed>
+       <template #title>More examples</template>
 <p>To see what functions (<code v-pre>abs</code>, <code v-pre>round</code>, <code v-pre>length</code>, <code v-pre>random</code>, etc.) you can use see <a href="https://www.sqlite.org/lang_corefunc.html">this</a>.</p>
 <p>Here i will put some simple examples so people that does not know SQLite can understand how to use them.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
@@ -341,7 +336,8 @@ table.select('b &lt;= 500');
 table.select('b &gt; c OR a != &quot;13&quot;');
 table.select('(a - 3) % 2 == 0');</code></pre>
 </doc-codeblock></div>
-</doc-panel>
+   </doc-panel>
+</doc-panels>
 <doc-anchor-target id="methods">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#methods">#</doc-anchor-trigger>
@@ -482,7 +478,7 @@ console.log(table.select());
         <span>replace</span>
     </h3>
 </doc-anchor-target>
-<p>The replace method will only work with an <code v-pre>UNIQUE</code> column or a <code v-pre>PRIMARY KEY</code>, see <doc-anchor-trigger to="#table">Columns (advanced)</doc-anchor-trigger></p>
+<p>The replace method will only work with an <code v-pre>UNIQUE</code> column or a <code v-pre>PRIMARY KEY</code>, see <a href="../database/#create">Columns (advanced)</a></p>
 <p>This method will replace the row where the <code v-pre>UNIQUE</code> or <code v-pre>PRIMARY KEY</code> is equal to the given value. If there is no row with the given value, it will insert the data.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-javascript"><code v-pre class="language-javascript">const table = db.tables.create('test', ['a PRIMARY KEY', 'b']);
