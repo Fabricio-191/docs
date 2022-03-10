@@ -4,38 +4,6 @@ icon: columns
 order: 2
 ---
 
-# Table
-
-```js
-// db.tables.create(tableName, columns, defaultValues);
-const table = db.tables.create('test', ['a', 'b', 'c']);
-```
-
-==- Default values
-By default all default values are set to `null`.
-
-```js
-const table = db.tables.create('test', ['a', 'b', 'c'], { b: 'abc', c: 300 });
-
-table.insert({ b: 'def' }); // { a: null, b: 'def', c: 300 }
-```
-===
-
-==- Columns (advanced)
-The columns while creating a table and while adding a column are [column's-def](https://www.sqlite.org/syntax/column-def.html) from SQLite, by default the type is BLOB. And default values are overriden by default values provided while creating the table.
-
-```js
-db.tables.create(
-	'test', [
-		'a INTEGER PRIMARY KEY',
-		'b TEXT UNIQUE',
-		'c NOT NULL'
-	],
-	{ c: 'defaultValue' }
-);
-```
-===
-
 ## Data
 
 Data must be a object where the keys are the column names and the values are the values to be used.

@@ -87,8 +87,7 @@ const db2 = new Database({
 ```
 ===
 
-===
-
+<!--
 ==- Cache
 ```js
 const db = new Database({
@@ -104,6 +103,7 @@ obj.num += 30;
 console.log(db.get('abc')); // { num: 31 }
 ```
 ===
+-->
 
 ==- Keys
 

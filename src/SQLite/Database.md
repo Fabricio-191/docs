@@ -7,24 +7,73 @@ order: 3
 ## Creating a database
 
 ```js
-const SQLiteDB = require('simplest.db/SQLite');
-const db = new SQLiteDB({
+const { SQLite } = require('simplest.db');
+/*
+Or
+import { SQLite } from 'simplest.db';
+*/
+
+const db = new SQLite({
 	path: './database.sqlite',
 });
 ```
 The only option is `path` which is the path to the database file. any other options are sent to [better-sqlite3](https://github.com/JoshuaWise/better-sqlite3/blob/master/docs/api.md#new-databasepath-options) database constructor.
 
-## Tables
+## tables
 
-### Create
+This object is a table manager
 
-### Delete
+### create
 
-### Get
+Creates a table. if a table with that name already exists it will throw an error.
 
-## Transactions
+```js
+// db.tables.create(tableName, columns, defaultValues);
+const table = db.tables.create('test', ['a', 'b', 'c']);
+```
 
-Transactions are very useful if you want to do multiple operations in a short time. see [benchmarks](../benchmarks.md/#sqlite-database).
+==- Default values
+By default all default values are set to `null`.
+
+```js
+const table = db.tables.create('tableName', ['a', 'b', 'c'], { b: 'abc', c: 300 });
+
+table.insert({ b: 'def' }); // { a: null, b: 'def', c: 300 }
+```
+===
+
+==- Columns (advanced)
+The columns while creating a table and while adding a column are [column's-def](https://www.sqlite.org/syntax/column-def.html) from SQLite, by default the type is BLOB. And default values are overriden by default values provided while creating the table.
+
+```js
+db.tables.create(
+	'test', [
+		'a INTEGER PRIMARY KEY',
+		'b TEXT UNIQUE',
+		'c NOT NULL'
+	],
+	{ c: 'defaultValue' }
+);
+```
+===
+
+### delete
+
+Deletes a table if it exists
+```js
+db.tables.delete('tableName');
+```
+
+### get
+
+Gives the `Table` object for a table in the database.
+
+## transactions
+
+Transactions are very useful if you want to do multiple operations in a short time.
+They put the database in memory, and will only write it on disk when the transaction ends.
+
+see [benchmarks](../benchmarks.md/#sqlite-database).
 
 for example, instead of doing this:
 ```js
@@ -45,44 +94,56 @@ table.update(row => row.a === 3, { a: 300 });
 db.transactions.commit();
 ```
 
-### Begin
+### begin
 
-`db.transtions.begin()` starts a transaction. puts the database in memory instead of disk. and the changes during the transaction are applied only to the database in memory.
+`db.transactions.begin()` starts a transaction.
 
-### Commit
+### commit
 
-`db.transtions.commit()` ends a transaction. writes the database in memory to the database in the disk.
+`db.transactions.commit()` ends a transaction.
 
-### Rollback
+### rollback
 
-### Savepoint
+Rollbacks a transaction. if a savepoint is provided it will rollback to that savepoint.
 
-### Delete savepoint
+`db.transactions.rollback();`
+`db.transactions.rollback('savepointName');`
 
-## Optimize
+### savepoint
+
+Creates a savepoint with the specified name.
+
+`db.transactions.savepoint('savepointName');`
+
+### delete savepoint
+
+Deletes a savepoint.
+
+`db.transactions.deleteSavepoint('savepointName');`
+
+## optimize
+
+`db.optimize();`
 
 A tiny function that executes a pragma and a SQL that optimizes the database.
 
 This is intended to be used only in big databases after a lot of operations. you can read about it [here](https://www.sqlite.org/lang_vacuum.html)
 
-```js
-db.optimize();
-```
-
 ## Closing the database
 
-Closes the database connection. if you are going to close the process deliberately, you should call this function. it will allow you to move/rename/delete the database file.  
+Closes the database connection. if you are going to close the process deliberately, you should call this function.
+or if you want to move/rename/delete the database file. while the process is running.
 it will call the `optimize` method, as it's recommended in SQLite docs.
 
 ```js
 db.close();
 ```
 
-## Interating directly with the database
+## Interacting directly with the database
 
 These methods are for interating directly with the database. (like the title barely says) these are intended for people that knows SQLite.
 
-### Pragma
+### pragma
 
 Runs a [pragma](https://www.sqlite.org/pragma.html) in the database
 
@@ -90,7 +151,7 @@ Runs a [pragma](https://www.sqlite.org/pragma.html) in the database
 db.pragma('cache_size = 32000');
 ```
 
-### Prepare
+### prepare
 
 Prepares a SQLite statement. see [better-sqlite3](https://github.com/JoshuaWise/better-sqlite3/blob/master/docs/api.md#preparestring---statement)
 
