@@ -26,12 +26,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/simplest.db-docs/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/simplest.db-docs/static/database.svg" rel="icon" />
-    <link href="/simplest.db-docs/resources/css/retype.css?v=1.11.2.700265477712" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/simplest.db-docs/resources/css/retype.css?v=1.11.2.700443463683" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/simplest.db-docs/resources/js/config.js?v=1.11.2.700265477712" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/simplest.db-docs/resources/js/config.js?v=1.11.2.700443463683" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/simplest.db-docs/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/simplest.db-docs/resources/js/lunr.js?v=1.11.2.700265477712" defer></script>
-    <script id="prism-js" type="text/javascript" src="/simplest.db-docs/resources/js/prism.js?v=1.11.2.700265477712" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/simplest.db-docs/resources/js/lunr.js?v=1.11.2.700443463683" defer></script>
+    <script id="prism-js" type="text/javascript" src="/simplest.db-docs/resources/js/prism.js?v=1.11.2.700443463683" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -274,9 +274,9 @@ database
 -->
 <p>Really simple to use key-value databases.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">const Database = require('simplest.db/simple/json');
+<pre class="language-javascript"><code v-pre class="language-javascript">const Database = require('simplest.db').SimpleJSON;
 // or for sqlite
-const Database = require('simplest.db/simple/SQLite');
+const Database = require('simplest.db').SimpleSQLite;
 
 const db = new Database({
     path: './test.json' // or .sqlite for sqlite
@@ -304,52 +304,17 @@ const db = new Database({
 </li>
 <li><p><code v-pre>check</code> (json only) is whenether to check or not if the value was stored correctly, <code v-pre>false</code> by default</p>
 </li>
-<li><p><code v-pre>name</code> (sqlite only) it&#x27;s the table name in the SQLite database, <code v-pre>simple_db</code> by default. for those who dont know SQLite, it&#x27;s like a &quot;division&quot; in the database. you can have multiple tables in the same database.</p>
+<li><p><code v-pre>name</code> (sqlite only) <code v-pre>simple_db</code> by default. See how to use it <a href="../extras/#Multiple_db%27s_in_the_same_file">here</a></p>
 </li>
 </ul>
-<doc-panel id="example" collapsed>
-    <template #title>Example</template>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">const Database = require('simplest.db/simple/SQLite');
-
-const db = new Database({
-    path: './simple-db.sqlite',
-	name: 'users',
-});
-
-const db2 = new Database({
-    path: './simple-db.sqlite',
-	name: 'servers',
-});
-
-// db and db2 are in the same file but they do not share values</code></pre>
-</doc-codeblock></div>
-</doc-panel>
-<!--
-==- Cache
-```js
-const db = new Database({
-    path: './test.json'
-});
-
-let obj = { num: 1 };
-
-db.set('abc', obj);
-
-obj.num += 30;
-
-console.log(db.get('abc')); // { num: 31 }
-```
-===
--->
 <doc-panel id="keys" collapsed>
     <template #title>Keys</template>
-<p>Keys in the database are stringified &quot;property accessors&quot; (normal way to access any property in JavaScript but in string)</p>
+<p>Keys in the database are like &quot;property accessors&quot; (normal way to access any property in JavaScript) but in string. And the only separator accepted is a dot <code v-pre>.</code></p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-javascript"><code v-pre class="language-javascript">'ABC'
 'foo.bar'
 'foo.bar.baz'
-`things[0].${something}.${something2}`</code></pre>
+`things.0.${something}.${something2}`</code></pre>
 </doc-codeblock></div>
 <p>It can also recieve array of strings as keys</p>
 <div class="codeblock-wrapper"><doc-codeblock>
@@ -404,7 +369,7 @@ db.set('arr.thing', [4, 5, 6]);
 db.get('foo'); // 'bar'
 db.get('arr'); // { thing: [4, 5, 6] }
 db.get('arr.thing'); // [4, 5, 6]
-db.get('arr.thing[1]'); // 5</code></pre>
+db.get('arr.thing.1'); // 5</code></pre>
 </doc-codeblock></div>
 <doc-anchor-target id="delete">
     <h3>
