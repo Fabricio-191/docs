@@ -25,8 +25,6 @@ table.insert(data);
 
 Conditions must be strings or functions, using SQL syntax is faster than using functions. see [benchmarks](../benchmarks/#conditions)
 
-I recommend use SQL syntax for simple conditions and for large amounts of data and using functions for complex conditions or things that need external data.
-
 ==- Using a function
 Similar to `Array.prototype.filter()` and `Array.prototype.find()` where the provided value is a row of Data from the table.
 You can use external variables and functions.
@@ -52,6 +50,7 @@ console.log(table.select(row => row.a > 1));
 !!!
 You cannot use async functions in conditions. As them returns a promise, will be seen always as a truthy value.
 !!!
+
 ===
 
 ==- Using SQL syntax

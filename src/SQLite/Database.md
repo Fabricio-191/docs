@@ -8,11 +8,6 @@ order: 3
 
 ```js
 const { SQLite } = require('simplest.db');
-/*
-Or
-import { SQLite } from 'simplest.db';
-*/
-
 const db = new SQLite({
 	path: './database.sqlite',
 });

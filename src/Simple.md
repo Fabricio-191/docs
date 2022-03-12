@@ -40,9 +40,9 @@ database
 Really simple to use key-value databases.
 
 ```js
-const Database = require('simplest.db/simple/json');
+const Database = require('simplest.db').SimpleJSON;
 // or for sqlite
-const Database = require('simplest.db/simple/SQLite');
+const Database = require('simplest.db').SimpleSQLite;
 
 const db = new Database({
     path: './test.json' // or .sqlite for sqlite
@@ -67,53 +67,18 @@ Options need to be an object like this
 
 * `check` (json only) is whenether to check or not if the value was stored correctly, `false` by default
 
-* `name` (sqlite only) it's the table name in the SQLite database, `simple_db` by default. for those who dont know SQLite, it's like a "division" in the database. you can have multiple tables in the same database.
+* `name` (sqlite only) `simple_db` by default. See how to use it [here](extras.md/#Multiple_db's_in_the_same_file)
 
-==- Example
-```js
-const Database = require('simplest.db/simple/SQLite');
-
-const db = new Database({
-    path: './simple-db.sqlite',
-	name: 'users',
-});
-
-const db2 = new Database({
-    path: './simple-db.sqlite',
-	name: 'servers',
-});
-
-// db and db2 are in the same file but they do not share values
-```
-===
-
-<!--
-==- Cache
-```js
-const db = new Database({
-    path: './test.json'
-});
-
-let obj = { num: 1 };
-
-db.set('abc', obj);
-
-obj.num += 30;
-
-console.log(db.get('abc')); // { num: 31 }
-```
-===
--->
 
 ==- Keys
 
-Keys in the database are stringified "property accessors" (normal way to access any property in JavaScript but in string)
+Keys in the database are like "property accessors" (normal way to access any property in JavaScript) but in string. And the only separator accepted is a dot `.` 
 
 ```js
 'ABC'
 'foo.bar'
 'foo.bar.baz'
-`things[0].${something}.${something2}`
+`things.0.${something}.${something2}`
 ```
 
 It can also recieve array of strings as keys
@@ -163,7 +128,7 @@ Gets a value from the database.
 db.get('foo'); // 'bar'
 db.get('arr'); // { thing: [4, 5, 6] }
 db.get('arr.thing'); // [4, 5, 6]
-db.get('arr.thing[1]'); // 5
+db.get('arr.thing.1'); // 5
 ```
 
 ### delete
