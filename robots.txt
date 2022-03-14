@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://fabricio-191.github.io/simplest.db-docs/sitemap.xml.gz
+Sitemap: https://fabricio-191.github.io/docs/sitemap.xml.gz
