@@ -7,7 +7,7 @@ order: 3
 ## Creating a database
 
 ```js
-const { SQLite } = require('simplest.db');
+const Database = require('simplest.db').SQLite;
 const db = new SQLite({
 	path: './database.sqlite',
 });
