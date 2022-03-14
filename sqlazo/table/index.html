@@ -7,31 +7,31 @@
     <meta name="turbo-cache-control" content="no-cache">
 
     <!-- Primary Meta Tags -->
-    <title>Database - simplest-db</title>
-    <meta name="title" content="Database - simplest-db">
-    <meta name="description" content="The only option is path which is the path to the database file. any other options are sent to better-sqlite3" />
+    <title>Table - simplest-db</title>
+    <meta name="title" content="Table - simplest-db">
+    <meta name="description" content="Data must be a object where the keys are the column names and the values are the values to be used." />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://fabricio-191.github.io/simplest.db-docs/sqlite/database/">
-    <meta property="og:title" content="Database - simplest-db">
-    <meta property="og:description" content="The only option is path which is the path to the database file. any other options are sent to better-sqlite3">
+    <meta property="og:url" content="https://fabricio-191.github.io/simplest.db-docs/sqlazo/table/">
+    <meta property="og:title" content="Table - simplest-db">
+    <meta property="og:description" content="Data must be a object where the keys are the column names and the values are the values to be used.">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://fabricio-191.github.io/simplest.db-docs/sqlite/database/">
-    <meta property="twitter:title" content="Database - simplest-db">
-    <meta property="twitter:description" content="The only option is path which is the path to the database file. any other options are sent to better-sqlite3">
+    <meta property="twitter:url" content="https://fabricio-191.github.io/simplest.db-docs/sqlazo/table/">
+    <meta property="twitter:title" content="Table - simplest-db">
+    <meta property="twitter:description" content="Data must be a object where the keys are the column names and the values are the values to be used.">
     
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/simplest.db-docs/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/simplest.db-docs/static/database.svg" rel="icon" />
-    <link href="/simplest.db-docs/resources/css/retype.css?v=1.11.2.700443463683" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/simplest.db-docs/resources/css/retype.css?v=1.11.2.700539990999" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/simplest.db-docs/resources/js/config.js?v=1.11.2.700443463683" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/simplest.db-docs/resources/js/config.js?v=1.11.2.700539990999" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/simplest.db-docs/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/simplest.db-docs/resources/js/lunr.js?v=1.11.2.700443463683" defer></script>
-    <script id="prism-js" type="text/javascript" src="/simplest.db-docs/resources/js/prism.js?v=1.11.2.700443463683" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/simplest.db-docs/resources/js/lunr.js?v=1.11.2.700539990999" defer></script>
+    <script id="prism-js" type="text/javascript" src="/simplest.db-docs/resources/js/prism.js?v=1.11.2.700539990999" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -234,75 +234,168 @@
                 <div id="docs-sidebar-right-toggle"></div>
                
                 <!-- Page content  -->
-<doc-anchor-target id="database" class="break-words">
+<doc-anchor-target id="table" class="break-words">
     <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#database">#</doc-anchor-trigger>
-        <span>Database</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#table">#</doc-anchor-trigger>
+        <span>Table</span>
     </h1>
 </doc-anchor-target>
-<doc-anchor-target id="creating-a-database">
+<doc-anchor-target id="data">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#creating-a-database">#</doc-anchor-trigger>
-        <span>Creating a database</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#data">#</doc-anchor-trigger>
+        <span>Data</span>
     </h2>
 </doc-anchor-target>
+<p>Data must be a object where the keys are the column names and the values are the values to be used.</p>
+<p>The only acepted values are <code v-pre>null</code>, numbers, bigints, strings and buffers. for booleans you should use <code v-pre>1</code> and <code v-pre>0</code>.<br />
+If a value is not provided or it&#x27;s undefined, the default value will be used.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">const { SQLite } = require('simplest.db');
-const db = new SQLite({
-	path: './database.sqlite',
-});</code></pre>
-</doc-codeblock></div>
-<p>The only option is <code v-pre>path</code> which is the path to the database file. any other options are sent to <a href="https://github.com/JoshuaWise/better-sqlite3/blob/master/docs/api.md#new-databasepath-options">better-sqlite3</a> database constructor.</p>
-<doc-anchor-target id="tables">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#tables">#</doc-anchor-trigger>
-        <span>tables</span>
-    </h2>
-</doc-anchor-target>
-<p>This object is a table manager</p>
-<doc-anchor-target id="create">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#create">#</doc-anchor-trigger>
-        <span>create</span>
-    </h3>
-</doc-anchor-target>
-<p>Creates a table. if a table with that name already exists it will throw an error.</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">// db.tables.create(tableName, columns, defaultValues);
-const table = db.tables.create('test', ['a', 'b', 'c']);</code></pre>
-</doc-codeblock></div>
-<doc-panel id="default-values" collapsed>
-    <template #title>Default values</template>
-<p>By default all default values are set to <code v-pre>null</code>.</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">const table = db.tables.create('tableName', ['a', 'b', 'c'], { b: 'abc', c: 300 });
+<pre class="language-javascript"><code v-pre class="language-javascript">const data = {
+	a: 1,
+	b: 123,
+	c: 'def'
+};
 
-table.insert({ b: 'def' }); // { a: null, b: 'def', c: 300 }</code></pre>
+table.insert(data);</code></pre>
 </doc-codeblock></div>
-</doc-panel>
-<doc-panel id="columns-advanced" collapsed>
-    <template #title>Columns (advanced)</template>
-<p>The columns while creating a table and while adding a column are <a href="https://www.sqlite.org/syntax/column-def.html">column&#x27;s-def</a> from SQLite, by default the type is BLOB. And default values are overriden by default values provided while creating the table.</p>
+<doc-anchor-target id="condition">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#condition">#</doc-anchor-trigger>
+        <span>Condition</span>
+    </h2>
+</doc-anchor-target>
+<p>Conditions must be strings or functions, using SQL syntax is faster than using functions. see <a href="../benchmarks/#conditions">benchmarks</a></p>
+<doc-panel id="using-a-function" collapsed>
+    <template #title>Using a function</template>
+<p>Similar to <code v-pre>Array.prototype.filter()</code> and <code v-pre>Array.prototype.find()</code> where the provided value is a row of Data from the table.
+You can use external variables and functions.</p>
+<p>Example:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">db.tables.create(
-	'test', [
-		'a INTEGER PRIMARY KEY',
-		'b TEXT UNIQUE',
-		'c NOT NULL'
-	],
-	{ c: 'defaultValue' }
-);</code></pre>
+<pre class="language-javascript"><code v-pre class="language-javascript">table.insert([
+	{ a: 1, b: 'abc' },
+	{ a: 2, b: 'def' },
+	{ a: 3, b: 'ghi' },
+]);
+
+console.log(table.select(row =&gt; row.a &gt; 1));
+/*
+[
+	{ a: 2, b: 'def' },
+	{ a: 3, b: 'ghi' }
+]
+*/</code></pre>
 </doc-codeblock></div>
+<div class="flex mb-6">
+    <div class="flex-shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-500 dark:text-blue-400" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3">
+<p>You cannot use async functions in conditions. As them returns a promise, will be seen always as a truthy value.</p>
+        </div>
+    </div>
+</div>
 </doc-panel>
-<doc-anchor-target id="delete">
+<doc-panels>
+   <doc-panel id="using-sql-syntax" collapsed>
+       <template #title>Using SQL syntax</template>
+<p>You can see the oficial SQLite syntax <a href="https://www.sqlite.org/syntax/expr.html">here</a>.
+Or you can use these examples</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">table.select('a &gt; 1');
+table.select('abs(a) &lt;= 1');
+table.select('(a % 2) == 0 AND b == &quot;def&quot;');</code></pre>
+</doc-codeblock></div>
+   </doc-panel>
+   <doc-panel id="more-examples" collapsed>
+       <template #title>More examples</template>
+<p>To see what functions (<code v-pre>abs</code>, <code v-pre>round</code>, <code v-pre>length</code>, <code v-pre>random</code>, etc.) you can use see <a href="https://www.sqlite.org/lang_corefunc.html">this</a>.</p>
+<p>Here i will put some simple examples so people that does not know SQLite can understand how to use them.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">*   /   %
++   -
+&gt;   &lt;   &lt;=   &gt;=
+==  !=
+
+NOT // !
+AND // &amp;&amp;
+OR  // ||</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">table.select(&quot;a == 'abc'&quot;);
+table.select(&quot;a == 'abc' AND b == `don't`&quot;);
+table.select('b &lt;= 500');
+table.select('b &gt; c OR a != &quot;13&quot;');
+table.select('(a - 3) % 2 == 0');</code></pre>
+</doc-codeblock></div>
+   </doc-panel>
+</doc-panels>
+<doc-anchor-target id="methods">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#methods">#</doc-anchor-trigger>
+        <span>Methods</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="insert">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#delete">#</doc-anchor-trigger>
-        <span>delete</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#insert">#</doc-anchor-trigger>
+        <span>insert</span>
     </h3>
 </doc-anchor-target>
-<p>Deletes a table if it exists</p>
+<p>see <doc-anchor-trigger to="#data">data</doc-anchor-trigger></p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">db.tables.delete('tableName');</code></pre>
+<pre class="language-javascript"><code v-pre class="language-javascript">// table.insert(data);
+table.insert({ a: 1, b: 'abc' });</code></pre>
+</doc-codeblock></div>
+<p>if you want to insert multiple values do this:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">table.insert([
+	{ a: 1, b: 'abc' },
+	{ a: 2, b: 'def' },
+	{ a: 3, b: 'ghi' },
+]);</code></pre>
+</doc-codeblock></div>
+<p>inserting multiple values at once is much faster than inserting one by one. see <a href="../benchmarks/#insert">benchmarks</a></p>
+<doc-anchor-target id="select">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#select">#</doc-anchor-trigger>
+        <span>select</span>
+    </h3>
+</doc-anchor-target>
+<p>returns all the rows that satisfy the condition, see <doc-anchor-trigger to="#condition">condition</doc-anchor-trigger></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">// table.select(condition);
+console.log(table.select()); 
+/*
+[
+	{ a: 1, b: 'abc' },
+	{ a: 2, b: 'def' },
+	{ a: 3, b: 'ghi' }
+]
+*/
+
+console.log(table.select('a &gt; 1'));
+/*
+[
+	{ a: 2, b: 'def' },
+	{ a: 3, b: 'ghi' }
+]
+*/
+
+console.log(table.select(row =&gt; row.a &gt; 1));
+/*
+[
+	{ a: 2, b: 'def' },
+	{ a: 3, b: 'ghi' }
+]
+*/</code></pre>
 </doc-codeblock></div>
 <doc-anchor-target id="get">
     <h3>
@@ -310,120 +403,169 @@ table.insert({ b: 'def' }); // { a: null, b: 'def', c: 300 }</code></pre>
         <span>get</span>
     </h3>
 </doc-anchor-target>
-<p>Gives the <code v-pre>Table</code> object for a table in the database.</p>
-<doc-anchor-target id="transactions">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#transactions">#</doc-anchor-trigger>
-        <span>transactions</span>
-    </h2>
-</doc-anchor-target>
-<p>Transactions are very useful if you want to do multiple operations in a short time.
-They put the database in memory, and will only write it on disk when the transaction ends.</p>
-<p>see <a href="../../benchmarks/#sqlite-database">benchmarks</a>.</p>
-<p>for example, instead of doing this:</p>
+<p>Same as select but instead of returning an array of rows, returns the first row.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">table.update(row =&gt; row.a === 1, { a: 100 });
-table.update(row =&gt; row.a === 2, { a: 200 });
-table.update(row =&gt; row.a === 3, { a: 300 });</code></pre>
-</doc-codeblock></div>
-<p>you should do:</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">db.transactions.begin();
+<pre class="language-javascript"><code v-pre class="language-javascript">console.log(table.select()); 
+/*
+[
+	{ a: 1, b: 'abc' },
+	{ a: 2, b: 'def' },
+	{ a: 3, b: 'ghi' }
+]
+*/
 
-table.update(row =&gt; row.a === 1, { a: 100 });
-table.update(row =&gt; row.a === 2, { a: 200 });
-table.update(row =&gt; row.a === 3, { a: 300 });
+console.log(table.get('a &gt; 1')); // { a: 2, b: 'def' }</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="delete">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#delete">#</doc-anchor-trigger>
+        <span>delete</span>
+    </h3>
+</doc-anchor-target>
+<p>Deletes all rows that satisfy the condition. see <doc-anchor-trigger to="#condition">condition</doc-anchor-trigger></p>
+<p>For security if you dont provide a condition to the <code v-pre>delete</code> method, it will throw an error. if you want to delete all rows use <code v-pre>table.deleteAll()</code></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">// table.delete(condition);
+console.log(table.select()); 
+/*
+[
+	{ a: 1, b: 'abc' },
+	{ a: 2, b: 'def' },
+	{ a: 3, b: 'ghi' }
+]
+*/
 
-db.transactions.commit();</code></pre>
+table.delete('a &lt; 2 OR b == &quot;ghi&quot;');
+
+console.log(table.select()); 
+// [{ a: 2, b: 'def' }]</code></pre>
 </doc-codeblock></div>
-<doc-anchor-target id="begin">
+<doc-anchor-target id="update">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#begin">#</doc-anchor-trigger>
-        <span>begin</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#update">#</doc-anchor-trigger>
+        <span>update</span>
     </h3>
 </doc-anchor-target>
-<p><code v-pre>db.transactions.begin()</code> starts a transaction.</p>
-<doc-anchor-target id="commit">
+<p>Updates all the rows that satisfy the condition with the given data, see <doc-anchor-trigger to="#condition">condition</doc-anchor-trigger> and <doc-anchor-trigger to="#data">data</doc-anchor-trigger></p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">// table.update(condition, data);
+
+console.log(table.select()); 
+/*
+[
+	{ a: 1, b: 'aaa' },
+	{ a: 2, b: 'bbb' },
+	{ a: 3, b: 'ccc' }
+]
+*/
+
+table.update(row =&gt; row.a === 1, { b: 'ddd' });
+table.update(row =&gt; row.a === 3, { a: 4, b: 'eee' });
+
+console.log(table.select()); 
+/*
+[
+	{ a: 1, b: 'ddd' },
+	{ a: 2, b: 'bbb' },
+	{ a: 4, b: 'eee' }
+]
+*/</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="replace">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#commit">#</doc-anchor-trigger>
-        <span>commit</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#replace">#</doc-anchor-trigger>
+        <span>replace</span>
     </h3>
 </doc-anchor-target>
-<p><code v-pre>db.transactions.commit()</code> ends a transaction.</p>
-<doc-anchor-target id="rollback">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#rollback">#</doc-anchor-trigger>
-        <span>rollback</span>
-    </h3>
-</doc-anchor-target>
-<p>Rollbacks a transaction. if a savepoint is provided it will rollback to that savepoint.</p>
-<p><code v-pre>db.transactions.rollback();</code>
-<code v-pre>db.transactions.rollback('savepointName');</code></p>
-<doc-anchor-target id="savepoint">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#savepoint">#</doc-anchor-trigger>
-        <span>savepoint</span>
-    </h3>
-</doc-anchor-target>
-<p>Creates a savepoint with the specified name.</p>
-<p><code v-pre>db.transactions.savepoint('savepointName');</code></p>
-<doc-anchor-target id="delete-savepoint">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#delete-savepoint">#</doc-anchor-trigger>
-        <span>delete savepoint</span>
-    </h3>
-</doc-anchor-target>
-<p>Deletes a savepoint.</p>
-<p><code v-pre>db.transactions.deleteSavepoint('savepointName');</code></p>
-<doc-anchor-target id="optimize">
+<p>The replace method will only work with an <code v-pre>UNIQUE</code> column or a <code v-pre>PRIMARY KEY</code>, see <a href="../database/#create">Columns (advanced)</a></p>
+<p>This method will replace the row where the <code v-pre>UNIQUE</code> or <code v-pre>PRIMARY KEY</code> is equal to the given value. If there is no row with the given value, it will insert the data.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">const table = db.tables.create('test', ['a PRIMARY KEY', 'b']);
+
+table.insert([
+	{ a: 1, b: 'a' },
+	{ a: 2, b: 'b' },
+	{ a: 3, b: 'c' },
+]);
+
+table.replace({ a: 4, b: 'd' });
+// as none value coincides it will insert the data
+/*
+[
+  { a: 1, b: 'a' },
+  { a: 2, b: 'b' },
+  { a: 3, b: 'c' },
+  { a: 4, b: 'd' }
+]
+*/
+
+table.replace({ a: 2, b: 'e' });
+/*
+[
+  { a: 1, b: 'a' },
+  { a: 3, b: 'c' },
+  { a: 4, b: 'd' },
+  { a: 2, b: 'e' }
+]
+*/</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="columns">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#optimize">#</doc-anchor-trigger>
-        <span>optimize</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#columns">#</doc-anchor-trigger>
+        <span>Columns</span>
     </h2>
 </doc-anchor-target>
-<p><code v-pre>db.optimize();</code></p>
-<p>A tiny function that executes a pragma and a SQL that optimizes the database.</p>
-<p>This is intended to be used only in big databases after a lot of operations. you can read about it <a href="https://www.sqlite.org/lang_vacuum.html">here</a></p>
-<doc-anchor-target id="closing-the-database">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#closing-the-database">#</doc-anchor-trigger>
-        <span>Closing the database</span>
-    </h2>
-</doc-anchor-target>
-<p>Closes the database connection. if you are going to close the process deliberately, you should call this function.
-or if you want to move/rename/delete the database file. while the process is running.
-it will call the <code v-pre>optimize</code> method, as it&#x27;s recommended in SQLite docs.</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">db.close();</code></pre>
-</doc-codeblock></div>
-<doc-anchor-target id="interacting-directly-with-the-database">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#interacting-directly-with-the-database">#</doc-anchor-trigger>
-        <span>Interacting directly with the database</span>
-    </h2>
-</doc-anchor-target>
-<p>These methods are for interating directly with the database. (like the title barely says) these are intended for people that knows SQLite.</p>
-<doc-anchor-target id="pragma">
+<doc-anchor-target id="add">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#pragma">#</doc-anchor-trigger>
-        <span>pragma</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#add">#</doc-anchor-trigger>
+        <span>add</span>
     </h3>
 </doc-anchor-target>
-<p>Runs a <a href="https://www.sqlite.org/pragma.html">pragma</a> in the database</p>
+<p>A method to add a column to the table. you can also set the default value for the column.
+if no default value is provided it&#x27;s gonna be <code v-pre>null</code>.</p>
+<p>The <code v-pre>fill</code> parameter indicates whenether to fill the new column with the default value or not. (default: <code v-pre>true</code>)</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">db.pragma('cache_size = 32000');</code></pre>
+<pre class="language-javascript"><code v-pre class="language-javascript">const table = db.tables.create('test', ['a', 'b', 'c']);
+table.insert({ a: 1, b: 2, c: 3 });
+
+// table.columns.add(column, defaultValue, fill)
+table.columns.add('d')
+console.log(table.get()); // { a: 1, b: 2, c: 3, d: null }
+
+table.columns.add('e', 'default');
+console.log(table.get()); // { a: 1, b: 2, c: 3, d: null, e: 'default' }
+
+table.columns.add('f', 'default', false);
+console.log(table.get()); // { a: 1, b: 2, c: 3, d: null, e: 'default', f: null }</code></pre>
 </doc-codeblock></div>
-<doc-anchor-target id="prepare">
+<doc-anchor-target id="delete-1">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#prepare">#</doc-anchor-trigger>
-        <span>prepare</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#delete-1">#</doc-anchor-trigger>
+        <span>delete</span>
     </h3>
 </doc-anchor-target>
-<p>Prepares a SQLite statement. see <a href="https://github.com/JoshuaWise/better-sqlite3/blob/master/docs/api.md#preparestring---statement">better-sqlite3</a></p>
-<p>This is intended for people that knows SQLite, and want to do a query that is not supported by the library.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">const data = db.prepare(`SELECT * FROM albums INNER JOIN artists
-ON artists.ArtistId = albums.ArtistId`).all();</code></pre>
+<pre class="language-javascript"><code v-pre class="language-javascript">const table = db.tables.create('test', ['a', 'b', 'c']);
+table.insert({ a: 1, b: 2, c: 3 });
+
+// table.columns.delete(columnName)
+table.columns.delete('c')
+
+console.log(table.get()); // { a: 1, b: 2 }</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="rename">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#rename">#</doc-anchor-trigger>
+        <span>rename</span>
+    </h3>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">const table = db.tables.create('test', ['a', 'b', 'c']);
+table.insert({ a: 1, b: 2, c: 3 });
+
+// table.columns.delete(columnName)
+table.columns.rename('c', 'd');
+console.log(table.get()); // { a: 1, b: 2, d: 3 }</code></pre>
 </doc-codeblock></div>
 
 
@@ -436,20 +578,20 @@ ON artists.ArtistId = albums.ArtistId`).all();</code></pre>
             
 <nav class="flex mt-14">
     <div class="w-1/2">
-        <a class="px-5 py-4 h-full flex items-center break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="/simplest.db-docs/simple/">
+        <a class="px-5 py-4 h-full flex items-center break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="/simplest.db-docs/sqlazo/database/">
             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
             <span>
                 <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
-                <span class="block mt-1">Simple</span>
+                <span class="block mt-1">Database</span>
             </span>
         </a>
     </div>
 
     <div class="w-1/2">
-        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="/simplest.db-docs/sqlite/table/">
+        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="/simplest.db-docs/sqlazo/benchmarks/">
             <span>
                 <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
-                <span class="block mt-1">Table</span>
+                <span class="block mt-1">Benchmarks</span>
             </span>
             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
         </a>
@@ -497,6 +639,6 @@ ON artists.ArtistId = albums.ArtistId`).all();</code></pre>
 
         <div id="docs-overlay-target"></div>
 
-        <script>window.__DOCS__ = { "title": "Database", icon: "file", hasPrism: true, hasMermaid: false, hasMath: false }</script>
+        <script>window.__DOCS__ = { "title": "Table", icon: "file", hasPrism: true, hasMermaid: false, hasMath: false }</script>
     </body>
 </html>

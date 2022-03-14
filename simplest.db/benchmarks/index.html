@@ -7,31 +7,30 @@
     <meta name="turbo-cache-control" content="no-cache">
 
     <!-- Primary Meta Tags -->
-    <title>Table - simplest-db</title>
-    <meta name="title" content="Table - simplest-db">
-    <meta name="description" content="Data must be a object where the keys are the column names and the values are the values to be used." />
+    <title>Benchmarks - simplest-db</title>
+    <meta name="title" content="Benchmarks - simplest-db">
+    <meta name="description" content="To run the benchmark yourself, run the following commands:" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://fabricio-191.github.io/simplest.db-docs/sqlite/table/">
-    <meta property="og:title" content="Table - simplest-db">
-    <meta property="og:description" content="Data must be a object where the keys are the column names and the values are the values to be used.">
+    <meta property="og:url" content="https://fabricio-191.github.io/simplest.db-docs/simplest.db/benchmarks/">
+    <meta property="og:title" content="Benchmarks - simplest-db">
+    <meta property="og:description" content="To run the benchmark yourself, run the following commands:">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://fabricio-191.github.io/simplest.db-docs/sqlite/table/">
-    <meta property="twitter:title" content="Table - simplest-db">
-    <meta property="twitter:description" content="Data must be a object where the keys are the column names and the values are the values to be used.">
+    <meta property="twitter:url" content="https://fabricio-191.github.io/simplest.db-docs/simplest.db/benchmarks/">
+    <meta property="twitter:title" content="Benchmarks - simplest-db">
+    <meta property="twitter:description" content="To run the benchmark yourself, run the following commands:">
     
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/simplest.db-docs/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/simplest.db-docs/static/database.svg" rel="icon" />
-    <link href="/simplest.db-docs/resources/css/retype.css?v=1.11.2.700443463683" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/simplest.db-docs/resources/css/retype.css?v=1.11.2.700539990999" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/simplest.db-docs/resources/js/config.js?v=1.11.2.700443463683" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/simplest.db-docs/resources/js/config.js?v=1.11.2.700539990999" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/simplest.db-docs/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/simplest.db-docs/resources/js/lunr.js?v=1.11.2.700443463683" defer></script>
-    <script id="prism-js" type="text/javascript" src="/simplest.db-docs/resources/js/prism.js?v=1.11.2.700443463683" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/simplest.db-docs/resources/js/lunr.js?v=1.11.2.700539990999" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -234,339 +233,183 @@
                 <div id="docs-sidebar-right-toggle"></div>
                
                 <!-- Page content  -->
-<doc-anchor-target id="table" class="break-words">
+<doc-anchor-target id="benchmarks" class="break-words">
     <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#table">#</doc-anchor-trigger>
-        <span>Table</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#benchmarks">#</doc-anchor-trigger>
+        <span>Benchmarks</span>
     </h1>
 </doc-anchor-target>
-<doc-anchor-target id="data">
+<doc-anchor-target id="benchmarking">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#data">#</doc-anchor-trigger>
-        <span>Data</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#benchmarking">#</doc-anchor-trigger>
+        <span>Benchmarking</span>
     </h2>
 </doc-anchor-target>
-<p>Data must be a object where the keys are the column names and the values are the values to be used.</p>
-<p>The only acepted values are <code v-pre>null</code>, numbers, bigints, strings and buffers. for booleans you should use <code v-pre>1</code> and <code v-pre>0</code>.<br />
-If a value is not provided or it&#x27;s undefined, the default value will be used.</p>
+<p>To run the benchmark yourself, run the following commands:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">const data = {
-	a: 1,
-	b: 123,
-	c: 'def'
-};
-
-table.insert(data);</code></pre>
+<pre class="language-none"><code v-pre class="language-none">git clone https://github.com/Fabricio-191/simplest.db
+cd simple.db
+npm i
+npm run bench</code></pre>
 </doc-codeblock></div>
-<doc-anchor-target id="condition">
+<p>Everything is measured in operations per second (ops/s). <span class="docs-emoji">&#x1F538;</span> means writes/reads every time (no cache use)</p>
+<doc-anchor-target id="simple-databases">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#condition">#</doc-anchor-trigger>
-        <span>Condition</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#simple-databases">#</doc-anchor-trigger>
+        <span>Simple databases</span>
     </h2>
 </doc-anchor-target>
-<p>Conditions must be strings or functions, using SQL syntax is faster than using functions. see <a href="../../benchmarks/#conditions">benchmarks</a></p>
-<doc-panel id="using-a-function" collapsed>
-    <template #title>Using a function</template>
-<p>Similar to <code v-pre>Array.prototype.filter()</code> and <code v-pre>Array.prototype.find()</code> where the provided value is a row of Data from the table.
-You can use external variables and functions.</p>
-<p>Example:</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">table.insert([
-	{ a: 1, b: 'abc' },
-	{ a: 2, b: 'def' },
-	{ a: 3, b: 'ghi' },
-]);
-
-console.log(table.select(row =&gt; row.a &gt; 1));
-/*
-[
-	{ a: 2, b: 'def' },
-	{ a: 3, b: 'ghi' }
-]
-*/</code></pre>
-</doc-codeblock></div>
-<div class="flex mb-6">
-    <div class="flex-shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
-        <div class="flex items-center ml-4 h-7">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-500 dark:text-blue-400" width="22" height="22" viewBox="0 0 24 24" role="presentation">
-                <g fill="currentColor"><g>
-                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
-                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
-                    <path fill="none" d="M0 0h24v24H0z"></path>
-                </g></g>
-            </svg>
-        </div>
-        <div class="pr-5 ml-3">
-<p>You cannot use async functions in conditions. As them returns a promise, will be seen always as a truthy value.</p>
-        </div>
-    </div>
+<doc-anchor-target id="sqlite">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#sqlite">#</doc-anchor-trigger>
+        <span>SQLite</span>
+    </h4>
+</doc-anchor-target>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Action</th>
+<th>Simple.SQLite</th>
+<th>Simple.SQLite <span class="docs-emoji">&#x1F538;</span></th>
+<th>quick.db <span class="docs-emoji">&#x1F538;</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>set</td>
+<td>237</td>
+<td>14.59</td>
+<td>2.49</td>
+</tr>
+<tr>
+<td>get</td>
+<td>5125</td>
+<td>-</td>
+<td>6.58</td>
+</tr>
+<tr>
+<td>delete</td>
+<td>713</td>
+<td>16.27</td>
+<td>9.12</td>
+</tr>
+</tbody>
+</table>
 </div>
+<doc-anchor-target id="json">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#json">#</doc-anchor-trigger>
+        <span>JSON</span>
+    </h4>
+</doc-anchor-target>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Action</th>
+<th>Simple.JSON</th>
+<th>Simple.JSON <span class="docs-emoji">&#x1F538;</span></th>
+<th>megadb</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>set</td>
+<td>3618</td>
+<td>0.16</td>
+<td>0.11 <span class="docs-emoji">&#x1F538;</span></td>
+</tr>
+<tr>
+<td>get</td>
+<td>5097</td>
+<td>-</td>
+<td>1985</td>
+</tr>
+<tr>
+<td>delete</td>
+<td>4522</td>
+<td>0.53</td>
+<td>2210</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!--
+```mermaid
+gantt
+	title SQLite
+    dateFormat x
+    axisFormat %s
+
+    section Simple.SQLite
+    get    : 0, 5125s
+    set    : 0, 237s
+    delete : 0, 713s
+
+    section Simple.SQLite 🔸
+    get    : 0, 14.59s
+    delete : 0, 16.27s
+
+    section quick.db 🔸
+    get    : 0, 2.49s
+    set    : 0, 6.58s
+    delete : 0, 9.12s
+```
+
+```mermaid
+gantt
+	title JSON
+    dateFormat x
+    axisFormat %s
+
+    section Simple.JSON
+    get    :0, 3618s
+    set    :0, 5097s
+    delete :0, 4522s
+
+    section Simple.JSON 🔸
+    get    :0, 0.16s
+    delete :0, 0.53s
+
+    section megadb
+    get 🔸 :0, 0.11s 
+    set    :0, 1985s
+    delete :0, 2210s
+```
+-->
+<doc-panel id="raw-results" collapsed>
+    <template #title>Raw results</template>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">simple.JSON
+set    x 3618 ops/sec ±8.01% (77 runs sampled)
+get    x 5097 ops/sec ±0.64% (92 runs sampled)
+delete x 4522 ops/sec ±0.92% (90 runs sampled)
+
+simple.JSON (writing every time)
+set    x 0.16 ops/sec ±14.63% (5 runs sampled)
+delete x 0.53 ops/sec ±30.07% (6 runs sampled)
+
+megadb
+set (writes every time) x 0.11 ops/sec ±25.79% (5 runs sampled)
+get (uses cache)        x 1985 ops/sec ±0.42% (94 runs sampled)
+delete (uses cache)     x 2210 ops/sec ±0.40% (94 runs sampled)
+
+simple.SQLite
+set    x  237 ops/sec ±0.61% (85 runs sampled)
+get    x 5125 ops/sec ±0.46% (92 runs sampled)
+delete x  713 ops/sec ±1.75% (90 runs sampled)
+
+simple.SQLite (writing every time)
+set    x 14.59 ops/sec ±0.94% (40 runs sampled)
+delete x 16.27 ops/sec ±0.47% (44 runs sampled)
+
+quick.db (writes/reads every time)
+set    x 2.49 ops/sec ±2.86% (11 runs sampled)
+get    x 6.58 ops/sec ±1.55% (21 runs sampled)
+delete x 9.12 ops/sec ±1.10% (27 runs sampled)</code></pre>
+</doc-codeblock></div>
 </doc-panel>
-<doc-panels>
-   <doc-panel id="using-sql-syntax" collapsed>
-       <template #title>Using SQL syntax</template>
-<p>You can see the oficial SQLite syntax <a href="https://www.sqlite.org/syntax/expr.html">here</a>.
-Or you can use these examples</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">table.select('a &gt; 1');
-table.select('abs(a) &lt;= 1');
-table.select('(a % 2) == 0 AND b == &quot;def&quot;');</code></pre>
-</doc-codeblock></div>
-   </doc-panel>
-   <doc-panel id="more-examples" collapsed>
-       <template #title>More examples</template>
-<p>To see what functions (<code v-pre>abs</code>, <code v-pre>round</code>, <code v-pre>length</code>, <code v-pre>random</code>, etc.) you can use see <a href="https://www.sqlite.org/lang_corefunc.html">this</a>.</p>
-<p>Here i will put some simple examples so people that does not know SQLite can understand how to use them.</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">*   /   %
-+   -
-&gt;   &lt;   &lt;=   &gt;=
-==  !=
-
-NOT // !
-AND // &amp;&amp;
-OR  // ||</code></pre>
-</doc-codeblock></div>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">table.select(&quot;a == 'abc'&quot;);
-table.select(&quot;a == 'abc' AND b == `don't`&quot;);
-table.select('b &lt;= 500');
-table.select('b &gt; c OR a != &quot;13&quot;');
-table.select('(a - 3) % 2 == 0');</code></pre>
-</doc-codeblock></div>
-   </doc-panel>
-</doc-panels>
-<doc-anchor-target id="methods">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#methods">#</doc-anchor-trigger>
-        <span>Methods</span>
-    </h2>
-</doc-anchor-target>
-<doc-anchor-target id="insert">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#insert">#</doc-anchor-trigger>
-        <span>insert</span>
-    </h3>
-</doc-anchor-target>
-<p>see <doc-anchor-trigger to="#data">data</doc-anchor-trigger></p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">// table.insert(data);
-table.insert({ a: 1, b: 'abc' });</code></pre>
-</doc-codeblock></div>
-<p>if you want to insert multiple values do this:</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">table.insert([
-	{ a: 1, b: 'abc' },
-	{ a: 2, b: 'def' },
-	{ a: 3, b: 'ghi' },
-]);</code></pre>
-</doc-codeblock></div>
-<p>inserting multiple values at once is much faster than inserting one by one. see <a href="../../benchmarks/#insert">benchmarks</a></p>
-<doc-anchor-target id="select">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#select">#</doc-anchor-trigger>
-        <span>select</span>
-    </h3>
-</doc-anchor-target>
-<p>returns all the rows that satisfy the condition, see <doc-anchor-trigger to="#condition">condition</doc-anchor-trigger></p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">// table.select(condition);
-console.log(table.select()); 
-/*
-[
-	{ a: 1, b: 'abc' },
-	{ a: 2, b: 'def' },
-	{ a: 3, b: 'ghi' }
-]
-*/
-
-console.log(table.select('a &gt; 1'));
-/*
-[
-	{ a: 2, b: 'def' },
-	{ a: 3, b: 'ghi' }
-]
-*/
-
-console.log(table.select(row =&gt; row.a &gt; 1));
-/*
-[
-	{ a: 2, b: 'def' },
-	{ a: 3, b: 'ghi' }
-]
-*/</code></pre>
-</doc-codeblock></div>
-<doc-anchor-target id="get">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#get">#</doc-anchor-trigger>
-        <span>get</span>
-    </h3>
-</doc-anchor-target>
-<p>Same as select but instead of returning an array of rows, returns the first row.</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">console.log(table.select()); 
-/*
-[
-	{ a: 1, b: 'abc' },
-	{ a: 2, b: 'def' },
-	{ a: 3, b: 'ghi' }
-]
-*/
-
-console.log(table.get('a &gt; 1')); // { a: 2, b: 'def' }</code></pre>
-</doc-codeblock></div>
-<doc-anchor-target id="delete">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#delete">#</doc-anchor-trigger>
-        <span>delete</span>
-    </h3>
-</doc-anchor-target>
-<p>Deletes all rows that satisfy the condition. see <doc-anchor-trigger to="#condition">condition</doc-anchor-trigger></p>
-<p>For security if you dont provide a condition to the <code v-pre>delete</code> method, it will throw an error. if you want to delete all rows use <code v-pre>table.deleteAll()</code></p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">// table.delete(condition);
-console.log(table.select()); 
-/*
-[
-	{ a: 1, b: 'abc' },
-	{ a: 2, b: 'def' },
-	{ a: 3, b: 'ghi' }
-]
-*/
-
-table.delete('a &lt; 2 OR b == &quot;ghi&quot;');
-
-console.log(table.select()); 
-// [{ a: 2, b: 'def' }]</code></pre>
-</doc-codeblock></div>
-<doc-anchor-target id="update">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#update">#</doc-anchor-trigger>
-        <span>update</span>
-    </h3>
-</doc-anchor-target>
-<p>Updates all the rows that satisfy the condition with the given data, see <doc-anchor-trigger to="#condition">condition</doc-anchor-trigger> and <doc-anchor-trigger to="#data">data</doc-anchor-trigger></p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">// table.update(condition, data);
-
-console.log(table.select()); 
-/*
-[
-	{ a: 1, b: 'aaa' },
-	{ a: 2, b: 'bbb' },
-	{ a: 3, b: 'ccc' }
-]
-*/
-
-table.update(row =&gt; row.a === 1, { b: 'ddd' });
-table.update(row =&gt; row.a === 3, { a: 4, b: 'eee' });
-
-console.log(table.select()); 
-/*
-[
-	{ a: 1, b: 'ddd' },
-	{ a: 2, b: 'bbb' },
-	{ a: 4, b: 'eee' }
-]
-*/</code></pre>
-</doc-codeblock></div>
-<doc-anchor-target id="replace">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#replace">#</doc-anchor-trigger>
-        <span>replace</span>
-    </h3>
-</doc-anchor-target>
-<p>The replace method will only work with an <code v-pre>UNIQUE</code> column or a <code v-pre>PRIMARY KEY</code>, see <a href="../database/#create">Columns (advanced)</a></p>
-<p>This method will replace the row where the <code v-pre>UNIQUE</code> or <code v-pre>PRIMARY KEY</code> is equal to the given value. If there is no row with the given value, it will insert the data.</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">const table = db.tables.create('test', ['a PRIMARY KEY', 'b']);
-
-table.insert([
-	{ a: 1, b: 'a' },
-	{ a: 2, b: 'b' },
-	{ a: 3, b: 'c' },
-]);
-
-table.replace({ a: 4, b: 'd' });
-// as none value coincides it will insert the data
-/*
-[
-  { a: 1, b: 'a' },
-  { a: 2, b: 'b' },
-  { a: 3, b: 'c' },
-  { a: 4, b: 'd' }
-]
-*/
-
-table.replace({ a: 2, b: 'e' });
-/*
-[
-  { a: 1, b: 'a' },
-  { a: 3, b: 'c' },
-  { a: 4, b: 'd' },
-  { a: 2, b: 'e' }
-]
-*/</code></pre>
-</doc-codeblock></div>
-<doc-anchor-target id="columns">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#columns">#</doc-anchor-trigger>
-        <span>Columns</span>
-    </h2>
-</doc-anchor-target>
-<doc-anchor-target id="add">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#add">#</doc-anchor-trigger>
-        <span>add</span>
-    </h3>
-</doc-anchor-target>
-<p>A method to add a column to the table. you can also set the default value for the column.
-if no default value is provided it&#x27;s gonna be <code v-pre>null</code>.</p>
-<p>The <code v-pre>fill</code> parameter indicates whenether to fill the new column with the default value or not. (default: <code v-pre>true</code>)</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">const table = db.tables.create('test', ['a', 'b', 'c']);
-table.insert({ a: 1, b: 2, c: 3 });
-
-// table.columns.add(column, defaultValue, fill)
-table.columns.add('d')
-console.log(table.get()); // { a: 1, b: 2, c: 3, d: null }
-
-table.columns.add('e', 'default');
-console.log(table.get()); // { a: 1, b: 2, c: 3, d: null, e: 'default' }
-
-table.columns.add('f', 'default', false);
-console.log(table.get()); // { a: 1, b: 2, c: 3, d: null, e: 'default', f: null }</code></pre>
-</doc-codeblock></div>
-<doc-anchor-target id="delete-1">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#delete-1">#</doc-anchor-trigger>
-        <span>delete</span>
-    </h3>
-</doc-anchor-target>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">const table = db.tables.create('test', ['a', 'b', 'c']);
-table.insert({ a: 1, b: 2, c: 3 });
-
-// table.columns.delete(columnName)
-table.columns.delete('c')
-
-console.log(table.get()); // { a: 1, b: 2 }</code></pre>
-</doc-codeblock></div>
-<doc-anchor-target id="rename">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#rename">#</doc-anchor-trigger>
-        <span>rename</span>
-    </h3>
-</doc-anchor-target>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">const table = db.tables.create('test', ['a', 'b', 'c']);
-table.insert({ a: 1, b: 2, c: 3 });
-
-// table.columns.delete(columnName)
-table.columns.rename('c', 'd');
-console.log(table.get()); // { a: 1, b: 2, d: 3 }</code></pre>
-</doc-codeblock></div>
 
 
 
@@ -578,20 +421,20 @@ console.log(table.get()); // { a: 1, b: 2, d: 3 }</code></pre>
             
 <nav class="flex mt-14">
     <div class="w-1/2">
-        <a class="px-5 py-4 h-full flex items-center break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="/simplest.db-docs/sqlite/database/">
+        <a class="px-5 py-4 h-full flex items-center break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="/simplest.db-docs/simplest.db/">
             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
             <span>
                 <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
-                <span class="block mt-1">Database</span>
+                <span class="block mt-1">simplest.db</span>
             </span>
         </a>
     </div>
 
     <div class="w-1/2">
-        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="/simplest.db-docs/benchmarks/">
+        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="/simplest.db-docs/sqlazo/database/">
             <span>
                 <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
-                <span class="block mt-1">Benchmarks</span>
+                <span class="block mt-1">Database</span>
             </span>
             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
         </a>
@@ -639,6 +482,6 @@ console.log(table.get()); // { a: 1, b: 2, d: 3 }</code></pre>
 
         <div id="docs-overlay-target"></div>
 
-        <script>window.__DOCS__ = { "title": "Table", icon: "file", hasPrism: true, hasMermaid: false, hasMath: false }</script>
+        <script>window.__DOCS__ = { "title": "Benchmarks", icon: "file", hasPrism: false, hasMermaid: false, hasMath: false }</script>
     </body>
 </html>
