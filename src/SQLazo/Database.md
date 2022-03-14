@@ -68,7 +68,7 @@ Gives the `Table` object for a table in the database.
 Transactions are very useful if you want to do multiple operations in a short time.
 They put the database in memory, and will only write it on disk when the transaction ends.
 
-see [benchmarks](../benchmarks.md/#sqlite-database).
+see [benchmarks](benchmarks.md).
 
 for example, instead of doing this:
 ```js

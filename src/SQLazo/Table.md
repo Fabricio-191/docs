@@ -23,7 +23,7 @@ table.insert(data);
 
 ## Condition
 
-Conditions must be strings or functions, using SQL syntax is faster than using functions. see [benchmarks](../benchmarks/#conditions)
+Conditions must be strings or functions, using SQL syntax is faster than using functions. see [benchmarks](Benchmarks.md/#conditions)
 
 ==- Using a function
 Similar to `Array.prototype.filter()` and `Array.prototype.find()` where the provided value is a row of Data from the table.
@@ -107,7 +107,7 @@ table.insert([
 	{ a: 3, b: 'ghi' },
 ]);
 ```
-inserting multiple values at once is much faster than inserting one by one. see [benchmarks](../benchmarks/#insert)
+inserting multiple values at once is much faster than inserting one by one. see [benchmarks](Benchmarks.md/#insert)
 
 ### select
 
