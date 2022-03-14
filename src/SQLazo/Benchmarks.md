@@ -7,9 +7,9 @@ icon: cpu
 
 To run the benchmark yourself, run the following commands:
 
-```
-git clone https://github.com/Fabricio-191/simplest.db
-cd simple.db
+```sh
+git clone https://github.com/Fabricio-191/SQLazo
+cd SQLazo
 npm i
 npm run bench
 ```
@@ -36,6 +36,7 @@ INSERT      | many (transaction) | each                  |
 ------------|--------------------|-----------------------|
 10 rows     | 6.96               | 0.77                  |
 100 rows    | 7.45               | 0.07                  |
+
 <!--
 ```mermaid
 gantt

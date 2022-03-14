@@ -1,11 +1,11 @@
 input: src
 output: .retype
-url: https://fabricio-191.github.io/simplest.db-docs/
+url: https://fabricio-191.github.io/docs/
 favicon: static/database.svg
 
 branding:
-  title: Simplest-DB
-  label: v2.0.0
+  title: Docs
+# label: v2.0.0
 
 meta:
   title: " - simplest-db"
@@ -16,17 +16,17 @@ links:
     icon: home
 
   - text: Issues
-    link: https://github.com/Fabricio-191/simple.db/issues
+    link: https://github.com/Fabricio-191/docs/issues
     icon: issue-opened
     target: blank
 
   - text: Discussions
-    link: https://github.com/Fabricio-191/simple.db/discussions
+    link: https://github.com/Fabricio-191/docs/discussions
     icon: comment-discussion
     target: blank
 
   - text: GitHub
-    link: https://github.com/Fabricio-191/simple.db
+    link: https://github.com/Fabricio-191/docs
     icon: mark-github
     target: blank
 
