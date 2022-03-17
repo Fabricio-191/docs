@@ -7,31 +7,31 @@
     <meta name="turbo-cache-control" content="no-cache">
 
     <!-- Primary Meta Tags -->
-    <title>Use - simplest-db</title>
-    <meta name="title" content="Use - simplest-db">
+    <title>Use</title>
+    <meta name="title" content="Use">
     <meta name="description" content="Options need to be an object like this" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://fabricio-191.github.io/docs/simplest.db/use/">
-    <meta property="og:title" content="Use - simplest-db">
+    <meta property="og:title" content="Use">
     <meta property="og:description" content="Options need to be an object like this">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://fabricio-191.github.io/docs/simplest.db/use/">
-    <meta property="twitter:title" content="Use - simplest-db">
+    <meta property="twitter:title" content="Use">
     <meta property="twitter:description" content="Options need to be an object like this">
     
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/docs/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/docs/static/database.svg" rel="icon" />
-    <link href="/docs/resources/css/retype.css?v=1.11.2.700595143536" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/docs/resources/css/retype.css?v=1.11.2.700836051299" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/docs/resources/js/config.js?v=1.11.2.700595143536" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/docs/resources/js/config.js?v=1.11.2.700836051299" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/docs/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/docs/resources/js/lunr.js?v=1.11.2.700595143536" defer></script>
-    <script id="prism-js" type="text/javascript" src="/docs/resources/js/prism.js?v=1.11.2.700595143536" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/docs/resources/js/lunr.js?v=1.11.2.700836051299" defer></script>
+    <script id="prism-js" type="text/javascript" src="/docs/resources/js/prism.js?v=1.11.2.700836051299" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -245,9 +245,7 @@
 // or for sqlite
 const Database = require('simplest.db').SQLite;
 
-const db = new Database({
-    path: './test.json' // or .sqlite for sqlite
-});</code></pre>
+const db = new Database(options);</code></pre>
 </doc-codeblock></div>
 <doc-anchor-target id="options">
     <h2>
@@ -316,6 +314,26 @@ db.set('thing.arr', [4, 5, 6]);
 }
 */</code></pre>
 </doc-codeblock></div>
+<p>if the key points to an object that it does not exists it will set it as an empty object <code v-pre>{}</code></p>
+<doc-panel id="example" collapsed>
+    <template #title>Example</template>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">db.set('a.b.c', 'foo');
+/*
+{
+	foo: 'bar',
+	thing: {
+		arr: [4, 5, 6]
+	},
+	a: {
+		b: {
+			c: 'foo'
+		}
+	}
+}
+*/</code></pre>
+</doc-codeblock></div>
+</doc-panel>
 <doc-anchor-target id="get">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#get">#</doc-anchor-trigger>
@@ -336,7 +354,8 @@ db.set('thing.arr', [4, 5, 6]);
 db.get('foo'); // 'bar'
 db.get('arr'); // { thing: [4, 5, 6] }
 db.get('thing.arr'); // [4, 5, 6]
-db.get('thing.arr.1'); // 5</code></pre>
+db.get('thing.arr.1'); // 5
+db.get('thing.a.b.c'); // undefined</code></pre>
 </doc-codeblock></div>
 <doc-anchor-target id="delete">
     <h3>

@@ -7,31 +7,31 @@
     <meta name="turbo-cache-control" content="no-cache">
 
     <!-- Primary Meta Tags -->
-    <title>simplest.db - simplest-db</title>
-    <meta name="title" content="simplest.db - simplest-db">
+    <title>simplest.db</title>
+    <meta name="title" content="simplest.db">
     <meta name="description" content="This module really simplifies the creation and use of databases. But sacrifices eficciency for simplicity." />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://fabricio-191.github.io/docs/simplest.db/">
-    <meta property="og:title" content="simplest.db - simplest-db">
+    <meta property="og:title" content="simplest.db">
     <meta property="og:description" content="This module really simplifies the creation and use of databases. But sacrifices eficciency for simplicity.">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://fabricio-191.github.io/docs/simplest.db/">
-    <meta property="twitter:title" content="simplest.db - simplest-db">
+    <meta property="twitter:title" content="simplest.db">
     <meta property="twitter:description" content="This module really simplifies the creation and use of databases. But sacrifices eficciency for simplicity.">
     
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/docs/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/docs/static/database.svg" rel="icon" />
-    <link href="/docs/resources/css/retype.css?v=1.11.2.700595143536" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/docs/resources/css/retype.css?v=1.11.2.700836051299" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/docs/resources/js/config.js?v=1.11.2.700595143536" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/docs/resources/js/config.js?v=1.11.2.700836051299" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/docs/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/docs/resources/js/lunr.js?v=1.11.2.700595143536" defer></script>
-    <script id="prism-js" type="text/javascript" src="/docs/resources/js/prism.js?v=1.11.2.700595143536" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/docs/resources/js/lunr.js?v=1.11.2.700836051299" defer></script>
+    <script id="prism-js" type="text/javascript" src="/docs/resources/js/prism.js?v=1.11.2.700836051299" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -240,6 +240,63 @@
         <span>simplest.db</span>
     </h1>
 </doc-anchor-target>
+<doc-anchor-target id="about">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#about">#</doc-anchor-trigger>
+        <span>About</span>
+    </h2>
+</doc-anchor-target>
+<p>This module really simplifies the creation and use of databases.
+But sacrifices eficciency for simplicity.</p>
+<p>It&#x27;s thinked for begginers or for projects where speed isn&#x27;t vital.</p>
+<doc-panel id="sad-reality" collapsed>
+    <template #title>Sad reality</template>
+<p>Using JSON as a database is not a good idea. and using SQLite tables with two rows to store JSON is also not the best idea.</p>
+<p>This module was actually made as a better alternative to quick.db and megadb.</p>
+<p>megadb:</p>
+<ul>
+<li>It&#x27;s slow, see <a href="benchmarks/#json">this</a></li>
+<li>has a high change of going corrupt as it writes the changes on the disk on every call of the <code v-pre>establecer</code> (<code v-pre>set</code>) method.</li>
+<li>it uses cache on the delete method but not in the set method, which means poor design.</li>
+</ul>
+<p>quick.db:</p>
+<ul>
+<li>It&#x27;s slow, see <a href="benchmarks/#sqlite">this</a></li>
+<li>You cannot set multiple databases nor a custom database file, it&#x27;s always <code v-pre>./json.sqlite</code></li>
+<li>in the SQLite database file, it uses only one table.</li>
+</ul>
+</doc-panel>
+<doc-anchor-target id="installation">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#installation">#</doc-anchor-trigger>
+        <span>Installation</span>
+    </h2>
+</doc-anchor-target>
+<p>To install the package, run the following command:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">npm i simplest.db</code></pre>
+</doc-codeblock></div>
+<div class="flex mb-6">
+    <div class="flex-shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-500 dark:text-blue-400" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3">
+<p>if you have any problem in the installation related to <code v-pre>better-sqlite3</code> see <a href="https://github.com/JoshuaWise/better-sqlite3/blob/master/docs/troubleshooting.md">this</a></p>
+        </div>
+    </div>
+</div>
+<p>if you don&#x27;t want to use the SQLite database, you should do</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">npm i simplest.db --no-optional</code></pre>
+</doc-codeblock></div>
 <!--
 database
 	|--get*
@@ -272,46 +329,6 @@ database
 	|    |--add*
 	|    |--subtract*
 -->
-<doc-anchor-target id="about">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#about">#</doc-anchor-trigger>
-        <span>About</span>
-    </h2>
-</doc-anchor-target>
-<p>This module really simplifies the creation and use of databases.
-But sacrifices eficciency for simplicity.</p>
-<p>It&#x27;s thinked for begginers or for projects where speed isn&#x27;t vital.</p>
-<doc-anchor-target id="installation">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#installation">#</doc-anchor-trigger>
-        <span>Installation</span>
-    </h2>
-</doc-anchor-target>
-<p>To install the package, run the following command:</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-bash"><code v-pre class="language-bash">npm i simplest.db</code></pre>
-</doc-codeblock></div>
-<div class="flex mb-6">
-    <div class="flex-shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
-        <div class="flex items-center ml-4 h-7">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-500 dark:text-blue-400" width="22" height="22" viewBox="0 0 24 24" role="presentation">
-                <g fill="currentColor"><g>
-                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
-                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
-                    <path fill="none" d="M0 0h24v24H0z"></path>
-                </g></g>
-            </svg>
-        </div>
-        <div class="pr-5 ml-3">
-<p>if you have any problem in the installation related to <code v-pre>better-sqlite3</code> see <a href="https://github.com/JoshuaWise/better-sqlite3/blob/master/docs/troubleshooting.md">this</a></p>
-        </div>
-    </div>
-</div>
-<p>if you don&#x27;t want to use the SQLite database, you should do</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-bash"><code v-pre class="language-bash">npm i simplest.db --no-optional</code></pre>
-</doc-codeblock></div>
 
 
 

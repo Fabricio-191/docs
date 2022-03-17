@@ -7,31 +7,32 @@
     <meta name="turbo-cache-control" content="no-cache">
 
     <!-- Primary Meta Tags -->
-    <title>Benchmarks - simplest-db</title>
-    <meta name="title" content="Benchmarks - simplest-db">
+    <title>Benchmarks</title>
+    <meta name="title" content="Benchmarks">
     <meta name="description" content="To run the benchmark yourself, run the following commands:" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://fabricio-191.github.io/docs/sqlazo/benchmarks/">
-    <meta property="og:title" content="Benchmarks - simplest-db">
+    <meta property="og:title" content="Benchmarks">
     <meta property="og:description" content="To run the benchmark yourself, run the following commands:">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://fabricio-191.github.io/docs/sqlazo/benchmarks/">
-    <meta property="twitter:title" content="Benchmarks - simplest-db">
+    <meta property="twitter:title" content="Benchmarks">
     <meta property="twitter:description" content="To run the benchmark yourself, run the following commands:">
     
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/docs/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/docs/static/database.svg" rel="icon" />
-    <link href="/docs/resources/css/retype.css?v=1.11.2.700595143536" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/docs/resources/css/retype.css?v=1.11.2.700836051299" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/docs/resources/js/config.js?v=1.11.2.700595143536" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/docs/resources/js/config.js?v=1.11.2.700836051299" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/docs/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/docs/resources/js/lunr.js?v=1.11.2.700595143536" defer></script>
-    <script id="prism-js" type="text/javascript" src="/docs/resources/js/prism.js?v=1.11.2.700595143536" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/docs/resources/js/lunr.js?v=1.11.2.700836051299" defer></script>
+    <script id="prism-js" type="text/javascript" src="/docs/resources/js/prism.js?v=1.11.2.700836051299" defer></script>
+    <script id="mermaid-js" type="text/javascript" src="/docs/resources/js/mermaid.js?v=1.11.2" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -260,62 +261,51 @@ npm run bench</code></pre>
         <span>Conditions</span>
     </h3>
 </doc-anchor-target>
-<div class="table-wrapper scrollbar overflow-hidden">
-<table class="comfortable">
-<thead>
-<tr>
-<th>100 rows</th>
-<th>SELECT</th>
-<th>SELECT IN TRANSACTION</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>JS</td>
-<td>2648</td>
-<td>3983</td>
-</tr>
-<tr>
-<td>SQL</td>
-<td>4911</td>
-<td>9550</td>
-</tr>
-<tr>
-<td>ALL</td>
-<td>2663</td>
-<td>2990</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="table-wrapper scrollbar overflow-hidden">
-<table class="comfortable">
-<thead>
-<tr>
-<th>100000 rows</th>
-<th>SELECT</th>
-<th>SELECT IN TRANSACTION</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>JS</td>
-<td>11.23</td>
-<td>12.29</td>
-</tr>
-<tr>
-<td>SQL</td>
-<td>29.63</td>
-<td>30.24</td>
-</tr>
-<tr>
-<td>ALL</td>
-<td>6.28</td>
-<td>6.57</td>
-</tr>
-</tbody>
-</table>
-</div>
+<div class="overflow-hidden mb-6 py-4 dark:px-5 dark:bg-white rounded-md"><pre class="mermaid w-full">gantt
+	title SELECT (with 100 rows)
+    dateFormat x
+    axisFormat %s
+
+    section JS
+    ⠀              :0, 2648s
+    IN TRANSACTION :0, 3983s
+
+	section SQL
+    ⠀              :0, 4911s
+    IN TRANSACTION :0, 9550s
+
+	section ALL
+    ⠀              :0, 2663s
+    IN TRANSACTION :0, 2990s</pre></div>
+<div class="overflow-hidden mb-6 py-4 dark:px-5 dark:bg-white rounded-md"><pre class="mermaid w-full">gantt
+	title SELECT (with 100000 rows)
+    dateFormat X
+    axisFormat %s
+
+    section JS
+    ⠀              :0.0, 11.23
+    IN TRANSACTION :0.0, 12.29
+
+	section SQL
+    ⠀              :0.0, 29.63
+    IN TRANSACTION :0.0, 30.24
+
+	section ALL
+    ⠀              :0.0, 6.28
+    IN TRANSACTION :0.0, 6.57</pre></div>
+<!--
+100 rows    | SELECT             | SELECT IN TRANSACTION |
+------------|--------------------|-----------------------|
+JS          | 2648               | 3983                  |
+SQL         | 4911               | 9550                  |
+ALL         | 2663               | 2990                  |
+
+100000 rows | SELECT             | SELECT IN TRANSACTION |
+------------|--------------------|-----------------------|
+JS          | 11.23              | 12.29                 | 
+SQL         | 29.63              | 30.24                 |
+ALL         | 6.28               | 6.57                  |
+-->
 <doc-anchor-target id="insert">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#insert">#</doc-anchor-trigger>
@@ -431,6 +421,20 @@ each               x 0.07 ops/sec ±2.88% (5 runs sampled)</code></pre>
             </div>
 
             
+<nav class="flex mt-14">
+    <div class="w-1/2">
+        <a class="px-5 py-4 h-full flex items-center break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r rounded-l-lg transition-colors duration-150 relative hover:z-5" href="/docs/sqlazo/table/">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+            <span>
+                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
+                <span class="block mt-1">Table</span>
+            </span>
+        </a>
+    </div>
+
+    <div class="w-1/2">
+    </div>
+</nav>
 
 
         </main>
@@ -473,6 +477,6 @@ each               x 0.07 ops/sec ±2.88% (5 runs sampled)</code></pre>
 
         <div id="docs-overlay-target"></div>
 
-        <script>window.__DOCS__ = { "title": "Benchmarks", icon: "file", hasPrism: true, hasMermaid: false, hasMath: false }</script>
+        <script>window.__DOCS__ = { "title": "Benchmarks", icon: "file", hasPrism: true, hasMermaid: true, hasMath: false }</script>
     </body>
 </html>
