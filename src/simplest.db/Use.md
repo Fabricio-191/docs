@@ -7,9 +7,7 @@ const Database = require('simplest.db').JS0N; // with zero
 // or for sqlite
 const Database = require('simplest.db').SQLite;
 
-const db = new Database({
-    path: './test.json' // or .sqlite for sqlite
-});
+const db = new Database(options);
 ```
 
 ## Options
@@ -71,6 +69,27 @@ db.set('thing.arr', [4, 5, 6]);
 */
 ```
 
+if the key points to an object that it does not exists it will set it as an empty object `{}`
+
+==- Example
+```js
+db.set('a.b.c', 'foo');
+/*
+{
+	foo: 'bar',
+	thing: {
+		arr: [4, 5, 6]
+	},
+	a: {
+		b: {
+			c: 'foo'
+		}
+	}
+}
+*/
+```
+===
+
 ### get
 
 Gets a value from the database.
@@ -89,6 +108,7 @@ db.get('foo'); // 'bar'
 db.get('arr'); // { thing: [4, 5, 6] }
 db.get('thing.arr'); // [4, 5, 6]
 db.get('thing.arr.1'); // 5
+db.get('thing.a.b.c'); // undefined
 ```
 
 ### delete

@@ -18,6 +18,45 @@ Everything is measured in operations per second (ops/s).
 
 ### Conditions
 
+```mermaid
+gantt
+	title SELECT (with 100 rows)
+    dateFormat x
+    axisFormat %s
+
+    section JS
+    ⠀              :0, 2648s
+    IN TRANSACTION :0, 3983s
+
+	section SQL
+    ⠀              :0, 4911s
+    IN TRANSACTION :0, 9550s
+
+	section ALL
+    ⠀              :0, 2663s
+    IN TRANSACTION :0, 2990s
+```
+
+```mermaid
+gantt
+	title SELECT (with 100000 rows)
+    dateFormat X
+    axisFormat %s
+
+    section JS
+    ⠀              :0.0, 11.23
+    IN TRANSACTION :0.0, 12.29
+
+	section SQL
+    ⠀              :0.0, 29.63
+    IN TRANSACTION :0.0, 30.24
+
+	section ALL
+    ⠀              :0.0, 6.28
+    IN TRANSACTION :0.0, 6.57
+```
+
+<!--
 100 rows    | SELECT             | SELECT IN TRANSACTION |
 ------------|--------------------|-----------------------|
 JS          | 2648               | 3983                  |
@@ -29,6 +68,7 @@ ALL         | 2663               | 2990                  |
 JS          | 11.23              | 12.29                 | 
 SQL         | 29.63              | 30.24                 |
 ALL         | 6.28               | 6.57                  |
+-->
 
 ### Insert
 
