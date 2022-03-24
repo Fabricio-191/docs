@@ -22,8 +22,7 @@ megadb:
 
 quick.db:
 * It's slow, see [this](./Benchmarks.md#sqlite)
-* You cannot set multiple databases nor a custom database file, it's always `./json.sqlite`
-* in the SQLite database file, it uses only one table.
+* You cannot set a custom database file, it's always `./json.sqlite`
 ===
 
 ## Installation
