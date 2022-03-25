@@ -28,7 +28,7 @@ Options need to be an object like this
 
 * `check` (json only) is whenether to check or not if the value was stored correctly, `false` by default
 
-* `name` (sqlite only) `simple_db` by default. See how to use it [here](./extras.md/#Multiple_db's_in_the_same_file)
+* `name` (sqlite only) `simple_db` by default. See how to use it [here](./extras.md#Multiple_SQLite_databases_in_the_same_file)
 
 ==- Keys
 Keys in the database are like "property accessors" (normal way to access any property in JavaScript) but in string. And the only separator accepted is a dot `.` 
@@ -53,7 +53,7 @@ It can also recieve array of strings as keys
 
 ### set
 
-Sets a value in the database if the key point to a unexistent object it will create it.
+Sets a value in the database.
 
 ```js
 db.set('foo', 'bar');

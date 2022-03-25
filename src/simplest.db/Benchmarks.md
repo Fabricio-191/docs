@@ -46,6 +46,8 @@ gantt
     delete : 0.0, 67.36
 ```
 
+Must take into account that as quick.db does not has cache, it needs to get a value to modify it, so it makes two sqlite operations were i need one.
+
 ## JSON
 
 ```mermaid

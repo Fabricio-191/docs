@@ -33,7 +33,7 @@ npm i simplest.db
 ```
 
 !!!
-if you have any problem in the installation related to `better-sqlite3` see [this](https://github.com/JoshuaWise/better-sqlite3/blob/master/docs/troubleshooting.md)
+if you have any problem in the installation related to `better-sqlite3`, try running the command as root/administrator or see [this](https://github.com/JoshuaWise/better-sqlite3/blob/master/docs/troubleshooting.md)
 !!!
 
 if you don't want to use the SQLite database, you should do 

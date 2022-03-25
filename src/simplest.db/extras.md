@@ -3,7 +3,7 @@ icon: eye-closed
 visibility: hidden
 ---
 
-## Multiple db's in the same file
+## Multiple SQLite databases in the same file
 
 This is only for SQLite, the `name` option specifies the table in the database file.
 
