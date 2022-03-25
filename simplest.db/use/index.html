@@ -26,12 +26,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/docs/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/docs/static/database.svg" rel="icon" />
-    <link href="/docs/resources/css/retype.css?v=1.11.2.701405449426" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/docs/resources/css/retype.css?v=1.11.2.701551449963" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/docs/resources/js/config.js?v=1.11.2.701405449426" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/docs/resources/js/config.js?v=1.11.2.701551449963" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/docs/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/docs/resources/js/lunr.js?v=1.11.2.701405449426" defer></script>
-    <script id="prism-js" type="text/javascript" src="/docs/resources/js/prism.js?v=1.11.2.701405449426" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/docs/resources/js/lunr.js?v=1.11.2.701551449963" defer></script>
+    <script id="prism-js" type="text/javascript" src="/docs/resources/js/prism.js?v=1.11.2.701551449963" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -269,7 +269,7 @@ const db = new Database(options);</code></pre>
 </li>
 <li><p><code v-pre>check</code> (json only) is whenether to check or not if the value was stored correctly, <code v-pre>false</code> by default</p>
 </li>
-<li><p><code v-pre>name</code> (sqlite only) <code v-pre>simple_db</code> by default. See how to use it <a href="../extras/#Multiple_db%27s_in_the_same_file">here</a></p>
+<li><p><code v-pre>name</code> (sqlite only) <code v-pre>simple_db</code> by default. See how to use it <a href="../extras/#Multiple_SQLite_databases_in_the_same_file">here</a></p>
 </li>
 </ul>
 <doc-panel id="keys" collapsed>
@@ -300,7 +300,7 @@ const db = new Database(options);</code></pre>
         <span>set</span>
     </h3>
 </doc-anchor-target>
-<p>Sets a value in the database if the key point to a unexistent object it will create it.</p>
+<p>Sets a value in the database.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-javascript"><code v-pre class="language-javascript">db.set('foo', 'bar');
 db.set('thing.arr', [4, 5, 6]);
