@@ -1,6 +1,6 @@
 ---
 label: simplest.db
-icon: container
+icon: database
 ---
 
 ## About

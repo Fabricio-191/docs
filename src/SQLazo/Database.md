@@ -1,6 +1,6 @@
 ---
 label: Database
-icon: database
+icon: container
 order: 3
 ---
 
