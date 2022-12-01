@@ -8,7 +8,7 @@ order: 3
 
 ```js
 const Database = require('simplest.db').SQLite;
-const db = new SQLite({
+const db = new Database({
 	path: './database.sqlite',
 });
 ```
