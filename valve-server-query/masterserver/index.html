@@ -9,29 +9,29 @@
     <!-- Primary Meta Tags -->
     <title>MasterServer</title>
     <meta name="title" content="MasterServer">
-    <meta name="description" content="Gold source master servers may not work. The reason is unknown, the servers simply do not respond to queries" />
+    <meta name="description" content="These are the default values" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://fabricio-191.github.io/docs/valve-server-query/masterserver/">
     <meta property="og:title" content="MasterServer">
-    <meta property="og:description" content="Gold source master servers may not work. The reason is unknown, the servers simply do not respond to queries">
+    <meta property="og:description" content="These are the default values">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://fabricio-191.github.io/docs/valve-server-query/masterserver/">
     <meta property="twitter:title" content="MasterServer">
-    <meta property="twitter:description" content="Gold source master servers may not work. The reason is unknown, the servers simply do not respond to queries">
+    <meta property="twitter:description" content="These are the default values">
     
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/docs/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/docs/static/database.svg" rel="icon" />
-    <link href="/docs/resources/css/retype.css?v=1.11.2.723229219432" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/docs/resources/css/retype.css?v=1.11.2.723251130198" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/docs/resources/js/config.js?v=1.11.2.723229219432" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/docs/resources/js/config.js?v=1.11.2.723251130198" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/docs/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/docs/resources/js/lunr.js?v=1.11.2.723229219432" defer></script>
-    <script id="prism-js" type="text/javascript" src="/docs/resources/js/prism.js?v=1.11.2.723229219432" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/docs/resources/js/lunr.js?v=1.11.2.723251130198" defer></script>
+    <script id="prism-js" type="text/javascript" src="/docs/resources/js/prism.js?v=1.11.2.723251130198" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -240,16 +240,6 @@
         <span>MasterServer</span>
     </h1>
 </doc-anchor-target>
-<doc-anchor-target id="warns">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#warns">#</doc-anchor-trigger>
-        <span>Warns:</span>
-    </h3>
-</doc-anchor-target>
-<ul>
-<li>Gold source master servers may not work. The reason is unknown, the servers simply do not respond to queries</li>
-<li>If the quantity is <code v-pre>Infinity</code> or <code v-pre>'all'</code>, it will try to get all the servers, but most likely it will end up giving an warning (it will as many servers as possible). The master server stops responding at a certain point.</li>
-</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-javascript"><code v-pre class="language-javascript">MasterServer({
   quantity: 1000, // or Infinity or 'all'
@@ -263,12 +253,23 @@
   })
   .catch(console.error);</code></pre>
 </doc-codeblock></div>
-<doc-anchor-target id="valid-regions-are">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#valid-regions-are">#</doc-anchor-trigger>
-        <span>Valid regions are</span>
-    </h3>
-</doc-anchor-target>
+<doc-panel id="options" collapsed>
+    <template #title>Options</template>
+<p>These are the default values</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">{
+  ip: 'hl2master.steampowered.com',
+  port: 27011,
+  
+  timeout: 2000,
+  debug: false,
+  enableWarns: true,
+
+  quantity: 200,
+  region: 'OTHER',
+}</code></pre>
+</doc-codeblock></div>
+<p>Valid regions:</p>
 <ul>
 <li>US_EAST</li>
 <li>US_WEST</li>
@@ -280,6 +281,8 @@
 <li>AFRICA</li>
 <li>OTHER</li>
 </ul>
+<p>If the quantity is <code v-pre>Infinity</code> or <code v-pre>'all'</code>, it will try to get all the servers, but most likely it will end up giving an warning (it will as many servers as possible). The master server stops responding at a certain point.</p>
+</doc-panel>
 <doc-panel id="response-example" collapsed>
     <template #title>Response example</template>
 <div class="codeblock-wrapper"><doc-codeblock>
@@ -494,19 +497,22 @@ MasterServer(
 </doc-anchor-target>
 <p>See <a href="https://developer.valvesoftware.com/wiki/Master_Server_Query_Protocol#Master_servers">https://developer.valvesoftware.com/wiki/Master_Server_Query_Protocol#Master_servers</a></p>
 <doc-anchor-target id="source">
-    <h3>
+    <h4>
         <doc-anchor-trigger class="header-anchor-trigger" to="#source">#</doc-anchor-trigger>
         <span>Source</span>
-    </h3>
+    </h4>
 </doc-anchor-target>
 <p>The port used in <code v-pre>hl2master.steampowered.com</code> ip&#x27;s is <code v-pre>27011</code> but one of them is using a different port: <code v-pre>27015</code></p>
 <doc-anchor-target id="goldsource">
-    <h3>
+    <h4>
         <doc-anchor-trigger class="header-anchor-trigger" to="#goldsource">#</doc-anchor-trigger>
         <span>GoldSource</span>
-    </h3>
+    </h4>
 </doc-anchor-target>
 <p>The port numbers used by <code v-pre>hl1master.steampowered.com</code> can be anything between <code v-pre>27010</code> and <code v-pre>27013</code>.</p>
+<ul>
+<li>Gold source master servers may not work. The reason is unknown, the servers simply do not respond to queries</li>
+</ul>
 
 
 

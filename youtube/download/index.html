@@ -7,21 +7,21 @@
     <meta name="turbo-cache-control" content="no-cache">
 
     <!-- Primary Meta Tags -->
-    <title>Extras</title>
-    <meta name="title" content="Extras">
-    <meta name="description" content="This is only for SQLite, the name option specifies the table in the database file." />
+    <title>Use example</title>
+    <meta name="title" content="Use example">
+    <meta name="description" content="To choose a format you should see videoData.formats, it's an object like this:" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://fabricio-191.github.io/docs/simplest.db/extras/">
-    <meta property="og:title" content="Extras">
-    <meta property="og:description" content="This is only for SQLite, the name option specifies the table in the database file.">
+    <meta property="og:url" content="https://fabricio-191.github.io/docs/youtube/download/">
+    <meta property="og:title" content="Use example">
+    <meta property="og:description" content="To choose a format you should see videoData.formats, it's an object like this:">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://fabricio-191.github.io/docs/simplest.db/extras/">
-    <meta property="twitter:title" content="Extras">
-    <meta property="twitter:description" content="This is only for SQLite, the name option specifies the table in the database file.">
+    <meta property="twitter:url" content="https://fabricio-191.github.io/docs/youtube/download/">
+    <meta property="twitter:title" content="Use example">
+    <meta property="twitter:description" content="To choose a format you should see videoData.formats, it's an object like this:">
     
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/docs/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
@@ -234,54 +234,150 @@
                 <div id="docs-sidebar-right-toggle"></div>
                
                 <!-- Page content  -->
-<doc-anchor-target id="extras" class="break-words">
+<doc-anchor-target id="use-example" class="break-words">
     <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#extras">#</doc-anchor-trigger>
-        <span>Extras</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#use-example">#</doc-anchor-trigger>
+        <span>Use example</span>
     </h1>
 </doc-anchor-target>
-<doc-anchor-target id="multiple-sqlite-databases-in-the-same-file">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#multiple-sqlite-databases-in-the-same-file">#</doc-anchor-trigger>
-        <span>Multiple SQLite databases in the same file</span>
-    </h2>
-</doc-anchor-target>
-<p>This is only for SQLite, the <code v-pre>name</code> option specifies the table in the database file.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">const Database = require('simplest.db').SQLite;
+<pre class="language-javascript"><code v-pre class="language-javascript">const { getVideo } = require('@fabricio-191/youtube');
+const fs = require('fs');
 
-const db = new Database({
-    path: './simple-db.sqlite',
-	name: 'users',
-});
+getVideo('https://www.youtube.com/watch?v=zWRvVbyQjQY&amp;list=PLDS0dpumEOi0pu_0pCGqvcaRkxg-o1gqg&amp;index=95')
+    .then(async video =&gt; {
+		//By default it downloads only the audio, in the best possible quality
 
-const db2 = new Database({
-    path: './simple-db.sqlite',
-	name: 'servers',
-});
+        let buffer = await video.download(true); //download as buffer
+        fs.writeFileSync('./audio.mp3', buffer);
+        //the best audio is probably not going to be a mp3
 
-// db and db2 are in the same file but they do not share values</code></pre>
+        let stream = await video.download(); //download as stream
+        stream.pipe(fs.createWriteStream('./audio2.mp3'));
+    })</code></pre>
 </doc-codeblock></div>
-<doc-anchor-target id="cache">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#cache">#</doc-anchor-trigger>
-        <span>Cache</span>
-    </h2>
+<doc-anchor-target id="chosing-a-format">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#chosing-a-format">#</doc-anchor-trigger>
+        <span>Chosing a format</span>
+    </h1>
 </doc-anchor-target>
-<p>The cache is an intermediate layer between the database and the user. because writing the data on disk directly is really slow. see the <a href="../benchmarks/">benchmarks</a>.</p>
-<p>This layers improves performance but it may lead to weird behavior if you don&#x27;t know about it.</p>
+<p>To choose a format you should see <code v-pre>videoData.formats</code>, it&#x27;s an object like this:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">const db = new Database({
-    path: './test.json'
-});
+<pre class="language-javascript"><code v-pre class="language-javascript">{
+    videoAndAudio: [...],
+    video: [...],
+    audio: [...]
+}</code></pre>
+</doc-codeblock></div>
+<p>All formats are ordered in such a way that the first is the best</p>
+<p>A format with audio and video is like this<br />
+If the format is only audio, the <code v-pre>video</code> property will not be present, and vice versa.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">{
+	itag: 18,
+	type: 'mp4',
+	size: '141 MB',
+	byteLength: 147959020,
+	quality: 'medium',
+	download: [Function: download],
+	expiresAt: 1610096359465,
+	meta: {
+		bitrate: 366578,
+		averageBitrate: 366577,
+		contentLength: '1183672162',
+		approxDurationMs: '25831874',
+		lastModified: '1609600959271530',
+		projectionType: 'RECTANGULAR'
+	},
+	audio: {
+		codec: 'mp4a.40.2',
+		simpleCodec: 'MP4a',
+		channels: 2,
+		quality: 'LOW',
+		sampleRate: 44100
+	},
+	video: {
+		codec: 'avc1.42001E',
+		simpleCodec: 'AVC1',
+		width: 640,
+		height: 360,
+		label: '360p',
+		fps: 30
+	}
+}</code></pre>
+</doc-codeblock></div>
+<p>Once you get the format you want you call the download method</p>
+<doc-anchor-target id="example">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#example">#</doc-anchor-trigger>
+        <span>Example</span>
+    </h1>
+</doc-anchor-target>
+<p>I want an Opus audio to reproduce it in Discord</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">getVideo('https://www.youtube.com/watch?v=zWRvVbyQjQY&amp;list=PLDS0dpumEOi0pu_0pCGqvcaRkxg-o1gqg&amp;index=95')
+    .then(async data =&gt; {
+		let format = data.formats.audio.find(format =&gt; format.audio.simpleCodec === 'Opus') //the first that use opus
+		/*
+		Remember, the formats are ordered from best to worst
+		So, is the best with Opus as codec
+		*/
 
-let obj = { num: 1 };
+		let stream = await format.download();
+		//voiceConnection, from Discord.js
+        voiceConnection.play(stream);
+    })</code></pre>
+</doc-codeblock></div>
+<p>Here is the list of simplified codecs, lower index = better</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">[
+	//video
+	'AV01',
+	'H.264',
+	'VP9',
+	'VP8',
+	'MPEG-4',
+	'H.283', 
+	'AVC1',
+	'MP4v',
+	
+	//audio
+	'FLAC',
+	'Opus',
+	'AAC',
+	'Vorbis',
+	'MP3',
+	'MP4a'
+];</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="example-2">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#example-2">#</doc-anchor-trigger>
+        <span>Example 2</span>
+    </h1>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">//something like 'C:/Users/Fabricio/Downloads'
+let downloadsPath = `${process.env.HOMEDRIVE}${process.env.HOMEPATH}/Downloads`;
 
-db.set('abc', obj);
+getVideo('https://www.youtube.com/watch?v=zWRvVbyQjQY&amp;list=PLDS0dpumEOi0pu_0pCGqvcaRkxg-o1gqg&amp;index=95')
+	.then(async video =&gt; {
+		let format = video.formats.video
+			.reduce((best, format) =&gt; {
+				if(
+					format.byteLength &lt; best.byteLength &amp;&amp; (  //less size
+						format.height &gt;= best.height ||  //and more or equal resolution
+						format.fps &gt;= best.fps  //or more or equal fps
+					)
+				) best = format;
 
-obj.num += 30;
+				return best;
+			}, video.formats.video[0]);
 
-console.log(db.get('abc')); // { num: 31 }</code></pre>
+		let buffer = await format.download(true);
+		fs.writeFileSync(`${downloadsPath}/${video.name}.${format.type}`, buffer);
+	});</code></pre>
 </doc-codeblock></div>
 
 
@@ -334,6 +430,6 @@ console.log(db.get('abc')); // { num: 31 }</code></pre>
 
         <div id="docs-overlay-target"></div>
 
-        <script>window.__DOCS__ = { "title": "Extras", icon: "file", hasPrism: true, hasMermaid: false, hasMath: false }</script>
+        <script>window.__DOCS__ = { "title": "Use example", icon: "file", hasPrism: true, hasMermaid: false, hasMath: false }</script>
     </body>
 </html>

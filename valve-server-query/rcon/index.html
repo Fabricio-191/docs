@@ -26,12 +26,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/docs/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/docs/static/database.svg" rel="icon" />
-    <link href="/docs/resources/css/retype.css?v=1.11.2.723229219432" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/docs/resources/css/retype.css?v=1.11.2.723251130198" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/docs/resources/js/config.js?v=1.11.2.723229219432" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/docs/resources/js/config.js?v=1.11.2.723251130198" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/docs/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/docs/resources/js/lunr.js?v=1.11.2.723229219432" defer></script>
-    <script id="prism-js" type="text/javascript" src="/docs/resources/js/prism.js?v=1.11.2.723229219432" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/docs/resources/js/lunr.js?v=1.11.2.723251130198" defer></script>
+    <script id="prism-js" type="text/javascript" src="/docs/resources/js/prism.js?v=1.11.2.723251130198" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -240,7 +240,7 @@
         <span>RCON</span>
     </h1>
 </doc-anchor-target>
-<p>Some commands will cause the server to disconnect, for example <code v-pre>sv_gravity 0</code> in some cases or <code v-pre>rcon_password newPassword</code> as it changes de password and needs to authenticate again.</p>
+<p>Some commands will cause the server to disconnect, for example <code v-pre>sv_gravity 0</code> in some cases or <code v-pre>rcon_password newPassword</code> as it changes the password and needs to authenticate again.</p>
 <p><a href="https://developer.valvesoftware.com/wiki/Console_Command_List">Commands list</a></p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-javascript"><code v-pre class="language-javascript">const rcon = await RCON({
@@ -270,8 +270,29 @@ rcon.on('passwordChanged', async () =&gt; {
 const response = await rcon.exec('sv_gravity 1000');
 // Response is always a string that is some kind of log of the server or it can be empty</code></pre>
 </doc-codeblock></div>
-<details>
-<summary><code>exec(command)</code></summary>
+<doc-panel id="options" collapsed>
+    <template #title>Options</template>
+<p>These are the default values</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">{
+  ip: 'localhost',
+  port: 27015,
+  
+  timeout: 2000,
+  debug: false,
+  enableWarns: true,
+
+  //RCON
+  password: 'The RCON password', // hasn't a default value
+}</code></pre>
+</doc-codeblock></div>
+</doc-panel>
+<doc-anchor-target id="execcommand">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#execcommand">#</doc-anchor-trigger>
+        <span>exec(command)</span>
+    </h2>
+</doc-anchor-target>
 <p>This will work well with <code v-pre>server.getRules()</code></p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-javascript"><code v-pre class="language-javascript">// gravity will change randomly every 5 seconds
@@ -285,14 +306,16 @@ setInterval(() =&gt; {
 
 }, 5000);</code></pre>
 </doc-codeblock></div>
-</details>
-<details>
-<summary><code>destroy()</code></summary>
+<doc-anchor-target id="destroy">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#destroy">#</doc-anchor-trigger>
+        <span>destroy()</span>
+    </h2>
+</doc-anchor-target>
 <p>Destroys the RCON connection, this will not fire the <code v-pre>disconnect</code> event</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-javascript"><code v-pre class="language-javascript">rcon.destroy();</code></pre>
 </doc-codeblock></div>
-</details>
 
 
 

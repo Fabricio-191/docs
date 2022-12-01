@@ -7,21 +7,23 @@
     <meta name="turbo-cache-control" content="no-cache">
 
     <!-- Primary Meta Tags -->
-    <title>Extras</title>
-    <meta name="title" content="Extras">
-    <meta name="description" content="This is only for SQLite, the name option specifies the table in the database file." />
+    <title>Youtube</title>
+    <meta name="title" content="Youtube">
+    <meta name="description" content="Issues Donate Discord" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://fabricio-191.github.io/docs/simplest.db/extras/">
-    <meta property="og:title" content="Extras">
-    <meta property="og:description" content="This is only for SQLite, the name option specifies the table in the database file.">
+    <meta property="og:url" content="https://fabricio-191.github.io/docs/youtube/">
+    <meta property="og:title" content="Youtube">
+    <meta property="og:description" content="Issues Donate Discord">
+    <meta property="og:image" content="https://img.shields.io/github/issues/Fabricio-191/youtube?style=for-the-badge">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://fabricio-191.github.io/docs/simplest.db/extras/">
-    <meta property="twitter:title" content="Extras">
-    <meta property="twitter:description" content="This is only for SQLite, the name option specifies the table in the database file.">
+    <meta property="twitter:url" content="https://fabricio-191.github.io/docs/youtube/">
+    <meta property="twitter:title" content="Youtube">
+    <meta property="twitter:description" content="Issues Donate Discord">
+    <meta property="twitter:image" content="https://img.shields.io/github/issues/Fabricio-191/youtube?style=for-the-badge">
     
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/docs/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
@@ -234,55 +236,152 @@
                 <div id="docs-sidebar-right-toggle"></div>
                
                 <!-- Page content  -->
-<doc-anchor-target id="extras" class="break-words">
+<doc-anchor-target id="youtube" class="break-words">
     <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#extras">#</doc-anchor-trigger>
-        <span>Extras</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#youtube">#</doc-anchor-trigger>
+        <span>Youtube</span>
     </h1>
 </doc-anchor-target>
-<doc-anchor-target id="multiple-sqlite-databases-in-the-same-file">
+<p><figure class="content-center">
+    <a href="https://github.com/Fabricio-191/youtube/issues">
+        <img src="https://img.shields.io/github/issues/Fabricio-191/youtube?style=for-the-badge" alt="Issues" />
+    </a>
+    <figcaption class="caption">Issues</figcaption>
+</figure>
+<figure class="content-center">
+    <a href="https://www.patreon.com/fabricio_191">
+        <img src="https://img.shields.io/badge/donate-patreon-F96854.svg?style=for-the-badge" alt="Donate" />
+    </a>
+    <figcaption class="caption">Donate</figcaption>
+</figure>
+<figure class="content-center">
+    <a href="https://discord.gg/zrESMn6">
+        <img src="https://img.shields.io/discord/555535212461948936?style=for-the-badge&amp;color=7289da" alt="Discord" />
+    </a>
+    <figcaption class="caption">Discord</figcaption>
+</figure>
+</p>
+<p>You can see the changelog <a href="https://github.com/Fabricio-191/youtube/blob/main/docs/changelog.md">here</a></p>
+<p>You have to bear in mind that this does not use an official youtube api, there is no documentation and a change could cause it to throw an error, besides that there are things that I do not know, such as different privacy settings or rendering</p>
+<doc-anchor-target id="use-example">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#multiple-sqlite-databases-in-the-same-file">#</doc-anchor-trigger>
-        <span>Multiple SQLite databases in the same file</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#use-example">#</doc-anchor-trigger>
+        <span>Use example:</span>
     </h2>
 </doc-anchor-target>
-<p>This is only for SQLite, the <code v-pre>name</code> option specifies the table in the database file.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">const Database = require('simplest.db').SQLite;
-
-const db = new Database({
-    path: './simple-db.sqlite',
-	name: 'users',
-});
-
-const db2 = new Database({
-    path: './simple-db.sqlite',
-	name: 'servers',
-});
-
-// db and db2 are in the same file but they do not share values</code></pre>
+<pre class="language-javascript"><code v-pre class="language-javascript">const { getVideo, getPlaylist, search } = require('@fabricio-191/youtube')
+  .setDefaultOptions({
+    location: 'AR',
+    language: 'es-419'
+  });</code></pre>
 </doc-codeblock></div>
-<doc-anchor-target id="cache">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#cache">#</doc-anchor-trigger>
-        <span>Cache</span>
-    </h2>
+<p><a href="https://github.com/Fabricio-191/youtube/blob/main/test/results.json">here</a> you can see a JSON that shows the information that each method gives (I do not put it here, because it&#x27;s a lot)</p>
+<doc-anchor-target id="methods">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#methods">#</doc-anchor-trigger>
+        <span>Methods:</span>
+    </h1>
 </doc-anchor-target>
-<p>The cache is an intermediate layer between the database and the user. because writing the data on disk directly is really slow. see the <a href="../benchmarks/">benchmarks</a>.</p>
-<p>This layers improves performance but it may lead to weird behavior if you don&#x27;t know about it.</p>
+<doc-anchor-target id="getvideourlorid-options">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#getvideourlorid-options">#</doc-anchor-trigger>
+        <span><code v-pre>getVideo(URLorID, options)</code></span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>returns a <code v-pre>Promise</code></li>
+</ul>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">const db = new Database({
-    path: './test.json'
-});
-
-let obj = { num: 1 };
-
-db.set('abc', obj);
-
-obj.num += 30;
-
-console.log(db.get('abc')); // { num: 31 }</code></pre>
+<pre class="language-javascript"><code v-pre class="language-javascript">getVideo('https://www.youtube.com/watch?v=H2wCwdHk-ao&amp;list=PLDS0dpumEOi0pu_0pCGqvcaRkxg-o1gqg')
+  .then(data =&gt; {
+    console.log(data);
+    //do something...
+  })  
+  .catch(console.error);</code></pre>
 </doc-codeblock></div>
+<doc-anchor-target id="getplaylisturlorid-options">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#getplaylisturlorid-options">#</doc-anchor-trigger>
+        <span><code v-pre>getPlaylist(URLorID, options)</code></span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>returns a <code v-pre>Promise</code></li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">getPlaylist('https://www.youtube.com/watch?v=H2wCwdHk-ao&amp;list=PLDS0dpumEOi0pu_0pCGqvcaRkxg-o1gqg')
+  .then(data =&gt; {
+    console.log(data);
+    //do something...
+  })  
+  .catch(console.error);</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="searchsearchstring-options">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#searchsearchstring-options">#</doc-anchor-trigger>
+        <span><code v-pre>search(searchString, options)</code></span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>returns a <code v-pre>Promise</code></li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">search('Node.js', { quantity: 40 })
+  .then(data =&gt; {
+    const videos = data.results.filter(x =&gt; x.type === 'video');
+    //do something...
+  })  
+  .catch(console.error);</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="setdefaultoptionsoptions">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#setdefaultoptionsoptions">#</doc-anchor-trigger>
+        <span><code v-pre>setDefaultOptions(options)</code></span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>returns <code v-pre>this</code></li>
+</ul>
+<doc-anchor-target id="options">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#options">#</doc-anchor-trigger>
+        <span>Options:</span>
+    </h1>
+</doc-anchor-target>
+<p>The default options are:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">{
+  language: 'en',
+  location: 'US',
+  quantity: 'all',
+  requestsOptions: {}
+}</code></pre>
+</doc-codeblock></div>
+<p>The <code v-pre>requestsOptions</code> are passed directly to the <code v-pre>http.request()</code> (or https) method<br />
+<a href="https://nodejs.org/api/http.html#http_http_request_options_callback">here</a> you can see which can be</p>
+<p>And <a href="https://github.com/Fabricio-191/youtube/blob/main/docs/list.md">here</a> you can see a list of valid <code v-pre>locations</code> and <code v-pre>languages</code></p>
+<p>When you pass options to a method, the options without value, will be taken from the default values</p>
+<doc-anchor-target id="notes">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#notes">#</doc-anchor-trigger>
+        <span>Notes:</span>
+    </h1>
+</doc-anchor-target>
+<ul>
+<li>In an array of Thumbnails, the first will always be the bigger</li>
+<li>Some structures have a <code v-pre>toString()</code> method that returns the clear text in it, for others is an URL, like in an array of thumbnails</li>
+</ul>
+<doc-anchor-target id="credits">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#credits">#</doc-anchor-trigger>
+        <span>Credits</span>
+    </h1>
+</doc-anchor-target>
+<ul>
+<li><a href="https://www.npmjs.com/package/ytpl">ytpl</a> for the bases and the how-to</li>
+<li><a href="https://stackoverflow.com/questions/6903823/regex-for-youtube-id">This</a> stack overflow post for the regex to get videos ID&#x27;s from URL&#x27;s</li>
+</ul>
 
 
 
@@ -334,6 +433,6 @@ console.log(db.get('abc')); // { num: 31 }</code></pre>
 
         <div id="docs-overlay-target"></div>
 
-        <script>window.__DOCS__ = { "title": "Extras", icon: "file", hasPrism: true, hasMermaid: false, hasMath: false }</script>
+        <script>window.__DOCS__ = { "title": "Youtube", icon: "file", hasPrism: true, hasMermaid: false, hasMath: false }</script>
     </body>
 </html>

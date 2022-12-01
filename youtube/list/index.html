@@ -7,21 +7,18 @@
     <meta name="turbo-cache-control" content="no-cache">
 
     <!-- Primary Meta Tags -->
-    <title>Extras</title>
-    <meta name="title" content="Extras">
-    <meta name="description" content="This is only for SQLite, the name option specifies the table in the database file." />
+    <title>List of languages</title>
+    <meta name="title" content="List of languages">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://fabricio-191.github.io/docs/simplest.db/extras/">
-    <meta property="og:title" content="Extras">
-    <meta property="og:description" content="This is only for SQLite, the name option specifies the table in the database file.">
+    <meta property="og:url" content="https://fabricio-191.github.io/docs/youtube/list/">
+    <meta property="og:title" content="List of languages">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://fabricio-191.github.io/docs/simplest.db/extras/">
-    <meta property="twitter:title" content="Extras">
-    <meta property="twitter:description" content="This is only for SQLite, the name option specifies the table in the database file.">
+    <meta property="twitter:url" content="https://fabricio-191.github.io/docs/youtube/list/">
+    <meta property="twitter:title" content="List of languages">
     
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/docs/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
@@ -234,54 +231,85 @@
                 <div id="docs-sidebar-right-toggle"></div>
                
                 <!-- Page content  -->
-<doc-anchor-target id="extras" class="break-words">
+<doc-anchor-target id="list-of-languages" class="break-words">
     <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#extras">#</doc-anchor-trigger>
-        <span>Extras</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#list-of-languages">#</doc-anchor-trigger>
+        <span>List of languages</span>
     </h1>
 </doc-anchor-target>
-<doc-anchor-target id="multiple-sqlite-databases-in-the-same-file">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#multiple-sqlite-databases-in-the-same-file">#</doc-anchor-trigger>
-        <span>Multiple SQLite databases in the same file</span>
-    </h2>
-</doc-anchor-target>
-<p>This is only for SQLite, the <code v-pre>name</code> option specifies the table in the database file.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">const Database = require('simplest.db').SQLite;
-
-const db = new Database({
-    path: './simple-db.sqlite',
-	name: 'users',
-});
-
-const db2 = new Database({
-    path: './simple-db.sqlite',
-	name: 'servers',
-});
-
-// db and db2 are in the same file but they do not share values</code></pre>
+<pre class="language-javascript"><code v-pre class="language-javascript">'af' =&gt; 'Afrikaans'                     'gu' =&gt; 'Gujarati'                      'or' =&gt; 'Odia'                          
+'am' =&gt; 'Amharic'                       'hi' =&gt; 'Hindi'                         'pa' =&gt; 'Punjabi'                       
+'ar' =&gt; 'Arabic'                        'hr' =&gt; 'Croatian'                      'pl' =&gt; 'Polish'                        
+'as' =&gt; 'Assamese'                      'hu' =&gt; 'Hungarian'                     'pt' =&gt; 'Portuguese (Brazil)'           
+'az' =&gt; 'Azerbaijani'                   'hy' =&gt; 'Armenian'                      'pt-PT' =&gt; 'Portuguese (Portugal)'      
+'be' =&gt; 'Belarusian'                    'id' =&gt; 'Indonesian'                    'ro' =&gt; 'Romanian'                      
+'bg' =&gt; 'Bulgarian'                     'is' =&gt; 'Icelandic'                     'ru' =&gt; 'Russian'                       
+'bn' =&gt; 'Bangla'                        'it' =&gt; 'Italian'                       'si' =&gt; 'Sinhala'                       
+'bs' =&gt; 'Bosnian'                       'iw' =&gt; 'Hebrew'                        'sk' =&gt; 'Slovak'                        
+'ca' =&gt; 'Catalan'                       'ja' =&gt; 'Japanese'                      'sl' =&gt; 'Slovenian'                     
+'cs' =&gt; 'Czech'                         'ka' =&gt; 'Georgian'                      'sq' =&gt; 'Albanian'                      
+'da' =&gt; 'Danish'                        'kk' =&gt; 'Kazakh'                        'sr' =&gt; 'Serbian'                       
+'de' =&gt; 'German'                        'km' =&gt; 'Khmer'                         'sr-Latn' =&gt; 'Serbian (Latin)'          
+'el' =&gt; 'Greek'                         'kn' =&gt; 'Kannada'                       'sv' =&gt; 'Swedish'                       
+'en' =&gt; 'English'                       'ko' =&gt; 'Korean'                        'sw' =&gt; 'Swahili'                       
+'en-GB' =&gt; 'English (United Kingdom)'   'ky' =&gt; 'Kyrgyz'                        'ta' =&gt; 'Tamil'                         
+'en-IN' =&gt; 'English (India)'            'lo' =&gt; 'Lao'                           'te' =&gt; 'Telugu'                        
+'es' =&gt; 'Spanish (Spain)'               'lt' =&gt; 'Lithuanian'                    'th' =&gt; 'Thai'                          
+'es-419' =&gt; 'Spanish (Latin America)'   'lv' =&gt; 'Latvian'                       'tr' =&gt; 'Turkish'                       
+'es-US' =&gt; 'Spanish (United States)'    'mk' =&gt; 'Macedonian'                    'uk' =&gt; 'Ukrainian'                     
+'et' =&gt; 'Estonian'                      'ml' =&gt; 'Malayalam'                     'ur' =&gt; 'Urdu'                          
+'eu' =&gt; 'Basque'                        'mn' =&gt; 'Mongolian'                     'uz' =&gt; 'Uzbek'                         
+'fa' =&gt; 'Persian'                       'mr' =&gt; 'Marathi'                       'vi' =&gt; 'Vietnamese'                    
+'fi' =&gt; 'Finnish'                       'ms' =&gt; 'Malay'                         'zh-CN' =&gt; 'Chinese'                    
+'fil' =&gt; 'Filipino'                     'my' =&gt; 'Myanmar (Burmese)'             'zh-HK' =&gt; 'Chinese (Hong Kong)'        
+'fr' =&gt; 'French'                        'ne' =&gt; 'Nepali'                        'zh-TW' =&gt; 'Chinese (Taiwan)'           
+'fr-CA' =&gt; 'French (Canada)'            'nl' =&gt; 'Dutch'                         'zu' =&gt; 'Zulu'                          
+'gl' =&gt; 'Galician'                      'no' =&gt; 'Norwegian'                                                             </code></pre>
 </doc-codeblock></div>
-<doc-anchor-target id="cache">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#cache">#</doc-anchor-trigger>
-        <span>Cache</span>
-    </h2>
+<doc-anchor-target id="list-of-locations">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#list-of-locations">#</doc-anchor-trigger>
+        <span>List of locations</span>
+    </h1>
 </doc-anchor-target>
-<p>The cache is an intermediate layer between the database and the user. because writing the data on disk directly is really slow. see the <a href="../benchmarks/">benchmarks</a>.</p>
-<p>This layers improves performance but it may lead to weird behavior if you don&#x27;t know about it.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-javascript"><code v-pre class="language-javascript">const db = new Database({
-    path: './test.json'
-});
-
-let obj = { num: 1 };
-
-db.set('abc', obj);
-
-obj.num += 30;
-
-console.log(db.get('abc')); // { num: 31 }</code></pre>
+<pre class="language-javascript"><code v-pre class="language-javascript">'AE' =&gt; 'United Arab Emirates'          'HN' =&gt; 'Honduras'                      'OM' =&gt; 'Oman'                          
+'AR' =&gt; 'Argentina'                     'HR' =&gt; 'Croatia'                       'PA' =&gt; 'Panama'                        
+'AT' =&gt; 'Austria'                       'HU' =&gt; 'Hungary'                       'PE' =&gt; 'Peru'                          
+'AU' =&gt; 'Australia'                     'ID' =&gt; 'Indonesia'                     'PG' =&gt; 'Papua New Guinea'              
+'AZ' =&gt; 'Azerbaijan'                    'IE' =&gt; 'Ireland'                       'PH' =&gt; 'Philippines'                   
+'BA' =&gt; 'Bosnia and Herzegovina'        'IL' =&gt; 'Israel'                        'PK' =&gt; 'Pakistan'                      
+'BD' =&gt; 'Bangladesh'                    'IN' =&gt; 'India'                         'PL' =&gt; 'Poland'                        
+'BE' =&gt; 'Belgium'                       'IQ' =&gt; 'Iraq'                          'PR' =&gt; 'Puerto Rico'                   
+'BG' =&gt; 'Bulgaria'                      'IS' =&gt; 'Iceland'                       'PT' =&gt; 'Portugal'                      
+'BH' =&gt; 'Bahrain'                       'IT' =&gt; 'Italy'                         'PY' =&gt; 'Paraguay'                      
+'BO' =&gt; 'Bolivia'                       'JM' =&gt; 'Jamaica'                       'QA' =&gt; 'Qatar'                         
+'BR' =&gt; 'Brazil'                        'JO' =&gt; 'Jordan'                        'RO' =&gt; 'Romania'                       
+'BY' =&gt; 'Belarus'                       'JP' =&gt; 'Japan'                         'RS' =&gt; 'Serbia'                        
+'CA' =&gt; 'Canada'                        'KE' =&gt; 'Kenya'                         'RU' =&gt; 'Russia'                        
+'CH' =&gt; 'Switzerland'                   'KR' =&gt; 'South Korea'                   'SA' =&gt; 'Saudi Arabia'                  
+'CL' =&gt; 'Chile'                         'KW' =&gt; 'Kuwait'                        'SE' =&gt; 'Sweden'                        
+'CO' =&gt; 'Colombia'                      'KZ' =&gt; 'Kazakhstan'                    'SG' =&gt; 'Singapore'                     
+'CR' =&gt; 'Costa Rica'                    'LB' =&gt; 'Lebanon'                       'SI' =&gt; 'Slovenia'                      
+'CY' =&gt; 'Cyprus'                        'LI' =&gt; 'Liechtenstein'                 'SK' =&gt; 'Slovakia'                      
+'CZ' =&gt; 'Czechia'                       'LK' =&gt; 'Sri Lanka'                     'SN' =&gt; 'Senegal'                       
+'DE' =&gt; 'Germany'                       'LT' =&gt; 'Lithuania'                     'SV' =&gt; 'El Salvador'                   
+'DK' =&gt; 'Denmark'                       'LU' =&gt; 'Luxembourg'                    'TH' =&gt; 'Thailand'                      
+'DO' =&gt; 'Dominican Republic'            'LV' =&gt; 'Latvia'                        'TN' =&gt; 'Tunisia'                       
+'DZ' =&gt; 'Algeria'                       'LY' =&gt; 'Libya'                         'TR' =&gt; 'Turkey'                        
+'EC' =&gt; 'Ecuador'                       'MA' =&gt; 'Morocco'                       'TW' =&gt; 'Taiwan'                        
+'EE' =&gt; 'Estonia'                       'ME' =&gt; 'Montenegro'                    'TZ' =&gt; 'Tanzania'                      
+'EG' =&gt; 'Egypt'                         'MK' =&gt; 'North Macedonia'               'UA' =&gt; 'Ukraine'                       
+'ES' =&gt; 'Spain'                         'MT' =&gt; 'Malta'                         'UG' =&gt; 'Uganda'                        
+'FI' =&gt; 'Finland'                       'MX' =&gt; 'Mexico'                        'US' =&gt; 'United States'                 
+'FR' =&gt; 'France'                        'MY' =&gt; 'Malaysia'                      'UY' =&gt; 'Uruguay'                       
+'GB' =&gt; 'United Kingdom'                'NG' =&gt; 'Nigeria'                       'VE' =&gt; 'Venezuela'                     
+'GE' =&gt; 'Georgia'                       'NI' =&gt; 'Nicaragua'                     'VN' =&gt; 'Vietnam'                       
+'GH' =&gt; 'Ghana'                         'NL' =&gt; 'Netherlands'                   'YE' =&gt; 'Yemen'                         
+'GR' =&gt; 'Greece'                        'NO' =&gt; 'Norway'                        'ZA' =&gt; 'South Africa'                  
+'GT' =&gt; 'Guatemala'                     'NP' =&gt; 'Nepal'                         'ZW' =&gt; 'Zimbabwe'                      
+'HK' =&gt; 'Hong Kong'                     'NZ' =&gt; 'New Zealand'                                                           </code></pre>
 </doc-codeblock></div>
 
 
@@ -334,6 +362,6 @@ console.log(db.get('abc')); // { num: 31 }</code></pre>
 
         <div id="docs-overlay-target"></div>
 
-        <script>window.__DOCS__ = { "title": "Extras", icon: "file", hasPrism: true, hasMermaid: false, hasMath: false }</script>
+        <script>window.__DOCS__ = { "title": "List of languages", icon: "file", hasPrism: true, hasMermaid: false, hasMath: false }</script>
     </body>
 </html>
