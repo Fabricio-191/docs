@@ -3,10 +3,6 @@ icon: square-fill
 ---
 # MasterServer
 
-### Warns: 
-* Gold source master servers may not work. The reason is unknown, the servers simply do not respond to queries
-* If the quantity is `Infinity` or `'all'`, it will try to get all the servers, but most likely it will end up giving an warning (it will as many servers as possible). The master server stops responding at a certain point.
-
 ```js
 MasterServer({
   quantity: 1000, // or Infinity or 'all'
@@ -21,7 +17,24 @@ MasterServer({
   .catch(console.error);
 ```
 
-### Valid regions are
+==- Options
+These are the default values
+
+```js
+{
+  ip: 'hl2master.steampowered.com',
+  port: 27011,
+  
+  timeout: 2000,
+  debug: false,
+  enableWarns: true,
+
+  quantity: 200,
+  region: 'OTHER',
+}
+```
+
+Valid regions:
 * US_EAST
 * US_WEST
 * SOUTH_AMERICA
@@ -32,6 +45,9 @@ MasterServer({
 * AFRICA
 * OTHER
 
+If the quantity is `Infinity` or `'all'`, it will try to get all the servers, but most likely it will end up giving an warning (it will as many servers as possible). The master server stops responding at a certain point.
+
+===
 ==- Response example
 ```js
 [
@@ -143,10 +159,11 @@ Notes:
 
 See https://developer.valvesoftware.com/wiki/Master_Server_Query_Protocol#Master_servers
 
-### Source
+#### Source
 
 The port used in `hl2master.steampowered.com` ip's is `27011` but one of them is using a different port: `27015`  
 
-### GoldSource
+#### GoldSource
 
 The port numbers used by `hl1master.steampowered.com` can be anything between `27010` and `27013`.
+* Gold source master servers may not work. The reason is unknown, the servers simply do not respond to queries

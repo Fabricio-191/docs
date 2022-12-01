@@ -36,6 +36,22 @@ This make all queries in parallel
 */
 ```
 
+==- Options
+
+These are the default values
+
+```js
+{
+  ip: 'localhost',
+  port: 27015,
+  
+  timeout: 2000,
+  debug: false,
+  enableWarns: true,
+}
+```
+===
+
 ## getInfo()
 
 Performs an [A2S_INFO](https://developer.valvesoftware.com/wiki/Server_queries#A2S_INFO) query to the server

@@ -3,7 +3,7 @@ icon: square-fill
 ---
 # RCON
 
-Some commands will cause the server to disconnect, for example `sv_gravity 0` in some cases or `rcon_password newPassword` as it changes de password and needs to authenticate again.
+Some commands will cause the server to disconnect, for example `sv_gravity 0` in some cases or `rcon_password newPassword` as it changes the password and needs to authenticate again.
 
 [Commands list](https://developer.valvesoftware.com/wiki/Console_Command_List) 
 
@@ -36,8 +36,26 @@ const response = await rcon.exec('sv_gravity 1000');
 // Response is always a string that is some kind of log of the server or it can be empty
 ```
 
-<details>
-<summary><code>exec(command)</code></summary>
+==- Options
+
+These are the default values
+
+```js
+{
+  ip: 'localhost',
+  port: 27015,
+  
+  timeout: 2000,
+  debug: false,
+  enableWarns: true,
+
+  //RCON
+  password: 'The RCON password', // hasn't a default value
+}
+```
+===
+
+## exec(command)
 
 This will work well with `server.getRules()`
 ```js
@@ -52,15 +70,11 @@ setInterval(() => {
 
 }, 5000);
 ```
-</details>
 
-
-<details>
-<summary><code>destroy()</code></summary>
+## destroy()
 
 Destroys the RCON connection, this will not fire the `disconnect` event
 
 ```js
 rcon.destroy();
 ```
-</details>
